@@ -25,7 +25,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "assets/Home/css/font-awesome.min.css",
+              "assets/css/animate.css",
+              "assets/css/hover-min.css",
+              "assets/css/datepicker.css",
+              "assets/css/owl.carousel.min.css",
+              "assets/css/owl.theme.default.min.css",
+              "assets/css/jquery-ui.min.css",
+              "assets/css/bootstrap.min.css",
+              "assets/css/bootsnav.css",
+              "assets/css/style.css",
+              "assets/css/responsive.css"
             ],
             "scripts": []
           },
