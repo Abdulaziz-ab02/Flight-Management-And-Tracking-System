@@ -40,11 +40,9 @@
             ],
             "scripts": [
               "src/assets/Home/js/jquery.js",
-              "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js",
               "src/assets/Home/js/bootstrap.min.js",
               "src/assets/Home/js/bootsnav.js",
               "src/assets/Home/js/jquery.filterizr.min.js",
-              "https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js",
               "src/assets/Home/js/jquery-ui.min.js",
               "src/assets/Home/js/jquery.counterup.min.js",
               "src/assets/Home/js/waypoints.min.js",
