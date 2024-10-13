@@ -1,0 +1,34 @@
+
+.about-us {
+    background-image: url('../home/images/home-flight.jpg'); /* Replace with your image path */
+    background-size: cover; /* This will scale the image to cover the entire section */
+    background-position: center; /* This will center the image */
+    background-repeat: no-repeat; /* This will prevent the image from repeating */
+    height: 100vh; /* Adjust the height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white; /* Ensure text is visible on the background */
+    text-align: center;
+    min-height: 1000px;
+}
+.about-us:before{
+	position: absolute;
+	content: "";
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,122,207,.4);
+}
+
+
+.about-us-txt h2 {
+	color:hsl(228, 100%, 99%);	
+	font-size:68px;
+	text-transform: inherit;
+	max-width: 800px;
+	font-weight: 600;
+	line-height: 1.22;
+  
+}
