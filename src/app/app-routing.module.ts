@@ -10,20 +10,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => UserModule
-    
-  },
-  
-  {
-    path:'home',
-    component:HomeComponent
-  },
-  {
-    path:'about',
-    component:AboutComponent
-  },
-  {
-    path:'contactus',
-    component:ContactusComponent
   },
   {
     path: 'security',
