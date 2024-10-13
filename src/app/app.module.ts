@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { UserSharedModule } from './user/user-shared/user-shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    UserSharedModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  declarations : [
+  AppComponent
+],
+imports : [
+BrowserModule,
+AppRoutingModule,
+UserSharedModule
+],
+providers: [],
+bootstrap: [AppComponent] 
 })
 export class AppModule { }
