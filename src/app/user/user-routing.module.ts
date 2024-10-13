@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'contactus',
     component: ContactusComponent
-  },
+  }
 ];
 
 @NgModule({

@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => UserModule
   },
   {
+    path: 'user',
+    loadChildren: () => UserModule
+  },
+  {
     path: 'security',
     loadChildren: () => AuthModule
   }
