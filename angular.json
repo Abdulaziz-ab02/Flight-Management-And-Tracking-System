@@ -47,7 +47,8 @@
               "src/assets/Home/js/aos.js",
               "src/assets/Home/js/moment.min.js",
               "src/assets/Home/js/daterangepicker.js",
-              "src/assets/Home/js/typed.js"
+              "src/assets/Home/js/typed.js",
+              "src/assets/Home/js/custom.js"
             ]
           },
           "configurations": {
