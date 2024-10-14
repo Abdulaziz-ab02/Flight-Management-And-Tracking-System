@@ -25,9 +25,30 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/Home/css/bootstrap.min.css",
+              "src/assets/Home/css/owl.carousel.min.css",
+              "src/assets/Home/css/owl.theme.default.min.css",
+              "src/assets/Home/css/jquery.fancybox.min.css",
+              "src/assets/Home/fonts/icomoon/style.css",
+              "src/assets/Home/fonts/flaticon/font/flaticon.css",
+              "src/assets/Home/css/daterangepicker.css",
+              "src/assets/Home/css/aos.css",
+              "src/assets/Home/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/Home/js/jquery-3.4.1.min.js",
+              "src/assets/Home/js/popper.min.js",
+              "src/assets/Home/js/bootstrap.min.js",
+              "src/assets/Home/js/owl.carousel.min.js",
+              "src/assets/Home/js/jquery.animateNumber.min.js",
+              "src/assets/Home/js/jquery.waypoints.min.js",
+              "src/assets/Home/js/jquery.fancybox.min.js",
+              "src/assets/Home/js/aos.js",
+              "src/assets/Home/js/moment.min.js",
+              "src/assets/Home/js/daterangepicker.js",
+              "src/assets/Home/js/typed.js"
+            ]
           },
           "configurations": {
             "production": {
