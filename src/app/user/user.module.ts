@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
-
+import { FormsModule } from '@angular/forms';
 import { UserSharedModule } from './user-shared/user-shared.module';
 
 
@@ -18,7 +18,8 @@ import { UserSharedModule } from './user-shared/user-shared.module';
   imports: [
     CommonModule,
     UserRoutingModule,
-    UserSharedModule
+    UserSharedModule,
+    FormsModule
   ]
 })
 export class UserModule { }
