@@ -34,7 +34,15 @@
               "src/assets/Home/fonts/flaticon/font/flaticon.css",
               "src/assets/Home/css/daterangepicker.css",
               "src/assets/Home/css/aos.css",
-              "src/assets/Home/css/style.css"
+              "src/assets/Home/css/style.css",
+
+
+              
+              "src/assets/Admin/lib/owlcarousel/assets/owl.carousel.min.css",
+              "src/assets/Admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css",
+              "src/assets/Admin/css/bootstrap.min.css",
+              "src/assets/Admin/css/style.css"
+
             ],
             "scripts": [
               "src/assets/Home/js/jquery-3.4.1.min.js",
@@ -48,7 +56,17 @@
               "src/assets/Home/js/moment.min.js",
               "src/assets/Home/js/daterangepicker.js",
               "src/assets/Home/js/typed.js",
-              "src/assets/Home/js/custom.js"
+              "src/assets/Home/js/custom.js",
+              "src/assets/Admin/lib/chart/chart.min.js",
+              "src/assets/Admin/lib/easing/easing.min.js",
+              "src/assets/Admin/lib/waypoints/waypoints.min.js",
+              "src/assets/Admin/lib/owlcarousel/owl.carousel.min.js",
+              "src/assets/Admin/lib/tempusdominus/js/moment.min.js",
+              "src/assets/Admin/lib/tempusdominus/js/moment-timezone.min.js",
+              "src/assets/Admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js",
+              "src/assets/Admin/js/main.js"
+
+
             ]
           },
           "configurations": {

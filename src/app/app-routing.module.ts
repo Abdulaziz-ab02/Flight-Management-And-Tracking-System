@@ -5,6 +5,7 @@ import { HomeComponent } from './user/home/home.component';
 import { AboutComponent } from './user/about/about.component';
 import { ContactusComponent } from './user/contactus/contactus.component';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'security',
     loadChildren: () => AuthModule
+  },
+  {
+    path:'admin',
+    loadChildren:()=>AdminModule
   }
 ];
 
