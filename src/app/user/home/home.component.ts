@@ -61,3 +61,4 @@ export class HomeComponent {
     console.log('Selected Destination City:', this.selectedDestinationCity); // Log the selected city
   }
 }
+
