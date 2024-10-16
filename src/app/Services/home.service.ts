@@ -11,17 +11,14 @@ export class HomeService {
 
   testimonials: any = [];
   getAllTestimonials() {
-
     this.http.get('https://localhost:7117/api/Testimonial').subscribe(result => {
       this.testimonials = result;
-      console.log("hello")
 
     }, err => {
       console.log(err.message)
     });
-
-
   }
+
 
 
 
