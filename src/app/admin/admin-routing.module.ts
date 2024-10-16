@@ -11,56 +11,62 @@ import { ManageHomeComponent } from './manage-home/manage-home.component';
 import { ManageAboutusComponent } from './manage-aboutus/manage-aboutus.component';
 import { ManageContactusComponent } from './manage-contactus/manage-contactus.component';
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
+import { AirlinesComponent } from './airlines/airlines.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
 
   {
     path: '',
-    component:HomeComponent
+    component: HomeComponent
   },
   {
     path: 'home',
-    component:HomeComponent
+    component: HomeComponent
   },
   {
-    path: 'users',
-    component:UsersComponent
-  },
-  {
-    path: 'flights',
-    component: FlightsComponent
+    path: 'airlines',
+    component: AirlinesComponent
   },
   {
     path: 'airports',
     component: AirportsComponent
   },
   {
-    path: 'search',
-    component:SearchFlightComponent 
+    path: 'flights',
+    component: FlightsComponent
   },
   {
-    path: 'updateprofile',
-    component:UpdateProfileComponent 
+    path: 'users',
+    component: UsersComponent
+  },
+  {
+    path: 'search',
+    component: SearchFlightComponent
   },
   {
     path: 'viewprofile',
     component: ViewProfileComponent
-  } ,
-   {
-    path: 'managehome',
+  },
+  {
+    path: 'manage-home',
     component: ManageHomeComponent
   },
   {
-    path: 'manageabout',
-    component:ManageAboutusComponent 
+    path: 'manage-aboutus',
+    component: ManageAboutusComponent
   },
   {
-    path: 'managecontact',
-    component:ManageContactusComponent
+    path: 'manage-contactus',
+    component: ManageContactusComponent
   },
   {
-    path: 'managetestimonial',
+    path: 'manage-testimonials',
     component: ManageTestimonialsComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
   }
 
 
