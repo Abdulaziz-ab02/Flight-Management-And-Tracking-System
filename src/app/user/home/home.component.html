@@ -9,103 +9,94 @@
                     <h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip In <span
                             class="typed-words"></span></h1>
 
-                            <div class="row">
-                                <div class="col-12">
-                                    <form class="form">
-                                        <div class="row mb-2">
-                                            <!-- Departure Place -->
-                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                                                <label for="departurePlace">
-                                                    <i class="fas fa-plane-departure"></i> Departure Place
-                                                </label>
-                                                <input type="text" 
-                                                       id="departurePlace" 
-                                                       class="form-control" 
-                                                       placeholder="Search Departure Place" 
-                                                       (input)="filterDepartureOptions($event)" 
-                                                       [(ngModel)]="selectedDepartureCity" 
-                                                       name="departurePlace"> 
-                                                <ul class="list-group" *ngIf="filteredDepartureCities.length > 0">
-                                                    <li *ngFor="let city of filteredDepartureCities" 
-                                                        class="list-group-item" 
-                                                        (click)="selectDepartureCity(city)">
-                                                        {{ city }}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                                                <label for="departureDate">
-                                                    <i class="fas fa-plane-departure"></i> Departure Date
-                                                </label>
-                                                <input type="date" 
-                                                       id="departureDate" 
-                                                       class="form-control" 
-                                                       placeholder=" Departure Date" 
-                                                       name="departureDate"> 
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form">
+                                <div class="row mb-2">
+                                    <!-- Departure Place -->
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+                                        <label for="departurePlace">
+                                            <i class="fas fa-plane-departure"></i> Departure Place
+                                        </label>
+                                        <input type="text" id="departurePlace" class="form-control"
+                                            placeholder="Search Departure Place"
+                                            (input)="filterDepartureOptions($event)" [(ngModel)]="selectedDepartureCity"
+                                            name="departurePlace">
+                                        <ul class="list-group" *ngIf="filteredDepartureCities.length > 0">
+                                            <li *ngFor="let city of filteredDepartureCities" class="list-group-item"
+                                                (click)="selectDepartureCity(city)">
+                                                {{ city }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+                                        <label for="departureDate">
+                                            <i class="fas fa-plane-departure"></i> Departure Date
+                                        </label>
+                                        <input type="date" id="departureDate" class="form-control"
+                                            placeholder=" Departure Date" name="departureDate">
 
-                                            </div>
-                                        </div>
-                            
-                                        <div class="row mb-2">
-                                            <!-- Destination Place -->
-                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                                                <label for="destinationPlace">
-                                                    <i class="fas fa-plane-arrival"></i> Destination Place
-                                                </label>
-                                                <input type="text" 
-                                                       id="destinationPlace" 
-                                                       class="form-control" 
-                                                       placeholder="Search Destination Place" 
-                                                       (input)="filterDestinationOptions($event)" 
-                                                       [(ngModel)]="selectedDestinationCity" 
-                                                       name="destinationPlace"> <!-- Add name attribute here -->
-                                                <ul class="list-group" *ngIf="filteredDestinationCities.length > 0">
-                                                    <li *ngFor="let city of filteredDestinationCities" 
-                                                        class="list-group-item" 
-                                                        (click)="selectDestinationCity(city)">
-                                                        {{ city }}
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                             <!-- Class Type (Economy, Business, First Class) -->
-                                             <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                                                <label for="classType">
-                                                    <i class="fas fa-chair"></i> Class Type
-                                                </label>
-                                                <select name="classType" id="classType" class="form-control custom-select">
-                                                    <option value="Economy">Economy</option>
-                                                    <option value="Business">Business</option>
-                                                    <option value="First Class">First Class</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                            
-                                        <div class="row mb-2">
-                                            <!-- Number of Passengers -->
-                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                                                <label for="numPassengers">
-                                                    <i class="fas fa-users"></i> Passengers
-                                                </label>
-                                                <div class="input-group">
-                                                    <input type="number" name="numPassengers" id="numPassengers" class="form-control input-number" value="1" min="1" max="10">
-                                                </div>
-                                            </div>
-                                            
-                                           
-                                        </div>
-                            
-                                        <div class="row align-items-center mt-3">
-                                            <!-- Search Button -->
-                                            <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                                                <input type="submit" class="btn btn-primary btn-block" value="Search">
-                                            </div>
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            
-                            
+
+                                <div class="row mb-2">
+                                    <!-- Destination Place -->
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+                                        <label for="destinationPlace">
+                                            <i class="fas fa-plane-arrival"></i> Destination Place
+                                        </label>
+                                        <input type="text" id="destinationPlace" class="form-control"
+                                            placeholder="Search Destination Place"
+                                            (input)="filterDestinationOptions($event)"
+                                            [(ngModel)]="selectedDestinationCity" name="destinationPlace">
+                                        <!-- Add name attribute here -->
+                                        <ul class="list-group" *ngIf="filteredDestinationCities.length > 0">
+                                            <li *ngFor="let city of filteredDestinationCities" class="list-group-item"
+                                                (click)="selectDestinationCity(city)">
+                                                {{ city }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- Class Type (Economy, Business, First Class) -->
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+                                        <label for="classType">
+                                            <i class="fas fa-chair"></i> Class Type
+                                        </label>
+                                        <select name="classType" id="classType" class="form-control custom-select">
+                                            <option value="Economy">Economy</option>
+                                            <option value="Business">Business</option>
+                                            <option value="First Class">First Class</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-2">
+                                    <!-- Number of Passengers -->
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
+                                        <label for="numPassengers">
+                                            <i class="fas fa-users"></i> Passengers
+                                        </label>
+                                        <div class="input-group">
+                                            <input type="number" name="numPassengers" id="numPassengers"
+                                                class="form-control input-number" value="1" min="1" max="10">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row align-items-center mt-3">
+                                    <!-- Search Button -->
+                                    <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                        <input type="submit" class="btn btn-primary btn-block" value="Search">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
                 </div>
             </div>
             <div class="col-lg-5">
@@ -134,7 +125,8 @@
             <div class="col-lg-4 order-lg-1">
                 <div class="h-100">
                     <div class="frame h-100">
-                        <div class="feature-img-bg h-100" style="background-image: url('../../../assets/Home/images/hero-slider-1.jpg');">
+                        <div class="feature-img-bg h-100"
+                            style="background-image: url('../../../assets/Home/images/hero-slider-1.jpg');">
                         </div>
                     </div>
                 </div>
@@ -184,128 +176,114 @@
     </div>
 </div>
 <div class="untree_co-section">
-		<div class="container">
-			<div class="row text-center justify-content-center mb-5">
-				<div class="col-lg-7"><h2 class="section-title text-center">Popular Destination</h2></div>
-			</div>
-
-			<div class="owl-carousel owl-3-slider">
-
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>Pragser Wildsee</h3>
-                            <span class="location">Italy</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-1.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>Oia</h3>
-                            <span class="location">Greece</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-2.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>Perhentian Islands</h3>
-                            <span class="location">Malaysia</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-3.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>Rialto Bridge</h3>
-                            <span class="location">Italy</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-4.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>San Francisco, United States</h3>
-                            <span class="location">United States</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-5.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
-                <div class="item">
-                    <div class="media-thumb">
-                        <div class="media-text">
-                            <h3>Lake Thun</h3>
-                            <span class="location">Switzerland</span>
-                        </div>
-                        <img src="../../../assets/Home/images/hero-slider-2.jpg" alt="Image" class="img-fluid">
-                    </div>
-                </div>
-            
+    <div class="container">
+        <div class="row text-center justify-content-center mb-5">
+            <div class="col-lg-7">
+                <h2 class="section-title text-center">Popular Destination</h2>
             </div>
-            
-		</div>
-	</div>
-    <div class="untree_co-section testimonial-section mt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-7 text-center">
-                    <h2 class="section-title text-center mb-5">Testimonials</h2>
-    
-                    <div class="owl-single owl-carousel no-nav">
-                        <div class="testimonial mx-auto">
-                            <figure class="img-wrap">
-                                <img src="../../../assets/Home/images/person_2.jpg" alt="Image" class="img-fluid">
-                            </figure>
-                            <h3 class="name">Adam Aderson</h3>
-                            <blockquote>
-                                <p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                            </blockquote>
-                        </div>
-    
-                        <div class="testimonial mx-auto">
-                            <figure class="img-wrap">
-                                <img src="../../../assets/Home/images/person_3.jpg" alt="Image" class="img-fluid">
-                            </figure>
-                            <h3 class="name">Lukas Devlin</h3>
-                            <blockquote>
-                                <p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                            </blockquote>
-                        </div>
-    
-                        <div class="testimonial mx-auto">
-                            <figure class="img-wrap">
-                                <img src="../../../assets/Home/images/person_4.jpg" alt="Image" class="img-fluid">
-                            </figure>
-                            <h3 class="name">Kayla Bryant</h3>
-                            <blockquote>
-                                <p>&ldquo;There live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-                            </blockquote>
-                        </div>
+        </div>
+
+        <div class="owl-carousel owl-3-slider">
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>Pragser Wildsee</h3>
+                        <span class="location">Italy</span>
                     </div>
+                    <img src="../../../assets/Home/images/hero-slider-1.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>Oia</h3>
+                        <span class="location">Greece</span>
+                    </div>
+                    <img src="../../../assets/Home/images/hero-slider-2.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>Perhentian Islands</h3>
+                        <span class="location">Malaysia</span>
+                    </div>
+                    <img src="../../../assets/Home/images/hero-slider-3.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>Rialto Bridge</h3>
+                        <span class="location">Italy</span>
+                    </div>
+                    <img src="../../../assets/Home/images/hero-slider-4.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>San Francisco, United States</h3>
+                        <span class="location">United States</span>
+                    </div>
+                    <img src="../../../assets/Home/images/hero-slider-5.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+            <div class="item">
+                <div class="media-thumb">
+                    <div class="media-text">
+                        <h3>Lake Thun</h3>
+                        <span class="location">Switzerland</span>
+                    </div>
+                    <img src="../../../assets/Home/images/hero-slider-2.jpg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<div class="untree_co-section testimonial-section mt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 text-center">
+                <h2 class="section-title text-center mb-5">Testimonials</h2>
+
+                <div class="owl-single owl-carousel no-nav">
+
+                    <div *ngFor="let obj of home.testimonials" class="testimonial mx-auto">
+                        <figure class="img-wrap">
+                            <img src="../../../assets/Home/images/person_2.jpg" alt="Image" class="img-fluid">
+                        </figure>
+                        <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
+                        <blockquote>
+                            <p>&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
+                        </blockquote>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="py-5 cta-section">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-12">
-					<h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
-					<p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, fugit?</p>
-					<p class="mb-0"><a href="booking.html" class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
+
+<div class="py-5 cta-section">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2 class="mb-2 text-white">Lets you Explore the Best. Contact Us Now</h2>
+                <p class="mb-4 lead text-white text-white-opacity">Lorem ipsum dolor sit amet, consectetur adipisicing
+                    elit. Excepturi, fugit?</p>
+                <p class="mb-0"><a href="booking.html"
+                        class="btn btn-outline-white text-white btn-md font-weight-bold">Get in touch</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 <app-footer></app-footer>
