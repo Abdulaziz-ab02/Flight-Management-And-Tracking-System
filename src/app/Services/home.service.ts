@@ -10,9 +10,10 @@ export class HomeService {
 
 
   testimonials: any = [];
+  
   getAllTestimonials() {
-    this.http.get('https://localhost:7117/api/Testimonial').subscribe(
-      result => {
+   
+    this.http.get('https://localhost:7117/api/Testimonial').subscribe(result => {
         this.testimonials = result;
       },
       err => {
