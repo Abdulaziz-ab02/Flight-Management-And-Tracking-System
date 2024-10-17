@@ -21,6 +21,41 @@ export class AdminService {
     });
   }
 
+airline:any=[];
+  GetAllAirline() {
+    this.http.get('https://localhost:7117/api/Airline').subscribe(result => {
+    this.airline=result;
+
+    }, err => {
+      console.log(err.message)
+    });
+  }
+
+
+  airport:any=[];
+  AirportCount: number = 0;
+  FetchAllAirports() {
+    this.http.get('https://localhost:7117/api/Airport').subscribe(result => {
+    this.airport=result;
+    this.AirportCount = this.airport.length;
+    }, err => {
+      console.log(err.message)
+    });
+  }
+
+
+ reservation: any = [];
+  ReservationCount: number = 0;
+  FetchAllReservations() {
+    this.http.get('https://localhost:7117/api/Reservation').subscribe(result => {
+this.reservation=result;
+      this.ReservationCount = this.reservation.length;
+
+    }, err => {
+      console.log(err.message)
+    });
+  }
+
 
 
 }

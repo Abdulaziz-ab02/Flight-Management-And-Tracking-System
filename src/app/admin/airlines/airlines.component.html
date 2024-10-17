@@ -1,1 +1,38 @@
-<p>airlines works!</p>
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Airlines Info</h6>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Airline Image</th>
+                            <th scope="col">Airline Username</th>
+                            <th scope="col">Airline Name</th>
+                            <th scope="col">Airline Email</th>
+                            <th scope="col">Airline Address</th>
+                            <th scope="col">Status</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of admin.airline"> 
+                            <td>{{obj.airlineimage}}</td>
+                            <td>{{obj.username}}</td>
+                            <td>{{obj.airlinename}}</td>
+                            <td>{{obj.airlineemail}}</td>
+                            <td>{{obj.airlineaddress}}</td>
+                            <td>{{obj.activationstatus}}</td></tr>
+                       
+                       
+                        <!-- <td><button mat-raised-button color="accent">View</button></td> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

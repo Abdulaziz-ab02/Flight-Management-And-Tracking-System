@@ -12,6 +12,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.admin.getAllUsers();
+    this.admin.FetchAllAirports();
+    this.admin.FetchAllReservations();
   }
 
 
