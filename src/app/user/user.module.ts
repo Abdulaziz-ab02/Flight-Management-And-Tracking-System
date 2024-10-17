@@ -7,13 +7,15 @@ import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { FormsModule } from '@angular/forms';
 import { UserSharedModule } from './user-shared/user-shared.module';
+import { FlightsComponent } from './flights/flights.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
-    ContactusComponent
+    ContactusComponent,
+    FlightsComponent
   ],
   imports: [
     CommonModule,
