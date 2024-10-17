@@ -1,1 +1,117 @@
-<p>flights works!</p>
+<app-navbar></app-navbar>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<div class="hero">
+    <div class="container">
+        <div class="row align-items-center"> 
+            <h1 class="mb-5"><span class="d-block">Please Find your flight</span> Trip In <span
+                class="typed-words"></span></h1>
+        </div>
+
+    </div>
+
+</div>
+<div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h4>Filter Flights</h4>
+        <div class="form-group">
+          <label for="priceRange">Price Range (JOD)</label>
+          <input type="range" class="form-control-range" id="priceRange" min="100" max="1000" step="50">
+          <p>Selected: <span id="priceOutput">500 JOD</span></p>
+        </div>
+        <div class="form-group">
+          <h5>Airlines</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="airline1">
+            <label class="form-check-label" for="airline1">Royal Jordanian</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="airline2">
+            <label class="form-check-label" for="airline2">Flynas</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <h5>Flight Type</h5>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="directFlight">
+            <label class="form-check-label" for="directFlight">Direct Flights Only</label>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-9">
+        <div class="row">
+          <!-- Sample flight card here (repeat for each flight) -->
+          <div class="col-md-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <h5><i class="fas fa-plane"></i> Royal Jordanian</h5>
+                    <p><i class="fas fa-ticket-alt"></i> Flight Number: RJ 611</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p><strong><i class="fas fa-plane-departure"></i> Departure:</strong> 07:55 AM (CAI)</p>
+                    <p><strong><i class="fas fa-plane-arrival"></i> Arrival:</strong> 09:30 AM (AMM)</p>
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <h5><i class="fas fa-dollar-sign"></i> JOD 249</h5>
+                    <button class="btn btn-primary"><i class="fas fa-check"></i> Select Flight</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- End Flight Card -->
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <h5><i class="fas fa-plane"></i> Royal Jordanian</h5>
+                    <p><i class="fas fa-ticket-alt"></i> Flight Number: RJ 611</p>
+                  </div>
+                  <div class="col-md-4">
+                    <p><strong><i class="fas fa-plane-departure"></i> Departure:</strong> 07:55 AM (CAI)</p>
+                    <p><strong><i class="fas fa-plane-arrival"></i> Arrival:</strong> 09:30 AM (AMM)</p>
+                  </div>
+                  <div class="col-md-4 text-right">
+                    <h5><i class="fas fa-dollar-sign"></i> JOD 249</h5>
+                    <button class="btn btn-primary"><i class="fas fa-check"></i> Select Flight</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <h5><i class="fas fa-plane"></i> Royal Jordanian</h5>
+                      <p><i class="fas fa-ticket-alt"></i> Flight Number: RJ 611</p>
+                    </div>
+                    <div class="col-md-4">
+                      <p><strong><i class="fas fa-plane-departure"></i> Departure:</strong> 07:55 AM (CAI)</p>
+                      <p><strong><i class="fas fa-plane-arrival"></i> Arrival:</strong> 09:30 AM (AMM)</p>
+                    </div>
+                    <div class="col-md-4 text-right">
+                      <h5><i class="fas fa-dollar-sign"></i> JOD 249</h5>
+                      <button class="btn btn-primary"><i class="fas fa-check"></i> Select Flight</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+  
