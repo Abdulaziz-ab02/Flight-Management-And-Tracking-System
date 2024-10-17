@@ -6,6 +6,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { FlightsComponent } from './flights/flights.component';
 import { HomeComponent } from './home/home.component';
+import { GuestSharedModule } from './guest-shared/guest-shared.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     CommonModule,
-    GuestRoutingModule
+    GuestRoutingModule,
+    GuestSharedModule,
+    FormsModule
   ]
 })
 export class GuestModule { }
