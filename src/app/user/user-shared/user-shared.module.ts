@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -15,12 +16,14 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ]
 })
 export class UserSharedModule { }

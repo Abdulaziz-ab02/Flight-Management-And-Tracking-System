@@ -14,6 +14,8 @@ import { ManageContactusComponent } from './manage-contactus/manage-contactus.co
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 import { HomeComponent } from './home/home.component';
 import { AdminSharedModule } from './admin-shared/admin-shared.module';
+import { ReportComponent } from './report/report.component';
+import { AirlinesComponent } from './airlines/airlines.component';
 
 
 
@@ -30,7 +32,9 @@ import { AdminSharedModule } from './admin-shared/admin-shared.module';
     ManageAboutusComponent,
     ManageContactusComponent,
     ManageTestimonialsComponent,
-    HomeComponent
+    HomeComponent,
+    ReportComponent,
+    AirlinesComponent
   ],
   imports: [
     CommonModule,

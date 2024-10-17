@@ -1,1 +1,29 @@
-<p>manage-contactus works!</p>
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Contact Page Info</h6>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Contact Email</th>
+                            <th scope="col">Contact Phone</th>
+                            <th scope="col">Contact Address</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>{{home.contactInfo[0].contactemail}}</td>
+                        <td>{{home.contactInfo[0].contactphone}}</td>
+                        <td>{{home.contactInfo[0].contactaddress}}</td>
+                        <td><button mat-raised-button color="accent">Update</button></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

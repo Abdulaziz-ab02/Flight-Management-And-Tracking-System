@@ -4,6 +4,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -15,12 +18,16 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-   RouterModule
+    RouterModule,
+    HttpClientModule,
+    MatButtonModule
   ],
-  exports:[
+  exports: [
     SidebarComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HttpClientModule,
+    MatButtonModule
   ]
 })
 export class AdminSharedModule { }
