@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "src/assets/Home/css/bootstrap.min.css",
               "src/assets/Home/css/owl.carousel.min.css",
@@ -35,14 +36,10 @@
               "src/assets/Home/css/daterangepicker.css",
               "src/assets/Home/css/aos.css",
               "src/assets/Home/css/style.css",
-
-
-              
               "src/assets/Admin/lib/owlcarousel/assets/owl.carousel.min.css",
               "src/assets/Admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css",
               "src/assets/Admin/css/bootstrap.min.css",
               "src/assets/Admin/css/style.css"
-
             ],
             "scripts": [
               "src/assets/Home/js/jquery-3.4.1.min.js",
@@ -127,6 +124,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
             "scripts": []

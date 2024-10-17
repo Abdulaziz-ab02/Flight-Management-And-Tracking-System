@@ -20,6 +20,37 @@ export class HomeService {
   }
 
 
+  homePage: any = [];
+  getHomePage() {
+    this.http.get('https://localhost:7117/api/Home').subscribe(result => {
+      this.homePage = result;
+
+    }, err => {
+      console.log(err.message)
+    });
+  }
+
+
+  contactInfo: any = [];
+  getContactInfo() {
+    this.http.get('https://localhost:7117/api/Contact').subscribe(result => {
+      this.contactInfo = result;
+
+    }, err => {
+      console.log(err.message)
+    });
+  }
+
+
+  aboutPage: any = [];
+  getAboutInfo() {
+    this.http.get('https://localhost:7117/api/About').subscribe(result => {
+      this.aboutPage = result;
+
+    }, err => {
+      console.log(err.message)
+    });
+  }
 
 
 }

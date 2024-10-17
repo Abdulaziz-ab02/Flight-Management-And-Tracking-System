@@ -1,1 +1,29 @@
-<p>manage-home works!</p>
+<app-sidebar></app-sidebar>
+<app-navbar></app-navbar>
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Home Page Info</h6>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Home Page title</th>
+                            <th scope="col">Home Page content</th>
+                            <th scope="col">Home Page Image</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>{{home.homePage[0].hometitle}}</td>
+                        <td>{{home.homePage[0].homecontent}}</td>
+                        <td>{{home.homePage[0].homeimage}}</td>
+                        <td><button mat-raised-button color="accent">Update</button></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

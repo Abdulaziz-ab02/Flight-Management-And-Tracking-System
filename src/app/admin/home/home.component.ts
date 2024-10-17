@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   constructor(public admin: AdminService) { }
 
   ngOnInit(): void {
-    this.admin.getAllUsers()
+    this.admin.getAllUsers();
   }
 
 
