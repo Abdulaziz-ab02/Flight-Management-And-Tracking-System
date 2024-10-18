@@ -15,27 +15,30 @@
 
                     <thead>
                         <tr class="text-dark">
-                            <th scope="col">Airport Image</th>
+
                             <th scope="col">Airport Name</th>
                             <th scope="col">City </th>
                             <th scope="col">Longitude</th>
                             <th scope="col">Latitude</th>
                             <th scope="col">Airport Code</th>
-
+                            <th scope="col">Operations</th>
+                            <th scope="col">Airport Image</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let obj of admin.airport">
-                            <td>{{obj.airportimage}}</td>
+
+                            <td>{{obj.airportname}}</td>
                             <td>{{obj.cityname}}</td>
                             <td>{{obj.longitude}}</td>
                             <td>{{obj.latitude}}</td>
                             <td>{{obj.iatacode}}</td>
+                            <td>{{obj.airportimage}}</td>
 
-
-
-                            <td><button>Update</button></td>
-                            <td><button>Delete</button></td>
+                            <td>
+                                <button>Update</button>
+                                <button>Delete</button>
+                            </td>
 
                     </tbody>
                 </table>
