@@ -1,5 +1,46 @@
 
 <app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
-<p>airports works!</p>
-<app-footer></app-footer>
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Airport Info</h6>
+
+
+            </div>
+            <td><button mat-raised-button color="primary">Create</button></td>
+            <div class="table">
+                
+                <table class="table ">
+                    
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Airport Image</th>
+                            <th scope="col">Airport Name</th>
+                            <th scope="col">City </th>
+                            <th scope="col">Longitude</th>
+                            <th scope="col">Latitude</th>
+                            <th scope="col">Airport Code</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let obj of admin.airport"> 
+                            <td>{{obj.airportimage}}</td>
+                            <td>{{obj.cityname}}</td>
+                            <td>{{obj.longitude}}</td>
+                            <td>{{obj.latitude}}</td>
+                            <td>{{obj.iatacode}}</td>
+                        
+                       
+                       
+                        <td><button mat-raised-button color="primary">Update</button></td>
+                        <td><button mat-raised-button color="primary">Delete</button></td>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
