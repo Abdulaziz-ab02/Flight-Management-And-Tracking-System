@@ -1,4 +1,3 @@
-
 <app-sidebar></app-sidebar>
 <app-navbar></app-navbar>
 <div class="content">
@@ -9,11 +8,11 @@
 
 
             </div>
-            <td><button mat-raised-button color="primary">Create</button></td>
+            <td><button>Create</button></td>
             <div class="table">
-                
+
                 <table class="table ">
-                    
+
                     <thead>
                         <tr class="text-dark">
                             <th scope="col">Airport Image</th>
@@ -26,18 +25,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let obj of admin.airport"> 
+                        <tr *ngFor="let obj of admin.airport">
                             <td>{{obj.airportimage}}</td>
                             <td>{{obj.cityname}}</td>
                             <td>{{obj.longitude}}</td>
                             <td>{{obj.latitude}}</td>
                             <td>{{obj.iatacode}}</td>
-                        
-                       
-                       
-                        <td><button mat-raised-button color="primary">Update</button></td>
-                        <td><button mat-raised-button color="primary">Delete</button></td>
-                       
+
+
+
+                            <td><button>Update</button></td>
+                            <td><button>Delete</button></td>
+
                     </tbody>
                 </table>
             </div>
