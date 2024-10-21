@@ -5,7 +5,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -19,15 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule,
-    MatButtonModule
+    HttpClientModule
   ],
   exports: [
     SidebarComponent,
     NavbarComponent,
     FooterComponent,
-    HttpClientModule,
-    MatButtonModule
+    HttpClientModule
   ]
 })
 export class AdminSharedModule { }

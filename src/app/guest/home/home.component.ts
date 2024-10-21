@@ -75,4 +75,3 @@ export class HomeComponent implements OnInit {
     console.log('Selected Destination City:', this.selectedDestinationCity); // Log the selected city
   }
 }
-

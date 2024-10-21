@@ -1,30 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactusComponent } from './contactus/contactus.component';
-import { FlightsComponent } from './flights/flights.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
+    path: 'profile',
+    component: ProfileComponent
   },
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'contactus',
-    component: ContactusComponent
-  },
-  {
-    path: 'flights',
-    component: FlightsComponent
+    path: 'reservations',
+    component: ReservationsComponent
   }
 ];
 
