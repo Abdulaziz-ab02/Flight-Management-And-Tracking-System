@@ -7,7 +7,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { FlightsComponent } from './flights/flights.component';
 import { HomeComponent } from './home/home.component';
 import { GuestSharedModule } from './guest-shared/guest-shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     GuestRoutingModule,
     GuestSharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class GuestModule { }

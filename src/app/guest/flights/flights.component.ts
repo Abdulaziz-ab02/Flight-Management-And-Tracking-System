@@ -4,8 +4,7 @@ import { FlightService } from 'src/app/Services/flight.service';
 
 @Component({
   selector: 'app-flights',
-  templateUrl: './flights.component.html',
-  styleUrls: ['./flights.component.css']
+  templateUrl: './flights.component.html'
 })
 export class FlightsComponent implements OnInit {
   cities: string[] = [];  // Initialize the cities array
