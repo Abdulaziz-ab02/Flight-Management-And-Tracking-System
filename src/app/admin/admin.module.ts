@@ -34,7 +34,7 @@ import { AirlinesComponent } from './airlines/airlines.component';
     ManageTestimonialsComponent,
     HomeComponent,
     ReportComponent,
-    AirlinesComponent
+    AirlinesComponent,
   ],
   imports: [
     CommonModule,

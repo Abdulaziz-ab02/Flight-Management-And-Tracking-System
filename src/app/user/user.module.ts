@@ -5,7 +5,7 @@ import { UserRoutingModule } from './user-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserSharedModule } from './user-shared/user-shared.module';
 import { FlightsComponent } from './flights/flights.component';
 
@@ -21,7 +21,8 @@ import { FlightsComponent } from './flights/flights.component';
     CommonModule,
     UserRoutingModule,
     UserSharedModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }
