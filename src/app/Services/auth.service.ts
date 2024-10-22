@@ -9,10 +9,11 @@ export class AuthService {
   constructor(public http: HttpClient) { }
 
 
-  CreateCourse(body: any) {
+  CreateUser(body: any) {
     // debugger
 
     // body.imagename = this.displayImage;
+
 
     this.http.post('https://localhost:7117/api/User/CreateUser', body).subscribe(
       (resp) => {

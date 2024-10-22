@@ -23,8 +23,8 @@ export class RegisterComponent {
     nationalnumber: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     repeatPassword: new FormControl('', Validators.required),
-    roleid: new FormControl(),
-    image: new FormControl()
+    image: new FormControl(),
+    roleid: new FormControl()
   })
 
   matchError() {
@@ -38,7 +38,7 @@ export class RegisterComponent {
 
   submit() {
     this.createUser.controls['roleid'].setValue(2);
-    this.auth.CreateCourse(this.createUser.value)
+    this.auth.CreateUser(this.createUser.value)
   }
 
 }
