@@ -11,7 +11,8 @@ export class FlightService {
 
   // Return Observable so the component can subscribe to it
   SearchForFlight(body: any): Observable<any> {
-    return this.http.get('https://localhost:7117/api/Flight/FetchFlightBasedOnUserSearch' + body);
+    return this.http.post('https://localhost:7117/api/Flight/FetchFlightBasedOnUserSearch' , body);
+    console.log('service time');
   }
 
   // Return Observable for the cities
