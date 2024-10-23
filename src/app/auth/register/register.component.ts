@@ -12,33 +12,50 @@ export class RegisterComponent {
   constructor(private auth: AuthService) { }
 
 
-  createUser: FormGroup = new FormGroup({
+  createUserForm: FormGroup = new FormGroup({
     //the names as the output from swagger
-    firstname: new FormControl('', Validators.required),
-    lastname: new FormControl('', Validators.required),
-    username: new FormControl('', Validators.required),
+    firstname: new FormControl('Your First Name', Validators.required),
+    lastname: new FormControl('Your Last Name', Validators.required),
+    username: new FormControl('Your Username', Validators.required),
     email: new FormControl('ex@example.com', [Validators.required, Validators.email]),
-    phone: new FormControl('', Validators.required),
-    dateofbirth: new FormControl('', Validators.required),
-    nationalnumber: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    repeatPassword: new FormControl('', Validators.required),
+    phone: new FormControl('Your Phone'),
+    dateofbirth: new FormControl(''),
+    nationalnumber: new FormControl('Your National Number', Validators.required),
+    password: new FormControl('********', Validators.required),
+    repeatPassword: new FormControl('********', Validators.required),
     image: new FormControl(),
     roleid: new FormControl()
   })
 
   matchError() {
-    if (this.createUser.controls['password'].value ==
-      this.createUser.controls['repeatPassword'].value
+    if (this.createUserForm.controls['password'].value ==
+      this.createUserForm.controls['repeatPassword'].value
     )
-      this.createUser.controls['repeatPassword'].setErrors(null)
+      this.createUserForm.controls['repeatPassword'].setErrors(null)
     else
-      this.createUser.controls['repeatPassword'].setErrors({ misMatch: true })
+      this.createUserForm.controls['repeatPassword'].setErrors({ misMatch: true })
   }
 
   submit() {
-    this.createUser.controls['roleid'].setValue(2);
-    this.auth.CreateUser(this.createUser.value)
+    this.createUserForm.controls['roleid'].setValue(2);
+    this.auth.CreateUser(this.createUserForm.value)
   }
+
+
+  uploadImage(file: any) {
+    //no image uploaded
+    if (file.length == 0)
+      return;
+
+    //take first image (if user uploaded multiple images)
+    let fileToUpload = <File>file[0];
+
+    //trun to formdata so the func in service accept it
+    const formData = new FormData();
+    formData.append('file', fileToUpload, file.name)
+    this.auth.uploadAttachment(formData);
+
+  }
+
 
 }
