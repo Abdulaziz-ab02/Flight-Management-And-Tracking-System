@@ -41,4 +41,21 @@ export class RegisterComponent {
     this.auth.CreateUser(this.createUserForm.value)
   }
 
+
+  uploadImage(file: any) {
+    //no image uploaded
+    if (file.length == 0)
+      return;
+
+    //take first image (if user uploaded multiple images)
+    let fileToUpload = <File>file[0];
+
+    //trun to formdata so the func in service accept it
+    const formData = new FormData();
+    formData.append('file', fileToUpload, file.name)
+    this.auth.uploadAttachment(formData);
+
+  }
+
+
 }

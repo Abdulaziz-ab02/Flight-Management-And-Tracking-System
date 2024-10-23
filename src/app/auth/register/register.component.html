@@ -69,7 +69,7 @@
                             style="color: red;">Passwords do not match!</span>
                     </div>
 
-                    <input type="file" #file formControlName="image" formControlName="image">
+                    <input type="file" #file formControlName="image" (change)="uploadImage(file.files)">
 
                     <div class="form-group form-button">
                         <button [disabled]="!createUserForm.valid" class="form-submit btn" type="button"
