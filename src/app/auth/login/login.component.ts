@@ -34,6 +34,8 @@ export class LoginComponent {
   password: FormControl = new FormControl('********', Validators.required)
 
 
+
+
   onSubmitLogin() {
     // Save the username and password in local storage
     if (this.rememberMe) {
