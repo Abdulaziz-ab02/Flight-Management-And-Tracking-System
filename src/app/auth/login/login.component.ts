@@ -14,7 +14,7 @@ export class LoginComponent {
   pass: string = '';
   rememberMe: boolean = false;
 
-  constructor(private router: Router, private auth: AuthService) { } // Inject Router service
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
     // Check if there is saved data in local storage
@@ -47,7 +47,11 @@ export class LoginComponent {
         console.log('Username or password is missing');
       }
     }
-    this.router.navigate(['/guest/home']);
+    // this.router.navigate(['/guest/home']);
+
+
+    this.auth.Login(this.username, this.password)
+
   }
 
 }
