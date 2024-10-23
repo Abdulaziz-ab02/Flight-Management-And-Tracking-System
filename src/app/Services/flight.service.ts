@@ -19,4 +19,9 @@ export class FlightService {
   GetAllCiies(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:7117/api/City/GetAllCities');
   }
+  GetAllFacilitesByDegree(id: number): Observable<any> {
+    return this.http.get('https://localhost:7117/api/Flight/GetAllFacilitesByDegreeId/' + id);
+  }
+  
+ 
 }
