@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
@@ -8,12 +9,18 @@ import { AdminService } from 'src/app/Services/admin.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public admin: AdminService) { }
+  constructor(public admin: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.admin.getAllUsers();
     this.admin.FetchAllAirports();
     this.admin.FetchAllReservations();
+  }
+
+
+  Logout() {
+    this.router.navigate(['security/login'])
+    localStorage.clear()
   }
 
 

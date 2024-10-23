@@ -79,9 +79,8 @@ export class AuthService {
       }, err => {
         console.log('Error')
       })
-
-
   }
+
 
 
 }
