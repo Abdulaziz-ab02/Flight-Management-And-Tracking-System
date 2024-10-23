@@ -57,3 +57,16 @@
     height: auto; /* Maintain aspect ratio */
     border-radius: 5px; /* Add border-radius for rounded edges */
 }
+.facilities-list {
+    display: flex; /* This makes the list items align horizontally */
+    flex-wrap: wrap; /* Allows wrapping to the next line if needed */
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+  }
+  
+  .facilities-list li {
+    margin-right: 15px; /* Add some spacing between the facilities */
+    display: inline-block; /* Ensure the items are inline */
+  }
+  
