@@ -17,7 +17,6 @@ export class HomeService {
     }, err => {
       console.log(err.message)
     });
-    window.location.reload();
   }
 
 
@@ -29,7 +28,6 @@ export class HomeService {
     }, err => {
       console.log(err.message)
     });
-    window.location.reload();
   }
 
 
@@ -41,7 +39,6 @@ export class HomeService {
     }, err => {
       console.log(err.message)
     });
-    window.location.reload();
   }
 
 
@@ -53,7 +50,6 @@ export class HomeService {
     }, err => {
       console.log(err.message)
     });
-    window.location.reload();
   }
 
 
