@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <label for="airlineName"><i class="zmdi zmdi-airplane-landing"></i></label>
                         <input type="text" name="airlineName" id="airlineName" placeholder="Airline Name"
-                            formControlName="airlineName" />
+                            formControlName="airlinename" />
                         <span *ngIf="createAirlineForm.controls['airlinename'].hasError('required')"
                             style="color:red;">Airline Name is Required</span>
                     </div>
@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="airlineEmail"><i class="zmdi zmdi-email"></i></label>
                         <input type="email" name="airlineEmail" id="airlineEmail" placeholder="Airline Email"
-                            formControlName="airlineEmail" />
+                            formControlName="airlineemail" />
                         <span *ngIf="createAirlineForm.controls['airlineemail'].hasError('required')"
                             style="color:red;">Email is Required</span>
                         <span *ngIf="createAirlineForm.controls['airlineemail'].hasError('email')"
@@ -56,7 +56,7 @@
 
                     <div class="form-group">
                         <label for="airlineImage"><i class="zmdi zmdi-image"></i></label>
-                        <input type="file" #file name="airlineImage" id="airlineImage"
+                        <input type="file" #file name="airlineImage" id="airlineImage" formControlName="airlineimage"
                             (change)="uploadImage(file.files)" />
                     </div>
 
