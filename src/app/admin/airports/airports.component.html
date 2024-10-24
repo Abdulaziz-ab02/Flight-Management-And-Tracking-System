@@ -1,5 +1,10 @@
 <app-sidebar></app-sidebar>
+
+
+
+
 <app-navbar></app-navbar>
+
 <div class="content">
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
@@ -8,11 +13,9 @@
 
 
             </div>
-            <td>          <button mat-button color="primary">Primary</button>
+            <td>  <button mat-raised-button color="primary" (click)="addAirport()">Create</button>
 
-
-            
-    </td>
+            </td>
 
             <div class="table">
 
@@ -41,13 +44,35 @@
                             <td>{{obj.airportimage}}</td>
 
                             <td>
-                                <button >Update</button>
-                                <button >Delete</button>
-                            </td>
+                                <button mat-raised-button color="primary">Update</button></td>
+                               <td><button mat-raised-button color="primary" (click)="openDeleteDialog(obj.id)">Delete</button></td> 
+                            
 
                     </tbody>
                 </table>
+
+                
+
             </div>
+   
+            
         </div>
     </div>
+    
+
 </div>
+
+<app-footer></app-footer>
+
+
+
+<ng-template #deleteAirport>
+    <h1 mat-dialog-title>Delete Airport</h1>
+    <div mat-dialog-content>
+      Would you like to delete this Airport?
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close="yes">Yes</button>
+      <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+    </div>
+    </ng-template>
