@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   ngOnInit(): void {
     const token = localStorage.getItem('token');
+    //if the user is loggen in 
     if (token) {
       this.isLoggedIn = true;
     }

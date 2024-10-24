@@ -20,4 +20,77 @@
         </div>
     </div>
 </div>
+
+<button (click)="test(home.userProfileInfo)">test</button>
+
+<button class="btn btn-primary" (click)="openUpdateDialog(home.userProfileInfo)">Update Profile</button>
+
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update Profile</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateUserForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="firstname" [(ngModel)]="pData.firstname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="lastname" [(ngModel)]="pData.lastname">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input type="text" matInput formControlName="username" [(ngModel)]="pData.username">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" [(ngModel)]="pData.email">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input type="text" matInput formControlName="phone" [(ngModel)]="pData.phone">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Birth Date</mat-label>
+                    <input type="date" matInput formControlName="dateofbirth" [(ngModel)]="pData.dateofbirth">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label> National Number</mat-label>
+                    <input type="text" matInput formControlName="nationalnumber" [(ngModel)]="pData.nationalnumber">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" [(ngModel)]="pData.password">
+                </mat-form-field>
+            </div>
+
+            <input type="file" #file formControlName="image" (change)="uploadImage(file.files)">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
+
 <app-footer></app-footer>

@@ -13,12 +13,10 @@ export class ViewProfileComponent implements OnInit {
   role_id: any;
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
 
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.role_id = user.roleid;
-    console.log("ROLE ID ", this.role_id)
 
     if (this.role_id == 1)
       this.home.getUserProfileInfo(user.userid)

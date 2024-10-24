@@ -83,4 +83,19 @@ export class AuthService {
 
 
 
+  UpdateUser(body: any) {
+    //debugger
+    body.image = this.userImage;
+
+    this.http.put('https://localhost:7117/api/User/UpdateUser', body).subscribe(
+      (resp) => {
+        console.log('user updated')
+      }, err => {
+        console.log('Error')
+      })
+  }
+
+
+
+
 }
