@@ -14,7 +14,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path:'airline-register',
+    path: 'airlineregister',
     component: AirlineRegisterComponent
   }
 ];

@@ -11,30 +11,31 @@ export class AirlineRegisterComponent {
 
   constructor(private auth: AuthService) { }
 
-    createAirlineForm = new FormGroup({
-      airlineName: new FormControl('', Validators.required),
-      airlineImage: new FormControl('', Validators.required),
-      airlineEmail: new FormControl('ex@example.com', [Validators.required, Validators.email]),
-      airlineAddress: new FormControl('', Validators.required),
-      activationStatus: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
-      password: new FormControl('*****', Validators.required),
-      repeatPassword: new FormControl('*****', Validators.required),
-      roleid: new FormControl()
-    })
+  createAirlineForm = new FormGroup({
+    airlinename: new FormControl('Your Name', Validators.required),
+    airlineimage: new FormControl(),
+    airlineemail: new FormControl('ex@example.com', [Validators.required, Validators.email]),
+    airlineaddress: new FormControl(),
+    activationstatus: new FormControl(),
+    username: new FormControl('Your Username', Validators.required),
+    password: new FormControl('*****', Validators.required),
+    repeatPassword: new FormControl('*****', Validators.required),
+    roleid: new FormControl()
+  })
 
-    matchError() {
-      if (this.createAirlineForm.controls['password'].value ==
-        this.createAirlineForm.controls['repeatPassword'].value
-      )
-        this.createAirlineForm.controls['repeatPassword'].setErrors(null)
-      else
-        this.createAirlineForm.controls['repeatPassword'].setErrors({ misMatch: true })
-    }
+  matchError() {
+    if (this.createAirlineForm.controls['password'].value ==
+      this.createAirlineForm.controls['repeatPassword'].value
+    )
+      this.createAirlineForm.controls['repeatPassword'].setErrors(null)
+    else
+      this.createAirlineForm.controls['repeatPassword'].setErrors({ misMatch: true })
+  }
 
- 
+
   submit() {
     this.createAirlineForm.controls['roleid'].setValue(3);
+    this.createAirlineForm.controls['activationstatus'].setValue('Pending');
     this.auth.CreateUser(this.createAirlineForm.value)
   }
 

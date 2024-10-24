@@ -24,8 +24,10 @@ export class AuthService {
         console.log('Error')
       })
   }
+
+
   CreateAirline(body: any) {
-    body.image = this.userImage;
+    body.image = this.airlineImage;
 
     this.http.post('https://localhost:7117/api/Airline/CreateAirline', body).subscribe(
       (resp) => {
@@ -47,12 +49,13 @@ export class AuthService {
         console.log('Error')
       })
   }
+
   airlineImage: any;
   //FormData => interface to send obj
   uploadAttachment2(file: FormData) {
     this.http.post('https://localhost:7117/api/Airline/uploadImage', file).subscribe(
       (resp: any) => {
-        this.userImage = resp.image;
+        this.airlineImage = resp.image;
         console.log('image uploaded')
       }, err => {
         console.log('Error')
