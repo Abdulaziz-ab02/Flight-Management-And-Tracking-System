@@ -39,16 +39,6 @@ export class ProfileComponent implements OnInit {
   })
 
 
-
-
-  testVar: any;
-  test(obj: any) {
-    console.log("USER INFO ", this.home.userProfileInfo)
-    this.testVar = obj;
-    console.log("TestVar ", this.testVar)
-
-  }
-
   //to bind data in the html componemt
   pData: any = {}
   openUpdateDialog(obj: any) {
@@ -56,6 +46,9 @@ export class ProfileComponent implements OnInit {
     console.log("USER INFO ", this.home.userProfileInfo)
     console.log("OBJ", obj)
     console.log("PDATA", this.pData)
+
+    console.log("IMAGE", this.pData.image)
+
 
     this.updateUserForm.controls['id'].setValue(this.pData.id);
 
