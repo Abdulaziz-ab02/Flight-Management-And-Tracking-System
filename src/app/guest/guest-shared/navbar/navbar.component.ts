@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   Logout() {
     localStorage.clear()
     this.isLoggedIn = false;
-    this.router.navigate(['security/login'])
+    this.router.navigate(['guest/home'])
   }
 
 }

@@ -8,11 +8,11 @@
                 <li><a routerLink="/guest/about">About</a></li>
                 <li><a routerLink="/guest/contactus">Contact Us</a></li>
                 <li *ngIf="!isLoggedIn">
-                    <a routerLink="/security/login">Login</a>
+                    <a class="btn btn-primary" routerLink="/security/login">Login</a>
                 </li>
                 <li *ngIf="isLoggedIn">
-                    <a routerLink="/profile">View Profile</a>
-                    <a (click)="Logout()">Logout</a>
+                    <a class="btn btn-primary mr-3" routerLink="/user/profile">View Profile</a>
+                    <a class="btn btn-primary" (click)="Logout()">Logout</a>
                 </li>
 
             </ul>
