@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { HomeService } from 'src/app/Services/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public home: HomeService) { }
+  constructor(public home: HomeService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -74,4 +75,10 @@ export class HomeComponent implements OnInit {
     this.filteredDestinationCities = []; // Clear filtered results after selection
     console.log('Selected Destination City:', this.selectedDestinationCity); // Log the selected city
   }
+
+
+
+
+
+
 }

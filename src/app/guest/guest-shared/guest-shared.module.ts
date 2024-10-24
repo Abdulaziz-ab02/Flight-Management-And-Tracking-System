@@ -4,6 +4,9 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -15,12 +18,18 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   exports: [
     NavbarComponent,
     FooterComponent,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule
   ]
 })
 export class GuestSharedModule { }

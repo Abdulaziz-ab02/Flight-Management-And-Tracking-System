@@ -8,7 +8,10 @@
 
 
             </div>
-            <td><button>Create</button></td>
+            <td> <button mat-raised-button color="primary" (click)="addAirport()">Create</button>
+
+            </td>
+
             <div class="table">
 
                 <table class="table ">
@@ -21,8 +24,9 @@
                             <th scope="col">Longitude</th>
                             <th scope="col">Latitude</th>
                             <th scope="col">Airport Code</th>
-                            <th scope="col">Operations</th>
                             <th scope="col">Airport Image</th>
+                            <th scope="col">Operations</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,13 +40,39 @@
                             <td>{{obj.airportimage}}</td>
 
                             <td>
-                                <button>Update</button>
-                                <button>Delete</button>
+                                <button mat-raised-button color="primary">Update</button>
                             </td>
+                            <td>
+                                <button mat-raised-button color="warn"
+                                    (click)="openDeleteDialog(obj.id)">Delete</button>
+                            </td>
+
 
                     </tbody>
                 </table>
+
+
+
             </div>
+
+
         </div>
     </div>
+
+
 </div>
+
+<app-footer></app-footer>
+
+
+
+<ng-template #deleteAirport>
+    <h1 mat-dialog-title>Delete Airport</h1>
+    <div mat-dialog-content>
+        Would you like to delete this Airport?
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+    </div>
+</ng-template>

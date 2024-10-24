@@ -53,6 +53,29 @@ export class HomeService {
   }
 
 
+  userProfileInfo: any;
+  getUserProfileInfo(userId: any) {
+    this.http.get('https://localhost:7117/api/User/getUserById/' + userId).subscribe(
+      result => {
+        this.userProfileInfo = result;
+        console.log("USERID", userId)
+        console.log("RESULT", result)
+      }, err => {
+        console.log(err.message)
+      });
+  }
+
+
+  airlineProfileInfo: any;
+  getAirlineProfileInfo(airId: any) {
+    this.http.get('https://localhost:7117/api/Airline/GetAirlineById/' + airId).subscribe(
+      result => {
+        this.airlineProfileInfo = result;
+      }, err => {
+        console.log(err.message)
+      });
+  }
+
 
 
 

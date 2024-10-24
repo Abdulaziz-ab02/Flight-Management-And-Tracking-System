@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { FlightsComponent } from './flights/flights.component';
 
+
 const routes: Routes = [
   {
     path: '',

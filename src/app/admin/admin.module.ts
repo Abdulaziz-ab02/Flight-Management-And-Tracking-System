@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { AdminSharedModule } from './admin-shared/admin-shared.module';
 import { ReportComponent } from './report/report.component';
 import { AirlinesComponent } from './airlines/airlines.component';
+import { CreateAirportComponent } from './create-airport/create-airport.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 
 
@@ -35,11 +38,13 @@ import { AirlinesComponent } from './airlines/airlines.component';
     HomeComponent,
     ReportComponent,
     AirlinesComponent,
+    CreateAirportComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    AdminSharedModule
+    AdminSharedModule,
+    MatButtonModule
     
 ]
 })
