@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Create Course</h2>
+<mat-dialog-content class="mat-typography">
+
+  <form action=""   [formGroup]="createAirport">
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Airport Name</mat-label>
+      <input type="text"   matInput formControlName="airportname">
+      <mat-error *ngIf="createAirport.controls['airportname'].hasError('required')">Airport Name is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Airport Code</mat-label>
+      <input type="text"   matInput formControlName="iatacode">
+      <mat-error *ngIf="createAirport.controls['iatacode'].hasError('required')">Airport code is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Airport Longitude</mat-label>
+      <input type="text"   matInput formControlName="longitude">
+      <mat-error *ngIf="createAirport.controls['longitude'].hasError('required')">Airport longitude is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>Airport latitude</mat-label>
+      <input type="text"   matInput formControlName="latitude">
+      <mat-error *ngIf="createAirport.controls['latitude'].hasError('required')">Airport latitude is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+
+  <div class="example-container">
+    <mat-form-field>
+      <mat-label>City ID</mat-label>
+      <input type="text"   matInput formControlName="cityid">
+      <mat-error *ngIf="createAirport.controls['cityid'].hasError('required')">city is required</mat-error>
+    </mat-form-field>
+  </div>
+
+</form>
+
+</mat-dialog-content>
+ 
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()" >Save</button>
+</mat-dialog-actions>
