@@ -56,6 +56,9 @@ this.reservation=result;
     });
   }
 
+
+
+  //Airport Page
 deleteAirport(id:number){
 this.http.delete("https://localhost:7117/api/Airport/DeleteAirport/"+id).subscribe(result=>{
 console.log("deleted")
@@ -70,6 +73,15 @@ createAirport(bod:any){
   },err=>{console.log("try again"); })
 
 }
+
+updateAirport(bod:any){
+  
+  this.http.put("https://localhost:7117/api/Airport/UpdateAirport",bod).subscribe(res=>{
+    console.log("updated")
+  },err=>{console.log("error")})
+}
+  
+
 
 
 
