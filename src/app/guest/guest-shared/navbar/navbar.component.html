@@ -7,12 +7,12 @@
                 <li class="active"><a routerLink="/guest/home">Home</a></li>
                 <li><a routerLink="/guest/about">About</a></li>
                 <li><a routerLink="/guest/contactus">Contact Us</a></li>
-                <li [ngSwitch]="isLoggedIn">
-                    <a routerLink="/security/login" *ngSwitchCase="false">Login</a>
-                    <div *ngSwitchCase="true">
-                        <a routerLink="/security/login">View Profile</a>
-                        <a (click)="Logout()">Logout</a>
-                    </div>
+                <li *ngIf="!isLoggedIn">
+                    <a routerLink="/security/login">Login</a>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <a routerLink="/profile">View Profile</a>
+                    <a (click)="Logout()">Logout</a>
                 </li>
 
             </ul>
