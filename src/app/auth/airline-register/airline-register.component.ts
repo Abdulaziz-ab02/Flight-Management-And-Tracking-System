@@ -36,7 +36,7 @@ export class AirlineRegisterComponent {
   submit() {
     this.createAirlineForm.controls['roleid'].setValue(3);
     this.createAirlineForm.controls['activationstatus'].setValue('Pending');
-    this.auth.CreateUser(this.createAirlineForm.value)
+    this.auth.CreateAirline(this.createAirlineForm.value)
   }
 
   uploadImage(file: any) {
