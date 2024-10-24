@@ -10,7 +10,6 @@ export class ProfileComponent implements OnInit {
   constructor(public home: HomeService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('token');
 
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
