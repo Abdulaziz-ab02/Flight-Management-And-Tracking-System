@@ -1,10 +1,5 @@
 <app-sidebar></app-sidebar>
-
-
-
-
 <app-navbar></app-navbar>
-
 <div class="content">
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
@@ -13,7 +8,7 @@
 
 
             </div>
-            <td>  <button mat-raised-button color="primary" (click)="addAirport()">Create</button>
+            <td> <button mat-raised-button color="primary" (click)="addAirport()">Create</button>
 
             </td>
 
@@ -29,8 +24,9 @@
                             <th scope="col">Longitude</th>
                             <th scope="col">Latitude</th>
                             <th scope="col">Airport Code</th>
-                            <th scope="col">Operations</th>
                             <th scope="col">Airport Image</th>
+                            <th scope="col">Operations</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,21 +40,25 @@
                             <td>{{obj.airportimage}}</td>
 
                             <td>
-                                <button mat-raised-button color="primary">Update</button></td>
-                               <td><button mat-raised-button color="primary" (click)="openDeleteDialog(obj.id)">Delete</button></td> 
-                            
+                                <button mat-raised-button color="primary">Update</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn"
+                                    (click)="openDeleteDialog(obj.id)">Delete</button>
+                            </td>
+
 
                     </tbody>
                 </table>
 
-                
+
 
             </div>
-   
-            
+
+
         </div>
     </div>
-    
+
 
 </div>
 
@@ -69,10 +69,10 @@
 <ng-template #deleteAirport>
     <h1 mat-dialog-title>Delete Airport</h1>
     <div mat-dialog-content>
-      Would you like to delete this Airport?
+        Would you like to delete this Airport?
     </div>
     <div mat-dialog-actions>
-      <button mat-button mat-dialog-close="yes">Yes</button>
-      <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
     </div>
-    </ng-template>
+</ng-template>

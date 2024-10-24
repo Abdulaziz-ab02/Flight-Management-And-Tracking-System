@@ -16,7 +16,8 @@
                             <th scope="col">Airline Email</th>
                             <th scope="col">Airline Address</th>
                             <th scope="col">Status</th>
-
+                            <th scope="col">Operations</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,17 +30,13 @@
                             <td>{{obj.activationstatus}}</td>
 
                             <td>
-                                <button style="padding: 10px 20px; border-radius: 8px; background-color: #28a745; color: white; border: none; cursor: pointer;">
-                                  Accept
-                                </button>
-                              </td>
-                              <td>
-                                <button style="padding: 10px 20px; border-radius: 8px; background-color: #dc3545; color: white; border: none; cursor: pointer;">
-                                  Reject
-                                </button>
-                              </td>
-                              
-                          
+                                <button mat-raised-button color="primary">Accept</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn">Reject</button>
+                            </td>
+
+
                         </tr>
 
 
