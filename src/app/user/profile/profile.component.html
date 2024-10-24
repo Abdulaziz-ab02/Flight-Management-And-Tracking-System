@@ -13,9 +13,15 @@
 <div class="untree_co-section">
     <div class="container">
         <div class="row justify-content-between align-items-center">
-            <h1>User Info</h1>
             <div>
+                <img src=".. /../../assets/Images/{{home.userProfileInfo.image}}">
+
+                <h4>Full Name : {{home.userProfileInfo.firstname}} {{home.userProfileInfo.lastname}}</h4>
                 <h4>Username : {{home.userProfileInfo.username}}</h4>
+                <h4>Email : {{home.userProfileInfo.email}}</h4>
+                <h4>Phone : {{home.userProfileInfo.phone}}</h4>
+                <h4>Date of Birth : {{home.userProfileInfo.dateofbirth | date}}</h4>
+                <h4>National Number : {{home.userProfileInfo.nationalnumber}}</h4>
             </div>
         </div>
     </div>
