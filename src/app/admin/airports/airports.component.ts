@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewChildren } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
+import { CreateAirportComponent } from '../create-airport/create-airport.component';
 
 
 @Component({
@@ -26,7 +27,10 @@ openDeleteDialog(ID:number){
     }
   })
 }
-addAirport(){}
+addAirport(){
+this.dialog.open(CreateAirportComponent);
+
+}
 
 
 }
