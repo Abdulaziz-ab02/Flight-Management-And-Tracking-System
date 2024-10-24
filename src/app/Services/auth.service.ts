@@ -24,7 +24,17 @@ export class AuthService {
         console.log('Error')
       })
   }
+  CreateAirline(body: any) {
+    body.image = this.userImage;
 
+    this.http.post('https://localhost:7117/api/Airline/CreateAirline', body).subscribe(
+      (resp) => {
+        console.log('airline created')
+        this.router.navigate(['security/login']);
+      }, err => {
+        console.log('Error')
+      })
+  }
 
   userImage: any;
   //FormData => interface to send obj
@@ -37,7 +47,17 @@ export class AuthService {
         console.log('Error')
       })
   }
-
+  airlineImage: any;
+  //FormData => interface to send obj
+  uploadAttachment2(file: FormData) {
+    this.http.post('https://localhost:7117/api/Airline/uploadImage', file).subscribe(
+      (resp: any) => {
+        this.userImage = resp.image;
+        console.log('image uploaded')
+      }, err => {
+        console.log('Error')
+      })
+  }
 
   Login(uName: any, pass: any) {
     var body = {
