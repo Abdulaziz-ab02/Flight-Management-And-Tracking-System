@@ -66,6 +66,16 @@ export class HomeService {
   }
 
 
+  airlineProfileInfo: any;
+  getAirlineProfileInfo(airId: any) {
+    this.http.get('https://localhost:7117/api/Airline/GetAirlineById/' + airId).subscribe(
+      result => {
+        this.airlineProfileInfo = result;
+      }, err => {
+        console.log(err.message)
+      });
+  }
+
 
 
 
