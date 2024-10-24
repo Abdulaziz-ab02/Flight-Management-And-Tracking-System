@@ -5,7 +5,6 @@ import { UsersComponent } from './users/users.component';
 import { FlightsComponent } from './flights/flights.component';
 import { AirportsComponent } from './airports/airports.component';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ManageHomeComponent } from './manage-home/manage-home.component';
 import { ManageAboutusComponent } from './manage-aboutus/manage-aboutus.component';

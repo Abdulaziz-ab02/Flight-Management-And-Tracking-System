@@ -7,7 +7,6 @@ import { FlightsComponent } from './flights/flights.component';
 import { UsersComponent } from './users/users.component';
 import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ManageHomeComponent } from './manage-home/manage-home.component';
 import { ManageAboutusComponent } from './manage-aboutus/manage-aboutus.component';
 import { ManageContactusComponent } from './manage-contactus/manage-contactus.component';
@@ -30,7 +29,6 @@ import { MatButtonModule } from '@angular/material/button';
     UsersComponent,
     SearchFlightComponent,
     ViewProfileComponent,
-    UpdateProfileComponent,
     ManageHomeComponent,
     ManageAboutusComponent,
     ManageContactusComponent,
@@ -45,7 +43,7 @@ import { MatButtonModule } from '@angular/material/button';
     AdminRoutingModule,
     AdminSharedModule,
     MatButtonModule
-    
-]
+
+  ]
 })
 export class AdminModule { }

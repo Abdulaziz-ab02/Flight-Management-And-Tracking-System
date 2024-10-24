@@ -14,15 +14,12 @@ export class ProfileComponent implements OnInit {
 
   @ViewChild('callUpdateDailog') updateDialog !: TemplateRef<any>;
 
-
   ngOnInit(): void {
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
 
     this.home.getUserProfileInfo(user.userid)
-
   }
-
 
   updateUserForm: FormGroup = new FormGroup({
     //the names as the output from swagger
@@ -43,12 +40,6 @@ export class ProfileComponent implements OnInit {
   pData: any = {}
   openUpdateDialog(obj: any) {
     this.pData = obj;
-    console.log("USER INFO ", this.home.userProfileInfo)
-    console.log("OBJ", obj)
-    console.log("PDATA", this.pData)
-
-    console.log("IMAGE", this.pData.image)
-
 
     this.updateUserForm.controls['id'].setValue(this.pData.id);
 
