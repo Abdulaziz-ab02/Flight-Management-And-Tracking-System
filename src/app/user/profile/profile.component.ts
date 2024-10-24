@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
     //trun to formdata so the func in service accept it
     const formData = new FormData();
     formData.append('file', fileToUpload, file.name)
-    this.auth.uploadAttachment(formData);
+    this.auth.uploadAttachmentUser(formData);
   }
 
 
