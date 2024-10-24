@@ -15,9 +15,6 @@ export class ProfileComponent implements OnInit {
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
 
-    // if (token) {
-    //   this.home.getUserProfileInfo(user.userid)
-    // }
     this.home.getUserProfileInfo(user.userid)
 
   }
