@@ -8,6 +8,7 @@ import { FlightsComponent } from './flights/flights.component';
 import { HomeComponent } from './home/home.component';
 import { GuestSharedModule } from './guest-shared/guest-shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     ContactusComponent,
     FlightsComponent,
-    HomeComponent
+    HomeComponent,
+    SearchFormComponent
   ],
   imports: [
     CommonModule,
