@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { FlightsComponent } from './flights/flights.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'flights',
     component: FlightsComponent
+  },
+  {
+    path:'searchform',
+    component:SearchFormComponent
   }
 ];
 

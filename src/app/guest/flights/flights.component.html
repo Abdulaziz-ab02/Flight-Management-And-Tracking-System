@@ -10,74 +10,10 @@
                 class="typed-words"></span></h1>
                 <div class="row">
                   <div class="col-12">
-                    <form class="form" [formGroup]="searchForm">
-                        <div class="row mb-2">
-                          <!-- Departure Place -->
-                          <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                            <label for="departurePlace">
-                              <i class="fas fa-plane-departure"></i> Departure Place
-                            </label>
-                            <input type="text" id="departurePlace" class="form-control" 
-                                   placeholder="Search Departure Place"
-                                   (input)="filterDepartureOptions($event)" 
-                                   [value]="selectedDepartureCity" />
-                            <ul class="list-group" *ngIf="filteredDepartureCities.length > 0">
-                              <li *ngFor="let city of filteredDepartureCities" class="list-group-item"
-                                  (click)="selectDepartureCity(city)">
-                                {{ city.cityname }}
-                              </li>
-                            </ul>
-                          </div>
-                      
-                          <!-- Departure Date -->
-                          <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                            <label for="departureDate">
-                              <i class="fas fa-plane-departure"></i> Departure Date
-                            </label>
-                            <input type="date" id="departureDate" class="form-control"
-                                   formControlName="departuredate" />
-                          </div>
-                        </div>
-                      
-                        <div class="row mb-2">
-                          <!-- Destination Place -->
-                          <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                            <label for="destinationPlace">
-                              <i class="fas fa-plane-arrival"></i> Destination Place
-                            </label>
-                            <input type="text" id="destinationPlace" class="form-control" 
-                                   placeholder="Search Destination Place"
-                                   (input)="filterDestinationOptions($event)" 
-                                   [value]="selectedDestinationCity" />
-                            <ul class="list-group" *ngIf="filteredDestinationCities.length > 0">
-                              <li *ngFor="let city of filteredDestinationCities" class="list-group-item"
-                                  (click)="selectDestinationCity(city)">
-                                {{ city.cityname }}
-                              </li>
-                            </ul>
-                          </div>
-                      
-                          <!-- Class Type -->
-                          <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-6">
-                            <label for="classType">
-                              <i class="fas fa-chair"></i> Class Type
-                            </label>
-                            <select id="classType" class="form-control custom-select" formControlName="degreenameId">
-                              <option value="3">Economy</option>
-                              <option value="4">Business</option>
-                              <option value="5">First Class</option>
-                            </select>
-                          </div>
-                        </div>
-                      
-                        <div class="row align-items-center mt-3">
-                          <!-- Search Button -->
-                          <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
-                            <input type="submit" class="btn btn-primary btn-block" value="Search" (click)="SearchInput()">
-                          </div>
-                        </div>
-                      </form>
-                      
+                      <!--Here where the form should be so we used a shared component aiming to reduce the redundancy :)-->
+                    <app-search-form (flightsFound)="handleFlightsFound($event)"
+                    ></app-search-form>
+                   
                   </div>
               </div>
         </div>
@@ -136,7 +72,7 @@
                   <!-- Price and Select Button -->
                   <div class="col-md-4 text-right">
                     <h5 class="flight-price"><i class="fas fa-dollar-sign"></i> JOD {{ flight.price }}</h5>
-                    <button class="btn btn-primary select-flight-btn" (click)="GetAllFacilitesByDegreeId(flight.degreeId)"><i class="fas fa-check"></i> Select Flight</button>
+                    <button class="btn btn-primary select-flight-btn"><i class="fas fa-check"></i> Select Flight</button>
                   </div>
                 </div>
         
@@ -151,7 +87,7 @@
     <p><strong><i class="fas fa-concierge-bell"></i> Facilities:</strong></p>
     <ul class="facilities-list">
       <!-- Loop over flight's own facilities array -->
-      <li *ngFor="let facility of flight.facilities">{{ facility.facilityname }}</li>
+      <li *ngFor="let facility of flight.facilities">{{ facility.facilityname }},</li>
     </ul>
   </div>
 </div>
