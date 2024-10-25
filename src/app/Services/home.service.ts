@@ -61,7 +61,7 @@ export class HomeService {
         console.log("USERID", userId)
         console.log("RESULT", result)
       }, err => {
-        console.log(err.message)
+        console.log('no cant bring data for the user')
       });
   }
 

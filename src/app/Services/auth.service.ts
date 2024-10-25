@@ -101,7 +101,7 @@ export class AuthService {
           this.router.navigate(['airline/flights']);
 
       }, err => {
-        console.log('Error')
+        console.log('Error cant login ')
       })
   }
 
