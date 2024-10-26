@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
 
-                              
+
 
                                 <div class="row align-items-center mt-3">
                                     <!-- Search Button -->
@@ -252,16 +252,17 @@
                 <h2 class="section-title text-center mb-5">Testimonials</h2>
 
                 <div class="owl-single owl-carousel no-nav">
-
-                    <div *ngFor="let obj of home.testimonials" class="testimonial mx-auto">
-                        <figure class="img-wrap">
-                            <img src="../../../assets/Home/images/person_2.jpg" alt="Image" class="img-fluid">
-                        </figure>
-                        <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
-                        <blockquote>
-                            <p>&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
-                        </blockquote>
-                    </div>
+                    <ng-container *ngFor="let obj of home.testimonials">
+                        <div *ngIf=" obj.testimonialstatus === 'Approved'" class="testimonial mx-auto">
+                            <figure class="img-wrap">
+                                <img src="../../../assets/Home/images/person_2.jpg" alt="Image" class="img-fluid">
+                            </figure>
+                            <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
+                            <blockquote>
+                                <p>&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
+                            </blockquote>
+                        </div>
+                    </ng-container>
 
                 </div>
             </div>

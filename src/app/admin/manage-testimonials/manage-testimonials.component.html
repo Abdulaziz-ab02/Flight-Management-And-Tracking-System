@@ -1,1 +1,45 @@
-<p>manage-testimonials works!</p>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h6 class="mb-0">Testimonials</h6>
+            </div>
+            <div class="table">
+                <table class="table ">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Testimonial Content</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Testimonial Date</th>
+                            <th scope="col">Testimonial Status</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 'Pending', 'Approved', 'Denied' -->
+                        <ng-container *ngFor="let obj of home.testimonials">
+                            <tr *ngIf="obj.testimonialstatus === 'Pending' || obj.testimonialstatus === 'Approved'">
+                                <td>{{obj.testimonialcontent}}</td>
+                                <td>{{obj.firstname}}{{obj.lastname}}</td>
+                                <td>{{obj.testimonialdate}}</td>
+                                <td>{{obj.testimonialstatus}}</td>
+                                <td *ngIf="obj.testimonialstatus === 'Pending'">
+                                    <button class="btn btn-success" style="margin-right:20px;">Approve</button>
+
+                                    <button mat-raised-button color="warn">Deny</button>
+                                </td>
+                                <td *ngIf="obj.testimonialstatus === 'Approved'">
+                                    <button class="btn btn-success" style="margin-right:20px;"
+                                        disabled>Approved</button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

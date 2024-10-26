@@ -12,12 +12,16 @@ export class HomeComponent implements OnInit {
   constructor(public home: HomeService, private router: Router) { }
 
 
+  filteredTestimonials: any[] = [];
+
   ngOnInit(): void {
     this.home.getAllTestimonials()
 
     this.home.getHomePage()
     this.home.getContactInfo()
+
   }
+
 
 
 
