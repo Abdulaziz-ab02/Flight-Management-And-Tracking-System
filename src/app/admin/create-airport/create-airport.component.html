@@ -39,13 +39,22 @@
 
 
 
-  <div class="example-container">
-    <mat-form-field>
-      <mat-label>City ID</mat-label>
-      <input type="text"   matInput formControlName="cityid">
-      <mat-error *ngIf="createAirport.controls['cityid'].hasError('required')">city is required</mat-error>
-    </mat-form-field>
-  </div>
+ <!-- City Dropdown -->
+ <div class="example-container">
+  <mat-form-field>
+    <mat-label>City</mat-label>
+    <mat-select formControlName="cityid">
+      <mat-option *ngFor="let city of cities" [value]="city.id">
+        {{ city.cityname }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="createAirport.controls['cityid'].hasError('required')">City is required</mat-error>
+  </mat-form-field>
+</div>
+
+
+<input type="file" #file formControlName="airportimage" (change)="uploadFile(file.files)">
+
 
 </form>
 
