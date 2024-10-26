@@ -14,28 +14,59 @@
                             <th scope="col">User</th>
                             <th scope="col">Testimonial Date</th>
                             <th scope="col">Testimonial Status</th>
-                            <th scope="col">Operations</th>
+                            <th scope="col" colspan="2">Operations</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- 'Pending', 'Approved', 'Denied' -->
-                        <ng-container *ngFor="let obj of home.testimonials">
+                        <!-- <ng-container *ngFor="let obj of home.testimonials">
                             <tr *ngIf="obj.testimonialstatus === 'Pending' || obj.testimonialstatus === 'Approved'">
                                 <td>{{obj.testimonialcontent}}</td>
                                 <td>{{obj.firstname}}{{obj.lastname}}</td>
                                 <td>{{obj.testimonialdate}}</td>
                                 <td>{{obj.testimonialstatus}}</td>
                                 <td *ngIf="obj.testimonialstatus === 'Pending'">
-                                    <button class="btn btn-success" style="margin-right:20px;">Approve</button>
+                                    <button mat-raised-button color="warn" class="m-2">Delete</button>
 
-                                    <button mat-raised-button color="warn">Deny</button>
+                                    <button class="btn btn-success m-2">Approve</button>
+                                    <button mat-stroked-button color="warn" class="m-2">Deny</button>
                                 </td>
                                 <td *ngIf="obj.testimonialstatus === 'Approved'">
+                                    <button mat-raised-button color="warn" class="m-2">Delete</button>
+
                                     <button class="btn btn-success" style="margin-right:20px;"
                                         disabled>Approved</button>
                                 </td>
                             </tr>
-                        </ng-container>
+                        </ng-container> -->
+
+                        <tr *ngFor="let obj of home.testimonials">
+                            <td>{{obj.testimonialcontent}}</td>
+                            <td>{{obj.firstname}}{{obj.lastname}}</td>
+                            <td>{{obj.testimonialdate}}</td>
+                            <td>{{obj.testimonialstatus}}</td>
+
+
+                            <ng-container *ngIf="obj.testimonialstatus === 'Pending'">
+                                <td>
+                                    <button class="btn btn-success">Approve</button>
+                                </td>
+                                <td>
+                                    <button mat-raised-button color="warn">Deny</button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container *ngIf="obj.testimonialstatus === 'Approved'">
+                                <td>
+                                    <button class="btn btn-success" disabled>Approved</button>
+                                </td>
+                            </ng-container>
+
+                        </tr>
+
+
+
                     </tbody>
                 </table>
             </div>
