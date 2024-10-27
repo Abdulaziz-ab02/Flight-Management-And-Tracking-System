@@ -95,4 +95,23 @@ uploadImage(file:FormData){
 this.img=res.airportimage;
   },err=>{console.log("error")})
 }
+
+
+
+
+
+// admin.service.ts
+changeAirlineStatus(id: number, status: string): Observable<any> {
+  const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}`;
+  return this.http.patch(url, { Activation_Status: status });
+
+}
+
+deleteAirline(id:number){
+  this.http.delete("https://localhost:7117/api/Airline/deleteAirline/"+id).subscribe(result=>{
+  console.log("deleted")
+  },err=>{console.log("error")})
+  }
+
+
 }
