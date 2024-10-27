@@ -63,6 +63,7 @@ export class AuthService {
       })
   }
 
+
   Login(uName: any, pass: any) {
     var body = {
       username: uName.value.toString(),
@@ -123,7 +124,7 @@ export class AuthService {
 
   UpdateAirline(body: any) {
     //debugger
-    body.image = this.airlineImage;
+    body.airlineimage = this.airlineImage;
 
     this.http.put('https://localhost:7117/api/Airline/UpdateAirline', body).subscribe(
       (resp) => {

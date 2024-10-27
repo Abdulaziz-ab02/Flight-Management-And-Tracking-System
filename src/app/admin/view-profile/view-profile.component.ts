@@ -52,6 +52,8 @@ export class ViewProfileComponent implements OnInit {
     this.pData = obj;
 
     this.updateAirlineForm.controls['id'].setValue(this.pData.id);
+    this.updateAirlineForm.controls['activationstatus'].setValue(this.pData.id);
+
     this.auth.airlineImage = this.pData.airlineimage
 
     this.dialog.open(this.airlineUpdateDialog)
