@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from 'src/app/Services/flight.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class SearchFormComponent {
   flights: any[] = []; // Ensure this is typed as any[] to store flight data
   Facilites: any[] = [];
 
-  constructor(private flight: FlightService) {}
+  constructor(private flight: FlightService,private router: Router,
+    private activatedRoute: ActivatedRoute) {}
   ngOnInit() {
     this.loadCities(); 
   }
@@ -36,7 +38,6 @@ export class SearchFormComponent {
     );
   }
   GetAllFacilitesByDegreeId(id: number) {
-    debugger;
     console.log('Fetching facilities for degree ID:', id);  // Log the ID for debugging
     this.flight.GetAllFacilitesByDegree(id).subscribe(
       (res: any[]) => {
@@ -74,12 +75,12 @@ export class SearchFormComponent {
     degreenameId: new FormControl()
   });
   SearchInput() {
-    debugger;
     console.log('Search initiated with form data:', this.searchForm.value);
     this.flight.SearchForFlight(this.searchForm.value).subscribe(
       (res: any[]) => {
         this.flights = res; // Assuming the response is an array of flights
         this.flightsFound.emit(this.flights);
+
         console.log('Search results:', this.flights);
   
         // Fetch facilities for each flight
@@ -101,6 +102,8 @@ export class SearchFormComponent {
         console.error('Error occurred during search:', err);
       }
     );
+
+    
   }
   selectDepartureCity(city: { cityname: string, id: number }) {
     this.selectedDepartureCity = city.cityname;  // Display the city name

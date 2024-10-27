@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FlightService } from 'src/app/Services/flight.service';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flights',
@@ -9,15 +9,21 @@ import { FlightService } from 'src/app/Services/flight.service';
 
 })
 
-export class FlightsComponent  {
+export class FlightsComponent implements OnInit {
+constructor(private router: Router){}
+flights : any[] =[];
+ngOnInit(): void {
+ this.flights = history.state.flights;
 
-  flights: any[] = []; // Ensure this is typed as any[] to store flight data
-  Facilites: any[] = [];
+}
   handleFlightsFound(flights: any[]) {
     this.flights = flights;
   }
+  homeFlights(homeFlights: any[]){
+    this.flights = homeFlights;
+  } 
+  
 
-  constructor(private flight: FlightService) {}
 
 
 }
