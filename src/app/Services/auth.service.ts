@@ -120,6 +120,18 @@ export class AuthService {
   }
 
 
+  UpdateAirline(body: any) {
+    //debugger
+    body.image = this.airlineImage;
+
+    this.http.put('https://localhost:7117/api/Airline/UpdateAirline', body).subscribe(
+      (resp) => {
+        console.log('airline updated')
+      }, err => {
+        console.log('Error')
+      })
+  }
+
 
 
 }
