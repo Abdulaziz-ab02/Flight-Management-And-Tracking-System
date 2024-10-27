@@ -44,7 +44,7 @@
                         <tr *ngFor="let obj of home.testimonials">
                             <td>{{obj.testimonialcontent}}</td>
                             <td>{{obj.firstname}}{{obj.lastname}}</td>
-                            <td>{{obj.testimonialdate}}</td>
+                            <td>{{obj.testimonialdate |date}} </td>
                             <td>{{obj.testimonialstatus}}</td>
 
 
