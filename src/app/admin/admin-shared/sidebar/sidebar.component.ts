@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  role_id: any;
+
+  ngOnInit(): void {
+
+    let user: any = localStorage.getItem('user')
+    user = JSON.parse(user)
+    this.role_id = user.roleid;
+
+  }
 }
