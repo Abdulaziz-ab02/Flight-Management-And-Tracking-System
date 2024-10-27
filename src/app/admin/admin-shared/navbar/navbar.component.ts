@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { HomeService } from 'src/app/Services/home.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  constructor(public home: HomeService) { }
+  constructor(public home: HomeService, private router: Router) { }
 
 
   role_id: any;
@@ -23,6 +24,12 @@ export class NavbarComponent implements OnInit {
     else if (this.role_id == 3)
       this.home.getAirlineProfileInfo(user.airlineid)
 
+  }
+
+  Logout() {
+    localStorage.clear()
+    //this.isLoggedIn = false;
+    this.router.navigate(['guest/home'])
   }
 
 }
