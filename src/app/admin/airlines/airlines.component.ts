@@ -13,4 +13,25 @@ ngOnInit(): void {
   this.admin.GetAllAirline()
 }
 
+
+
+// airlines.component.ts
+approveAirline(id: number) {
+  this.admin.changeAirlineStatus(id, 'Approved').subscribe(
+    () => {
+      console.log("Airline approved successfully"); // Log success
+      this.admin.GetAllAirline(); // Refresh the list after approval
+    },
+    error => {
+      console.error("Error approving airline", error); // Log any errors
+    }
+  );
+}
+
+// airlines.component.ts
+rejectAirline(id: number) {
+  this.admin.deleteAirline(id);
+}
+
+
 }
