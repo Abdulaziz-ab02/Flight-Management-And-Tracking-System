@@ -118,7 +118,7 @@ export class AuthService {
       }, err => {
         console.log('Error')
       })
-    window.location.reload();
+    // window.location.reload();
   }
 
 
@@ -132,7 +132,7 @@ export class AuthService {
       }, err => {
         console.log('Error')
       })
-    window.location.reload();
+    // window.location.reload();
   }
 
 
