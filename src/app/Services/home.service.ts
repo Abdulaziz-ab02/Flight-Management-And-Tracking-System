@@ -78,6 +78,39 @@ export class HomeService {
 
 
 
+  CreateTestimonial(body: any) {
+    this.http.post('https://localhost:7117/api/Testimonial/CreateTestimonial', body).subscribe(
+      resp => {
+        console.log('Testimonial created')
+      }, err => {
+        console.log(err.message)
+      });
+  }
+
+
+  deleteTestimonial(id: number) {
+    this.http.delete('https://localhost:7117/api/Testimonial/DeleteTestimonial/' + id).subscribe(
+      result => {
+        console.log('the testimonial is deleted');
+      }, err => {
+        console.log(err.message)
+      });
+    window.location.reload();
+  }
+
+
+  UpdateTestimonial(id: number, status: string) {
+    //debugger
+
+    this.http.put('https://localhost:7117/api/Testimonial/ChangeTestimonialStatus/' + id + '/' + status, null).subscribe(
+      (resp) => {
+        console.log('Testimonial status updated')
+      }, err => {
+        console.log('Error')
+      })
+    window.location.reload();
+  }
+
 
 
 }

@@ -176,9 +176,10 @@
     <div class="container">
         <div class="row justify-content-center">
 
-            <div style="text-align: center;">
-                <button>Add testimonial</button>
+            <div style="text-align: center;" *ngIf="isLoggedIn">
+                <button class="btn btn-primary m-3" (click)="openCreateDialog()">Add testimonial</button>
             </div>
+
 
             <div class="col-lg-7 text-center">
 
@@ -193,6 +194,8 @@
                             <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
                             <blockquote>
                                 <p>&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
+                                <p><b>Rating :</b> {{obj.rating}}</p>
+                                <p>{{obj.testimonialdate |date}}</p>
                             </blockquote>
                         </div>
                     </ng-container>
@@ -216,5 +219,40 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #callCreateDailog>
+    <h2 mat-dialog-title>Create Testimonial</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="createTestimonial">
+
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Testimonial Content</mat-label>
+                    <input type="text" matInput formControlName="testimonialcontent">
+                    <mat-error *ngIf="createTestimonial.controls['testimonialcontent'].hasError('required')">Testimonial
+                        Content is required</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>Testimonial Rating</mat-label>
+                    <input type="number" matInput formControlName="rating" min="1" max="5">
+                    <mat-error *ngIf="createTestimonial.controls['rating'].hasError('min')">Min Rating is 1</mat-error>
+                    <mat-error *ngIf="createTestimonial.controls['rating'].hasError('max')">Max Rating is 5</mat-error>
+                </mat-form-field>
+            </div>
+
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="btn btn-primary m-3">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()"
+            class="btn btn-primary">Save</button>
+    </mat-dialog-actions>
+</ng-template>
 
 <app-footer></app-footer>
