@@ -3,17 +3,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
-import { FlightsComponent } from '../flights/flights.component';
 import { state } from '@angular/animations';
-
+/* handleHomeFlights(flights: any[]) {
+  this.router.navigate(['/flights'], { state: { flights } });
+}*/
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  homeFlights: any[] = [];
-
   constructor(public home: HomeService, private router: Router, public dialog: MatDialog) { }
 
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
@@ -25,17 +24,6 @@ export class HomeComponent implements OnInit {
 
     this.home.getHomePage()
     this.home.getContactInfo()
-  }
-
-  handleHomeFlights(flights: any[]) {
-    this.router.navigate(['/flights'], { state: { flights } });
-  }
-  
-
-
-
-
-  
 
     const token = localStorage.getItem('token');
     //if the user is loggen in 
@@ -43,6 +31,9 @@ export class HomeComponent implements OnInit {
       this.isLoggedIn = true;
     }
 
+  }
+  handleHomeFlights(flights: any[]) {
+    this.router.navigate(['/flights'], { state: { flights } });
   }
 
   createTestimonial: FormGroup = new FormGroup({
@@ -74,6 +65,10 @@ export class HomeComponent implements OnInit {
   save() {
     this.home.CreateTestimonial(this.createTestimonial.value)
   }
+  
+  }
+
+  
 
 
 
