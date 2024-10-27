@@ -19,9 +19,7 @@ ngOnInit(): void {
   handleFlightsFound(flights: any[]) {
     this.flights = flights;
   }
-  homeFlights(homeFlights: any[]){
-    this.flights = homeFlights;
-  } 
+ 
   
 
 
