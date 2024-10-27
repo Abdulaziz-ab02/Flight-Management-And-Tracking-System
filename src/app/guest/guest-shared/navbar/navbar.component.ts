@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     localStorage.clear()
     this.isLoggedIn = false;
     this.router.navigate(['guest/home'])
+    window.location.reload();
   }
 
 }
