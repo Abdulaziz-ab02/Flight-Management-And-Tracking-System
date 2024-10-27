@@ -16,7 +16,7 @@
                             <th scope="col">Airline Email</th>
                             <th scope="col">Airline Address</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Operations</th>
+                            <th scope="col" colspan="2">Operations</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -30,10 +30,10 @@
                             <td>{{obj.activationstatus}}</td>
 
                             <td>
-                                <button mat-raised-button color="primary" (click)="approveAirline(obj.id)">Accept</button>
+                                <button mat-raised-button color="primary">Accept</button>
                             </td>
                             <td>
-                                <button mat-raised-button color="warn" (click)="rejectAirline(obj.id)">Reject</button>
+                                <button mat-raised-button color="warn">Reject</button>
                             </td>
 
 

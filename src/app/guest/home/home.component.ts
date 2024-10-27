@@ -1,84 +1,82 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
-
+import { state } from '@angular/animations';
+/* handleHomeFlights(flights: any[]) {
+  this.router.navigate(['/flights'], { state: { flights } });
+}*/
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  constructor(public home: HomeService, private router: Router, public dialog: MatDialog) { }
 
-  constructor(public home: HomeService, private router: Router) { }
+  @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
 
+  isLoggedIn: boolean = false;
 
   ngOnInit(): void {
     this.home.getAllTestimonials()
 
     this.home.getHomePage()
     this.home.getContactInfo()
-  }
 
-
-
-  // Sample data for cities
-  cities: string[] = ['Amman', 'Irbid', 'Jarash', 'Peru', 'Japan', 'Thailand', 'Brazil', 'United States', 'China', 'Russia'];
-  filteredDepartureCities: string[] = []; // Stores filtered results for departure
-  filteredDestinationCities: string[] = []; // Stores filtered results for destination
-  selectedDepartureCity: string = ''; // Stores the selected departure city
-  selectedDestinationCity: string = ''; // Stores the selected destination city
-
-  // Method to filter departure cities based on user input
-  filterDepartureOptions(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const searchTerm = input.value; // Extract the value from the input
-
-    if (searchTerm) {
-      this.filteredDepartureCities = this.cities.filter(city =>
-        city.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredDepartureCities = []; // Reset if no input
+    const token = localStorage.getItem('token');
+    //if the user is loggen in 
+    if (token) {
+      this.isLoggedIn = true;
     }
 
-    console.log('Search Term (Departure):', searchTerm); // Log the current search term
-    console.log('Filtered Departure Cities:', this.filteredDepartureCities); // Log the filtered cities
+  }
+  handleHomeFlights(flights: any[]) {
+    this.router.navigate(['/flights'], { state: { flights } });
   }
 
-  // Method to filter destination cities based on user input
-  filterDestinationOptions(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const searchTerm = input.value; // Extract the value from the input
+  createTestimonial: FormGroup = new FormGroup({
+    testimonialcontent: new FormControl('', Validators.required),
+    rating: new FormControl('', [Validators.min(1), Validators.max(5)]),
+    testimonialdate: new FormControl(),
+    testimonialstatus: new FormControl(),
+    userid: new FormControl()
+  })
 
-    if (searchTerm) {
-      this.filteredDestinationCities = this.cities.filter(city =>
-        city.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredDestinationCities = []; // Reset if no input
-    }
+  openCreateDialog() {
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date
+    this.createTestimonial.controls['testimonialdate'].setValue(currentDate);
 
-    console.log('Search Term (Destination):', searchTerm); // Log the current search term
-    console.log('Filtered Destination Cities:', this.filteredDestinationCities); // Log the filtered cities
+    let user: any = localStorage.getItem('user')
+    user = JSON.parse(user)
+    this.createTestimonial.controls['userid'].setValue(user.userid)
+    this.createTestimonial.controls['testimonialstatus'].setValue('Pending')
+
+
+    console.log('Testimonial Date:', this.createTestimonial.controls['testimonialdate'].value);
+    console.log('User ID:', this.createTestimonial.controls['userid'].value);
+    console.log('Testimonial Status:', this.createTestimonial.controls['testimonialstatus'].value);
+
+
+    this.dialog.open(this.createDialog)
   }
 
-  // Method to handle departure city selection
-  selectDepartureCity(city: string) {
-    this.selectedDepartureCity = city; // Update selected departure city
-    this.filteredDepartureCities = []; // Clear filtered results after selection
-    console.log('Selected Departure City:', this.selectedDepartureCity); // Log the selected city
+  save() {
+    this.home.CreateTestimonial(this.createTestimonial.value)
+  }
+  
   }
 
-  // Method to handle destination city selection
-  selectDestinationCity(city: string) {
-    this.selectedDestinationCity = city; // Update selected destination city
-    this.filteredDestinationCities = []; // Clear filtered results after selection
-    console.log('Selected Destination City:', this.selectedDestinationCity); // Log the selected city
-  }
+  
 
 
 
 
 
 
-}
+
+
+
+
+
