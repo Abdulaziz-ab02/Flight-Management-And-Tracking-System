@@ -58,7 +58,7 @@ export class ViewProfileComponent implements OnInit {
   }
 
   save() {
-    this.auth.UpdateUser(this.updateAirlineForm.value)
+    this.auth.UpdateAirline(this.updateAirlineForm.value)
   }
 
   uploadImage(file: any) {

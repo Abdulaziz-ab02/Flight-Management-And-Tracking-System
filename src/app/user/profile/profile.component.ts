@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
 
   save() {
     //api 
-    this.auth.UpdateAirline(this.updateUserForm.value)
+    this.auth.UpdateUser(this.updateUserForm.value)
   }
 
   uploadImage(file: any) {
