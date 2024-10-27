@@ -261,7 +261,17 @@
                             <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
                             <blockquote>
                                 <p>&ldquo;{{obj.testimonialcontent}}&rdquo;</p>
-                                <p><b>Rating :</b> {{obj.rating}}</p>
+                                <p><b>Rating : </b>
+                                    <ng-container *ngFor="let star of [].constructor(obj.rating);">
+                                        <span class="star">&#9733;</span> <!-- Filled star -->
+                                    </ng-container>
+                                    <ng-container *ngFor="let star of [].constructor(5 - obj.rating);">
+                                        <span class="star">&#9734;</span> <!-- Empty star -->
+                                    </ng-container>
+                                </p>
+
+
+
                                 <p>{{obj.testimonialdate |date}}</p>
                             </blockquote>
                         </div>
