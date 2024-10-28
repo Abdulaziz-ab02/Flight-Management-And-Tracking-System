@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
-import { FlightsComponent } from './flights/flights.component';
 import { AirportsComponent } from './airports/airports.component';
-import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ManageHomeComponent } from './manage-home/manage-home.component';
 import { ManageAboutusComponent } from './manage-aboutus/manage-aboutus.component';
@@ -32,16 +30,8 @@ const routes: Routes = [
     component: AirportsComponent
   },
   {
-    path: 'flights',
-    component: FlightsComponent
-  },
-  {
     path: 'users',
     component: UsersComponent
-  },
-  {
-    path: 'search',
-    component: SearchFlightComponent
   },
   {
     path: 'viewprofile',
