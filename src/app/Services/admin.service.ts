@@ -22,10 +22,10 @@ export class AdminService {
     });
   }
 
-airline:any=[];
+  airline: any = [];
   GetAllAirline() {
     this.http.get('https://localhost:7117/api/Airline').subscribe(result => {
-    this.airline=result;
+      this.airline = result;
 
     }, err => {
       console.log(err.message)
@@ -33,25 +33,25 @@ airline:any=[];
   }
 
 
-  airport:any=[];
+  airport: any = [];
   AirportCount: number = 0;
   FetchAllAirports() {
-   
+
     this.http.get('https://localhost:7117/api/Airport').subscribe(result => {
-    this.airport=result;
-    this.AirportCount = this.airport.length;
+      this.airport = result;
+      this.AirportCount = this.airport.length;
     }, err => {
       console.log(err.message)
     });
   }
 
 
- reservation: any = [];
+  reservations: any = [];
   ReservationCount: number = 0;
   FetchAllReservations() {
     this.http.get('https://localhost:7117/api/Reservation').subscribe(result => {
-this.reservation=result;
-      this.ReservationCount = this.reservation.length;
+      this.reservations = result;
+      this.ReservationCount = this.reservations.length;
 
     }, err => {
       console.log(err.message)
@@ -61,57 +61,58 @@ this.reservation=result;
 
 
   //Airport Page
-deleteAirport(id:number){
-this.http.delete("https://localhost:7117/api/Airport/DeleteAirport/"+id).subscribe(result=>{
-console.log("deleted")
-},err=>{console.log("error")})
-}
-
-
-createAirport(bod:any){
-  bod.airportimage=this.img;
-  this.http.post("https://localhost:7117/api/Airport/CreateAirport",bod).subscribe(res=>{
-    console.log("airport created");
-  },err=>{console.log("try again"); })
-
-}
-
-updateAirport(bod:any){
-  bod.airportimage=this.img;
-  this.http.put("https://localhost:7117/api/Airport/UpdateAirport",bod).subscribe(res=>{
-    console.log("updated")
-  },err=>{console.log("error")})
-}
-  
-
- // Return Observable for the cities
- GetAllCiies(): Observable<string[]> {
-  return this.http.get<string[]>('https://localhost:7117/api/City/GetAllCities');
-}
-
-img:any;
-uploadImage(file:FormData){
-  this.http.post("https://localhost:7117/api/Airport/uploadImage",file).subscribe((res:any)=>{
-this.img=res.airportimage;
-  },err=>{console.log("error")})
-}
-
-
-
-
-
-// admin.service.ts
-changeAirlineStatus(id: number, status: string): Observable<any> {
-  const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}`;
-  return this.http.patch(url, { Activation_Status: status });
-
-}
-
-deleteAirline(id:number){
-  this.http.delete("https://localhost:7117/api/Airline/deleteAirline/"+id).subscribe(result=>{
-  console.log("deleted")
-  },err=>{console.log("error")})
+  deleteAirport(id: number) {
+    this.http.delete("https://localhost:7117/api/Airport/DeleteAirport/" + id).subscribe(result => {
+      console.log("deleted")
+    }, err => { console.log("error") })
   }
+
+
+  createAirport(bod: any) {
+    bod.airportimage = this.img;
+    this.http.post("https://localhost:7117/api/Airport/CreateAirport", bod).subscribe(res => {
+      console.log("airport created");
+    }, err => { console.log("try again"); })
+
+  }
+
+  updateAirport(bod: any) {
+    bod.airportimage = this.img;
+    this.http.put("https://localhost:7117/api/Airport/UpdateAirport", bod).subscribe(res => {
+      console.log("updated")
+    }, err => { console.log("error") })
+  }
+
+
+  // Return Observable for the cities
+  GetAllCiies(): Observable<string[]> {
+    return this.http.get<string[]>('https://localhost:7117/api/City/GetAllCities');
+  }
+
+  img: any;
+  uploadImage(file: FormData) {
+    this.http.post("https://localhost:7117/api/Airport/uploadImage", file).subscribe((res: any) => {
+      this.img = res.airportimage;
+    }, err => { console.log("error") })
+  }
+
+
+
+
+
+  // admin.service.ts
+  changeAirlineStatus(id: number, status: string): Observable<any> {
+    const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}`;
+    return this.http.patch(url, { Activation_Status: status });
+
+  }
+
+  deleteAirline(id: number) {
+    this.http.delete("https://localhost:7117/api/Airline/deleteAirline/" + id).subscribe(result => {
+      console.log("deleted")
+    }, err => { console.log("error") })
+  }
+
 
 
 }
