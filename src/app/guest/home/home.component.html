@@ -13,7 +13,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                           <app-search-form (flightsFound)="handleHomeFlights($event)"></app-search-form>
+                            <app-search-form (flightsFound)="handleHomeFlights($event)"></app-search-form>
                         </div>
                     </div>
 
@@ -189,7 +189,7 @@
                     <ng-container *ngFor="let obj of home.testimonials">
                         <div *ngIf=" obj.testimonialstatus === 'Approved'" class="testimonial mx-auto">
                             <figure class="img-wrap">
-                                <img src="../../../assets/Home/images/person_2.jpg" alt="Image" class="img-fluid">
+                                <img src="../../../assets/Images/{{obj.image}}" alt="Image" class="img-fluid">
                             </figure>
                             <h3 class="name">{{obj.firstname}}{{obj.lastname}}</h3>
                             <blockquote>
@@ -202,9 +202,6 @@
                                         <span class="star">&#9734;</span> <!-- Empty star -->
                                     </ng-container>
                                 </p>
-
-
-
                                 <p>{{obj.testimonialdate |date}}</p>
                             </blockquote>
                         </div>

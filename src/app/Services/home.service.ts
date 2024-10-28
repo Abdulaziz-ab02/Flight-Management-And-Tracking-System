@@ -13,6 +13,8 @@ export class HomeService {
   getAllTestimonials() {
     this.http.get('https://localhost:7117/api/Testimonial').subscribe(result => {
       this.testimonials = result;
+      console.log(this.testimonials)
+
 
     }, err => {
       console.log(err.message)
