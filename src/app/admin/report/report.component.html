@@ -6,31 +6,31 @@
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Report</h6>
-                    <form>
+                    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
                         <div class="mb-3">
-                            <label for="exampleInput1" class="form-label">Search by Start Date</label>
-                            <input type="date" class="form-control" id="exampleInput1" aria-describedby="emailHelp">
-                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
-                            </div> -->
+                            <label for="startDate" class="form-label">Search by Start Date</label>
+                            <input type="date" class="form-control" formControlName="startDate">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInput2" class="form-label">Search by End Date</label>
-                            <input type="date" class="form-control" id="exampleInput2">
+                            <label for="endDate" class="form-label">Search by End Date</label>
+                            <input type="date" class="form-control" formControlName="endDate">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInput3" class="form-label">Search by First name</label>
-                            <input type="text" class="form-control" id="exampleInput3">
+                            <label for="firstName" class="form-label">Search by First name</label>
+                            <input type="text" class="form-control" formControlName="firstName">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInput4" class="form-label">Search by Last name</label>
-                            <input type="text" class="form-control" id="exampleInput4">
+                            <label for="lastName" class="form-label">Search by Last name</label>
+                            <input type="text" class="form-control" formControlName="lastName">
                         </div>
                         <div class="mb-3">
-                            <label for="exampleInput5" class="form-label">Search by Flight Number</label>
-                            <input type="text" class="form-control" id="exampleInput5">
+                            <label for="flightNumber" class="form-label">Search by Flight Number</label>
+                            <input type="text" class="form-control" formControlName="flightNumber">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
+                    
+                    
                 </div>
             </div>
         </div>
@@ -58,12 +58,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let obj of admin.reservations">
-                            <td>{{obj.reservationdate |date}}</td>
+                            <td>{{obj.reservationdate | date: 'short'}}</td>
                             <td>{{obj.firstname}}</td>
                             <td>{{obj.lastname}}</td>
                             <td>{{obj.flightnumber}}</td>
-                            <td>{{obj.departuredate |date}}</td>
-                            <td>{{obj.destinationdate |date}}</td>
+                            <td>{{obj.departuredate | date: 'short'}}</td>
+                            <td>{{obj.destinationdate | date: 'short'}}</td>
                             <td>{{obj.numofpassengers}}</td>
                             <td>{{obj.totalprice}}</td>
                         </tr>

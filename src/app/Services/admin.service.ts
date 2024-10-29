@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -113,6 +114,9 @@ export class AdminService {
     }, err => { console.log("error") })
   }
 
-
+  SearchReservations(body: any): Observable<any> {
+    return this.http.post<any[]>('https://localhost:7117/api/Reservation/SearchReservation', body);
+  }
+  
 
 }
