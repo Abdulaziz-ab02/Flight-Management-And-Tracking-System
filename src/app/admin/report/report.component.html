@@ -8,27 +8,28 @@
                     <h6 class="mb-4">Report</h6>
                     <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
                         <div class="mb-3">
-                            <label for="startDate" class="form-label">Search by Start Date</label>
-                            <input type="date" class="form-control" formControlName="startDate">
+                            <label for="dateFrom" class="form-label">Search by Start Date</label>
+                            <input type="date" class="form-control" formControlName="dateFrom">
                         </div>
                         <div class="mb-3">
-                            <label for="endDate" class="form-label">Search by End Date</label>
-                            <input type="date" class="form-control" formControlName="endDate">
+                            <label for="dateTo" class="form-label">Search by End Date</label>
+                            <input type="date" class="form-control" formControlName="dateTo">
                         </div>
                         <div class="mb-3">
-                            <label for="firstName" class="form-label">Search by First name</label>
-                            <input type="text" class="form-control" formControlName="firstName">
+                            <label for="firstname" class="form-label">Search by First name</label>
+                            <input type="text" class="form-control" formControlName="firstname">
                         </div>
                         <div class="mb-3">
-                            <label for="lastName" class="form-label">Search by Last name</label>
-                            <input type="text" class="form-control" formControlName="lastName">
+                            <label for="lastname" class="form-label">Search by Last name</label>
+                            <input type="text" class="form-control" formControlName="lastname">
                         </div>
                         <div class="mb-3">
-                            <label for="flightNumber" class="form-label">Search by Flight Number</label>
-                            <input type="text" class="form-control" formControlName="flightNumber">
+                            <label for="flightnumber" class="form-label">Search by Flight Number</label>
+                            <input type="text" class="form-control" formControlName="flightnumber">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
+                    
                     
                     
                 </div>
