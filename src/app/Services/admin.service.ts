@@ -131,8 +131,6 @@ export class AdminService {
   changeAirlineStatus(id: number, status: string): Observable<any> {
     const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}/${status}`;
     return this.http.put(url, null);
-    //return this.http.patch(url, { Activation_Status: status });
-
   }
 
   deleteAirline(id: number) {
