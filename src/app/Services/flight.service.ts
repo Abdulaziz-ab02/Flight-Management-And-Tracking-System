@@ -22,6 +22,8 @@ export class FlightService {
   GetAllFacilitesByDegree(id: number): Observable<any> {
     return this.http.get('https://localhost:7117/api/Flight/GetAllFacilitesByDegreeId/' + id);
   }
-  
+  GetAllFlightsByAirlineID(id: number): Observable<any> {
+    return this.http.get('https://localhost:7117/api/Flight/GetAllFlightsByAirlineID/' + id);
+  }
  
 }

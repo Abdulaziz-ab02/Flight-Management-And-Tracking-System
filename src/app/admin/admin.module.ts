@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AirportsComponent } from './airports/airports.component';
-import { FlightsComponent } from './flights/flights.component';
 import { UsersComponent } from './users/users.component';
-import { SearchFlightComponent } from './search-flight/search-flight.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ManageHomeComponent } from './manage-home/manage-home.component';
 import { ManageAboutusComponent } from './manage-aboutus/manage-aboutus.component';
@@ -20,14 +18,10 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 
-
-
 @NgModule({
   declarations: [
     AirportsComponent,
-    FlightsComponent,
     UsersComponent,
-    SearchFlightComponent,
     ViewProfileComponent,
     ManageHomeComponent,
     ManageAboutusComponent,
