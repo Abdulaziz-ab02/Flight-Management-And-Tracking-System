@@ -15,7 +15,6 @@
                             <th scope="col">Airline Name</th>
                             <th scope="col">Airline Email</th>
                             <th scope="col">Airline Address</th>
-                            <th scope="col">Status</th>
                             <th scope="col" colspan="2">Operations</th>
                             <th></th>
                         </tr>
@@ -27,15 +26,6 @@
                             <td>{{obj.airlinename}}</td>
                             <td>{{obj.airlineemail}}</td>
                             <td>{{obj.airlineaddress}}</td>
-                            <td>{{obj.activationstatus}}</td>
-
-                            <!-- <td>
-                                <button mat-raised-button color="primary">Approve</button>
-                            </td>
-                            <td>
-                                <button mat-raised-button color="warn">Deny</button>
-                            </td> -->
-
 
                             <ng-container *ngIf="obj.activationstatus === 'Pending'">
                                 <td>

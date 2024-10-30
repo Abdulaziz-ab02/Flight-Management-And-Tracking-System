@@ -13,40 +13,15 @@
                             <th scope="col">Testimonial Content</th>
                             <th scope="col">User</th>
                             <th scope="col">Testimonial Date</th>
-                            <th scope="col">Testimonial Status</th>
                             <th scope="col" colspan="2">Operations</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- 'Pending', 'Approved', 'Denied' -->
-                        <!-- <ng-container *ngFor="let obj of home.testimonials">
-                            <tr *ngIf="obj.testimonialstatus === 'Pending' || obj.testimonialstatus === 'Approved'">
-                                <td>{{obj.testimonialcontent}}</td>
-                                <td>{{obj.firstname}}{{obj.lastname}}</td>
-                                <td>{{obj.testimonialdate}}</td>
-                                <td>{{obj.testimonialstatus}}</td>
-                                <td *ngIf="obj.testimonialstatus === 'Pending'">
-                                    <button mat-raised-button color="warn" class="m-2">Delete</button>
-
-                                    <button class="btn btn-success m-2">Approve</button>
-                                    <button mat-stroked-button color="warn" class="m-2">Deny</button>
-                                </td>
-                                <td *ngIf="obj.testimonialstatus === 'Approved'">
-                                    <button mat-raised-button color="warn" class="m-2">Delete</button>
-
-                                    <button class="btn btn-success" style="margin-right:20px;"
-                                        disabled>Approved</button>
-                                </td>
-                            </tr>
-                        </ng-container> -->
-
                         <tr *ngFor="let obj of home.testimonials">
                             <td>{{obj.testimonialcontent}}</td>
                             <td>{{obj.firstname}} {{obj.lastname}}</td>
                             <td>{{obj.testimonialdate |date}} </td>
-                            <td>{{obj.testimonialstatus}}</td>
-
 
                             <ng-container *ngIf="obj.testimonialstatus === 'Pending'">
                                 <td>
