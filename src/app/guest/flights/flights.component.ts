@@ -26,10 +26,8 @@ ngOnInit(): void {
 private calculateTotalPrice() {
   console.log('numOfPassengers: ', this.numOfPassengers);
   
-  if (this.numOfPassengers > 1) {
+  if (this.numOfPassengers >= 1) {
     this.totalPrice = this.selectedFlight.price * (this.numOfPassengers + 1);
-  } else if (this.numOfPassengers === 1) {
-    this.totalPrice = this.selectedFlight.price * 2;
   } else {
     this.totalPrice = this.selectedFlight.price;
   }
