@@ -101,10 +101,37 @@ export class AdminService {
 
 
 
+  deleteTestimonial(id: number) {
+    this.http.delete('https://localhost:7117/api/Testimonial/DeleteTestimonial/' + id).subscribe(
+      result => {
+        console.log('the testimonial is deleted');
+      }, err => {
+        console.log(err.message)
+      });
+    window.location.reload();
+  }
+
+
+  UpdateTestimonial(id: number, status: string) {
+    //debugger
+
+    this.http.put('https://localhost:7117/api/Testimonial/ChangeTestimonialStatus/' + id + '/' + status, null).subscribe(
+      (resp) => {
+        console.log('Testimonial status updated')
+      }, err => {
+        console.log('Error')
+      })
+    window.location.reload();
+  }
+
+
+
+
   // admin.service.ts
   changeAirlineStatus(id: number, status: string): Observable<any> {
-    const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}`;
-    return this.http.patch(url, { Activation_Status: status });
+    const url = `https://localhost:7117/api/Airline/ChangeAirlineActivationStatus/${id}/${status}`;
+    return this.http.put(url, null);
+    //return this.http.patch(url, { Activation_Status: status });
 
   }
 
@@ -117,6 +144,6 @@ export class AdminService {
   SearchReservations(body: any): Observable<any> {
     return this.http.post<any[]>('https://localhost:7117/api/Reservation/SearchReservation', body);
   }
-  
+
 
 }

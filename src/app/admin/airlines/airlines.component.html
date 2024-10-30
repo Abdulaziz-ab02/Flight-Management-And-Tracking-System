@@ -29,12 +29,28 @@
                             <td>{{obj.airlineaddress}}</td>
                             <td>{{obj.activationstatus}}</td>
 
-                            <td>
+                            <!-- <td>
                                 <button mat-raised-button color="primary">Approve</button>
                             </td>
                             <td>
                                 <button mat-raised-button color="warn">Deny</button>
-                            </td>
+                            </td> -->
+
+
+                            <ng-container *ngIf="obj.activationstatus === 'Pending'">
+                                <td>
+                                    <button class="btn btn-success" (click)="approveAirline(obj.id)">Approve</button>
+                                </td>
+                                <td>
+                                    <button mat-raised-button color="warn" (click)="rejectAirline(obj.id)">Deny</button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container *ngIf="obj.activationstatus === 'Approved'">
+                                <td>
+                                    <button class="btn btn-success" disabled>Approved</button>
+                                </td>
+                            </ng-container>
 
                         </tr>
 
@@ -46,3 +62,28 @@
         </div>
     </div>
 </div>
+
+
+
+
+<ng-template #callDeleteDailog>
+    <h1 mat-dialog-title>Delete Airline</h1>
+    <div mat-dialog-content>Are you sure you went to delete this Airline ?</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+<ng-template #callChangeStatusDailog>
+    <h1 mat-dialog-title>Approve Airline</h1>
+    <div mat-dialog-content>Are you sure you went to approve this Airline</div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close="yes">Yes</button>
+        <button mat-button mat-dialog-close="no">No</button>
+    </div>
+</ng-template>
+
+
+
+<app-footer></app-footer>

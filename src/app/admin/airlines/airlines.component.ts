@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
@@ -6,32 +7,58 @@ import { AdminService } from 'src/app/Services/admin.service';
   templateUrl: './airlines.component.html',
   styleUrls: ['./airlines.component.css']
 })
-export class AirlinesComponent implements OnInit{
-constructor (public admin:AdminService){}
+export class AirlinesComponent implements OnInit {
+  constructor(public admin: AdminService, public dialog: MatDialog) { }
 
-ngOnInit(): void {
-  this.admin.GetAllAirline()
-}
-
+  @ViewChild('callDeleteDailog') deleteDialog !: TemplateRef<any>;
+  @ViewChild('callChangeStatusDailog') changeStatusDialog !: TemplateRef<any>;
 
 
-// airlines.component.ts
-approveAirline(id: number) {
-  this.admin.changeAirlineStatus(id, 'Approved').subscribe(
-    () => {
-      console.log("Airline approved successfully"); // Log success
-      this.admin.GetAllAirline(); // Refresh the list after approval
-    },
-    error => {
-      console.error("Error approving airline", error); // Log any errors
-    }
-  );
-}
+  ngOnInit(): void {
+    this.admin.GetAllAirline()
+  }
 
-// airlines.component.ts
-rejectAirline(id: number) {
-  this.admin.deleteAirline(id);
-}
+  // airlines.component.ts
+  approveAirline(id: number) {
+    const dialogRef = this.dialog.open(this.changeStatusDialog).afterClosed().subscribe(
+      result => {
+        if (result != undefined) {
+          if (result == 'yes') {
+            this.admin.changeAirlineStatus(id, 'Approved').subscribe(
+              () => {
+                console.log("Airline approved successfully"); // Log success
+                window.location.reload();
+              },
+              error => {
+                console.error("Error approving airline", error); // Log any errors
+              }
+            );
+          }
+          else if (result == 'no')
+            console.log('thank you')
+        }
+      });
+
+
+
+
+  }
+
+  // airlines.component.ts
+  rejectAirline(id: number) {
+    const dialogRef = this.dialog.open(this.deleteDialog).afterClosed().subscribe(
+      result => {
+        if (result != undefined) {
+          if (result == 'yes') {
+            this.admin.deleteAirline(id);
+            window.location.reload();
+          }
+          else if (result == 'no')
+            console.log('thank you')
+        }
+      });
+
+  }
 
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AdminService } from 'src/app/Services/admin.service';
 import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { HomeService } from 'src/app/Services/home.service';
   styleUrls: ['./manage-testimonials.component.css']
 })
 export class ManageTestimonialsComponent implements OnInit {
-  constructor(public home: HomeService, public dialog: MatDialog) { }
+  constructor(public home: HomeService, public dialog: MatDialog, public admin: AdminService) { }
 
   @ViewChild('callDeleteDailog') deleteDialog !: TemplateRef<any>;
   @ViewChild('callChangeStatusDailog') changeStatusDialog !: TemplateRef<any>;
@@ -23,7 +24,7 @@ export class ManageTestimonialsComponent implements OnInit {
       result => {
         if (result != undefined) {
           if (result == 'yes')
-            this.home.deleteTestimonial(id);
+            this.admin.deleteTestimonial(id);
           else if (result == 'no')
             console.log('thank you')
         }
@@ -35,7 +36,7 @@ export class ManageTestimonialsComponent implements OnInit {
       result => {
         if (result != undefined) {
           if (result == 'yes')
-            this.home.UpdateTestimonial(id, status);
+            this.admin.UpdateTestimonial(id, status);
           else if (result == 'no')
             console.log('thank you')
         }
