@@ -22,9 +22,12 @@
     "@angular/router": "^16.0.0",
     "angular-font-awesome": "^3.1.2",
     "g": "^2.0.1",
+    "jspdf": "^2.5.2",
+    "jspdf-autotable": "^3.8.4",
     "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

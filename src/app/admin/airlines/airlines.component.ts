@@ -51,6 +51,7 @@ export class AirlinesComponent implements OnInit {
         if (result != undefined) {
           if (result == 'yes') {
             this.admin.deleteAirline(id);
+            console.log('done')
             window.location.reload();
           }
           else if (result == 'no')
