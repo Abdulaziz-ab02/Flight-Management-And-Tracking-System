@@ -69,4 +69,13 @@
     margin-right: 15px; /* Add some spacing between the facilities */
     display: inline-block; /* Ensure the items are inline */
   }
+  .airlineLogoInFlightDialog {
+    width: 150px;               /* Sets a fixed width */
+    height: auto;               /* Maintains aspect ratio */
+    border-radius: 8px;         /* Rounds corners slightly */
+    margin: 0 auto 15px auto;   /* Centers the image and adds spacing below */
+    display: block;             /* Ensures it's a block element for centering */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Adds a subtle shadow */
+  }
+  
   

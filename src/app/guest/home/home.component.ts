@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  handleHomeFlights(flights: any[]) {
+  handleHomeFlights({ flights }: { flights: any[], passengerCount: number }) {
     this.router.navigate(['/flights'], { state: { flights } });
   }
 

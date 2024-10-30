@@ -9,6 +9,10 @@ import { HomeComponent } from './home/home.component';
 import { GuestSharedModule } from './guest-shared/guest-shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFormComponent } from './search-form/search-form.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+
+
 
 
 @NgModule({
@@ -24,7 +28,9 @@ import { SearchFormComponent } from './search-form/search-form.component';
     GuestRoutingModule,
     GuestSharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class GuestModule { }

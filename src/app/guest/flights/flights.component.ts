@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Injectable } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog and MAT_DIALOG_DATA
+
 
 @Component({
   selector: 'app-flights',
@@ -9,16 +10,49 @@ import { Router } from '@angular/router';
 
 })
 
+
 export class FlightsComponent implements OnInit {
-constructor(private router: Router){}
+  @ViewChild('FLightSelectionDialog') flightSelctionDialog !: TemplateRef<any>;
+
+constructor(private router: Router, public dialog:MatDialog){}
 flights : any[] =[];
+selectedFlight: any = {}; // Store the selected flight
+numOfPassengers: number = 0;
+totalPrice:number =0;
+
 ngOnInit(): void {
  this.flights = history.state.flights;
-
 }
-  handleFlightsFound(flights: any[]) {
-    this.flights = flights;
+private calculateTotalPrice() {
+  console.log('numOfPassengers: ', this.numOfPassengers);
+  
+  if (this.numOfPassengers > 1) {
+    this.totalPrice = this.selectedFlight.price * (this.numOfPassengers + 1);
+  } else if (this.numOfPassengers === 1) {
+    this.totalPrice = this.selectedFlight.price * 2;
+  } else {
+    this.totalPrice = this.selectedFlight.price;
   }
+}
+OpenFlightSelectionDialog(flight: any) {
+  this.selectedFlight = flight;
+  this.calculateTotalPrice();
+  this.dialog.open(this.flightSelctionDialog, {
+    data : {
+      flight: this.selectedFlight,
+      numberOfPassenger: this.numOfPassengers,
+      TotalPrice: this.totalPrice
+    }
+  });
+}
+
+handleFlightsFound(eventData: { flights: any[], passengerCount: number }) { 
+  const { flights, passengerCount } = eventData;
+  this.flights = flights;
+  this.numOfPassengers = passengerCount;
+}
+
+
  
   
 
