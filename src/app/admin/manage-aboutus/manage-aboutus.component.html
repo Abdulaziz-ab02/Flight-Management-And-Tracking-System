@@ -20,8 +20,12 @@
                         <tr>
                             <td>{{home.aboutPage[0].abouttitle}}</td>
                             <td>{{home.aboutPage[0].aboutcontent}}</td>
-                            <td>{{home.aboutPage[0].aboutimage}}</td>
-                            <td><button mat-raised-button color="primary">Update</button></td>
+                            <td>
+                                <img src="../../../assets/Images/{{home.aboutPage[0].aboutimage}}"
+                                    style="width: 200px; height: 200px;">
+                            </td>
+                            <td><button mat-raised-button color="primary"
+                                    (click)="openUpdateDialog(home.aboutPage[0])">Update</button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -29,4 +33,34 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #callUpdateDailog>
+    <h2 mat-dialog-title>Update About Page</h2>
+    <mat-dialog-content class="mat-typography">
+        <form [formGroup]="updateAboutForm">
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>About Title</mat-label>
+                    <input type="text" matInput formControlName="abouttitle" [(ngModel)]="pData.abouttitle">
+                </mat-form-field>
+            </div>
+            <div class="example-container">
+                <mat-form-field>
+                    <mat-label>About Content</mat-label>
+                    <input type="text" matInput formControlName="aboutcontent" [(ngModel)]="pData.aboutcontent">
+                </mat-form-field>
+            </div>
+            <input type="file" #file formControlName="aboutimage" (change)="uploadImage(file.files)">
+
+        </form>
+
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Save</button>
+    </mat-dialog-actions>
+</ng-template>
+
 <app-footer></app-footer>
