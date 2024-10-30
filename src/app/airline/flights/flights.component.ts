@@ -8,11 +8,14 @@ import { FlightService } from 'src/app/Services/flight.service';
 })
 export class FlightsComponent implements OnInit {
   flights: FlightsComponent[] = [];
-  airlineId: number = 1;
+  airlineId: any;
 
   constructor(private flightService: FlightService) {}
 
   ngOnInit(): void {
+    let user: any = localStorage.getItem('user')
+    user = JSON.parse(user)
+   this.airlineId=user.airlineid;
     this.fetchFlights();
   }
 
