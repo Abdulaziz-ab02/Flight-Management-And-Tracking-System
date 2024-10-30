@@ -10,30 +10,34 @@
                 <table class="table ">
                     <thead>
                         <tr class="text-dark">
-                            <th scope="col">Airline Image</th>
-                            <th scope="col">Airline Username</th>
                             <th scope="col">Airline Name</th>
+                            <th scope="col">Airline Username</th>
                             <th scope="col">Airline Email</th>
                             <th scope="col">Airline Address</th>
+                            <th scope="col">Airline Image</th>
                             <th scope="col" colspan="2">Operations</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let obj of admin.airline">
-                            <td>{{obj.airlineimage}}</td>
-                            <td>{{obj.username}}</td>
                             <td>{{obj.airlinename}}</td>
+                            <td>{{obj.username}}</td>
                             <td>{{obj.airlineemail}}</td>
                             <td>{{obj.airlineaddress}}</td>
+                            <td>
+                                <img src="../../../assets/Images/{{obj.airlineimage}}"
+                                    style="width: 80px; height: 80px;">
+                            </td>
+                            <td>
 
-                            <ng-container *ngIf="obj.activationstatus === 'Pending'">
-                                <td>
-                                    <button class="btn btn-success" (click)="approveAirline(obj.id)">Approve</button>
-                                </td>
-                                <td>
-                                    <button mat-raised-button color="warn" (click)="rejectAirline(obj.id)">Deny</button>
-                                </td>
+                                <ng-container *ngIf="obj.activationstatus === 'Pending'">
+                            <td>
+                                <button class="btn btn-success" (click)="approveAirline(obj.id)">Approve</button>
+                            </td>
+                            <td>
+                                <button mat-raised-button color="warn" (click)="rejectAirline(obj.id)">Deny</button>
+                            </td>
                             </ng-container>
 
                             <ng-container *ngIf="obj.activationstatus === 'Approved'">
@@ -43,9 +47,6 @@
                             </ng-container>
 
                         </tr>
-
-
-                        <!-- <td><button mat-raised-button color="accent">View</button></td> -->
                     </tbody>
                 </table>
             </div>
