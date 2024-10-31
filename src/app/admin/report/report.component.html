@@ -1,6 +1,7 @@
-<app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
 <div class="content">
+    <app-navbar></app-navbar>
+
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-sm-12 col-xl-6">
@@ -29,9 +30,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
-                    
-                    
-                    
+
+
+
                 </div>
             </div>
         </div>
@@ -47,7 +48,7 @@
                 <button class="btn btn-outline-success me-2" (click)="exportToExcel()">Export to Excel</button>
                 <button class="btn btn-outline-danger" (click)="exportToPDF()">Export to PDF</button>
             </div>
-            
+
             <div class="table">
                 <table class="table ">
                     <thead>
