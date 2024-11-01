@@ -4,6 +4,8 @@ import { AdminService } from 'src/app/Services/admin.service';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import * as ApexCharts from 'apexcharts';
+
 
 
 @Component({
@@ -12,7 +14,7 @@ import 'jspdf-autotable';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
- 
+  chart: any;
   constructor(public admin: AdminService) {}
 
   searchForm: FormGroup = new FormGroup({
@@ -25,11 +27,49 @@ export class ReportComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.createChart();
 
     this.admin.FetchAllReservations();
   }
-
+  createChart() {
+    const options = {
+      chart: {
+        type: 'bar', // Change to 'bar' for a column chart
+        height: 350,
+        toolbar: {
+          show: false // Optional: hide the toolbar
+        }
+      },
+      series: [{
+        name: 'Benefits',
+        data: [30, 40, 45, 50, 49, 60, 70] // Sample data
+      }],
+      xaxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'], // Sample categories
+        title: {
+          text: 'Months', // Optional: add title to the x-axis
+        }
+      },
+      title: {
+        text: 'Monthly Benefits', // Optional: add a chart title
+        align: 'center' // Optional: center the title
+      },
+      yaxis: {
+        title: {
+          text: 'Amount', // Optional: add title to the y-axis
+        }
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false, // Set to true for horizontal bars
+        }
+      }
+    };
+  
+    this.chart = new ApexCharts(document.querySelector("#chart"), options);
+    this.chart.render(); // Ensure to call render() to display the chart
+  }
+  
 
   onSearch(): void {
     const formData = this.searchForm.value;
