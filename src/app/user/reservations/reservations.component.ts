@@ -16,6 +16,9 @@ export class ReservationsComponent implements OnInit {
   totalPrice: number = 0;
   partners: Partner[] = [];
   userId:any;
+  isPayed?:boolean ;
+  currentDate = new Date().toISOString().split('T')[0];
+
   constructor(private router: Router, private flightService: FlightService, private bankService: BankService) {}
 
   ngOnInit(): void {
@@ -23,6 +26,7 @@ export class ReservationsComponent implements OnInit {
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid
+
 
 
     this.selectedFlight = history.state.selectedFlight;
@@ -43,18 +47,19 @@ export class ReservationsComponent implements OnInit {
     expirydate: new FormControl()
   });
 
-  PaymentCheck(){
-    const paymentData = {
-      ...this.PaymentForm.value,
-      balance: this.totalPrice // Add balance (totalPrice) to the form data
-    };
-    this.bankService.PaymentCheck(paymentData).subscribe((res) =>{
-      console.log('Payment service returned: ',res)
-    },
-  (error) => {
-    console.log('Payment service returned:error: ',error)
-  });
-  }
+  // PaymentCheck(){
+  //   const paymentData = {
+  //     ...this.PaymentForm.value,
+  //     balance: this.totalPrice // Add balance (totalPrice) to the form data
+  //   };
+  //   this.bankService.PaymentCheck(paymentData).subscribe((res) =>{
+  //     console.log('Payment service returned: ',res)
+  //     this.isPayed = res;
+  //   },
+  // (error) => {
+  //   console.log('Payment service returned:error: ',error)
+  // });
+  // }
   submitPartners() {
     console.log('The PArtner array: ',this.partners);
     this.partners.forEach((partner) => {
@@ -68,11 +73,46 @@ export class ReservationsComponent implements OnInit {
       );
     });
   }
+  submitReservation(){
+    const userInfo = {
+      reservationdate:this.currentDate,
+      totalprice: this.totalPrice,
+      numofpassengers: this.numOfPassengers,
+      userid: this.userId,
+      flightid: this.selectedFlight.flightId
+    }
+    this.flightService.CreateReservation(userInfo).subscribe((res) => {
+      console.log('Reservation for light created succesfully');
+    },
+  (error) => {
+    console.log('There was error while trying to set a reservation');
+  })
+  }
 
   AllSaved() {
-    this.submitPartners();
-    this.PaymentCheck();
+    // Prepare the payment data
+    const paymentData = {
+      ...this.PaymentForm.value,
+      balance: this.totalPrice // Pass the total price to the payment check
+    };
+    // Call the PaymentCheck method
+    this.bankService.PaymentCheck(paymentData).subscribe((res) => {
+      console.log('Payment service returned: ', res);
+      this.isPayed = res; // Update isPayed based on the response
+  
+      // Proceed only if the payment was successful
+      if (this.isPayed) {
+        this.submitReservation(); 
+        if(this.numOfPassengers)
+        this.submitPartners();     
+      } else {
+        console.log('Payment was not successful.');
+      }
+    }, (error) => {
+      console.log('Payment service returned: error: ', error);
+    });
   }
+  
 }
 
 interface Partner {
