@@ -5,14 +5,61 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Flight Preview</h6>
+                <h1 class="mb-0">Flight Preview</h1>
+                <button mat-raised-button color="primary" (click)="toggleCreateForm()">
+                    {{ showCreateForm ? 'Cancel' : 'Create Flight' }}
+                </button>
             </div>
 
-            <td>
-                <button mat-raised-button color="primary">Create</button>
-            </td>
+            <div *ngIf="showCreateForm">
+                <form [formGroup]="createFlightForm" (ngSubmit)="createFlight()">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input formControlName="flightNumber" class="form-control" placeholder="Flight Number" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="capacity" type="number" class="form-control" placeholder="Capacity" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="pricePerPassenger" type="number" class="form-control" placeholder="Price per Passenger" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input formControlName="departureDate" type="date" class="form-control" placeholder="Departure Date" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="destinationDate" type="date" class="form-control" placeholder="Destination Date" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="status" class="form-control" placeholder="Status" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="discountvalue" class="form-control" placeholder="Discount Value" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input formControlName="airlineName" class="form-control" placeholder="Airline Name" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="departureairportid" class="form-control" placeholder="Departure Airport ID" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="destinationairportid" class="form-control" placeholder="Destination Airport ID" required>
+                        </div>
+                        <div class="col">
+                            <input formControlName="degreeid" class="form-control" placeholder="Degree id" required>
+                        </div>
 
-            <div class="table">
+                    </div>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="createFlightForm.invalid">
+                        {{ editingFlightId ? 'Update Flight' : 'Create Flight' }}
+                    </button>
+                </form>
+            </div>
+
+            <div class="table mt-4">
                 <table class="table">
                     <thead>
                         <tr class="text-dark">
@@ -24,7 +71,6 @@
                             <th scope="col">Status</th>
                             <th scope="col">Airline</th>
                             <th scope="col" colspan="2">Operations</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,15 +82,12 @@
                             <td>{{ flight.destinationDate | date }}</td>
                             <td>{{ flight.status }}</td>
                             <td>{{ flight.airlineName }}</td>
-
                             <td>
-                                <button mat-raised-button color="primary">Update</button>
+                                <button mat-raised-button color="primary" (click)="editFlight(flight)">Update</button>
                             </td>
                             <td>
-                                <button mat-raised-button color="warn">Delete</button>
+                                <button mat-raised-button color="warn" (click)="deleteFlight(flight.id)">Delete</button>
                             </td>
-
-
                         </tr>
                     </tbody>
                 </table>
