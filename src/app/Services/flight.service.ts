@@ -25,6 +25,18 @@ export class FlightService {
   GetAllFlightsByAirlineID(id: number): Observable<any> {
     return this.http.get('https://localhost:7117/api/Flight/GetAllFlightsByAirlineID/' + id);
   }
+
+ CreateFlight(flight: any): Observable<any> {
+  return this.http.post('https://localhost:7117/api/Flight/CreateFlight', flight);
+}
+
+DeleteFlight(id: number): Observable<any> {
+  return this.http.delete('https://localhost:7117/api/Flight/DeleteFlight/' + id);
+}
+
+UpdateFlight(flight: any): Observable<any> {
+  return this.http.put('https://localhost:7117/api/Flight/UpdateFlight' , flight);
+}
  
   CreatePartner(body:any): Observable<any> {
     return this.http.post('https://localhost:7117/api/Partner/CreatePartner',body);

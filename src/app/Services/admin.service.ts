@@ -84,7 +84,6 @@ export class AdminService {
     }, err => { console.log("error") })
   }
 
-
   // Return Observable for the cities
   GetAllCiies(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:7117/api/City/GetAllCities');
@@ -142,6 +141,67 @@ export class AdminService {
   SearchReservations(body: any): Observable<any> {
     return this.http.post<any[]>('https://localhost:7117/api/Reservation/SearchReservation', body);
   }
+
+
+
+
+
+
+
+  homeImage: any;
+  uploadAttachmentHome(file: FormData) {
+    this.http.post('https://localhost:7117/api/Home/uploadImage', file).subscribe(
+      (resp: any) => {
+        this.homeImage = resp.homeimage;
+        console.log('image uploaded')
+      }, err => {
+        console.log('Error')
+      })
+  }
+  UpdateHomePage(body: any) {
+    body.homeimage = this.homeImage;
+    this.http.put('https://localhost:7117/api/Home/UpdateHome', body).subscribe(result => {
+      console.log('home page updated')
+    }, err => {
+      console.log(err.message)
+    });
+    window.location.reload();
+  }
+
+
+
+  aboutImage: any;
+  uploadAttachmentAbout(file: FormData) {
+    this.http.post('https://localhost:7117/api/About/uploadImage', file).subscribe(
+      (resp: any) => {
+        this.aboutImage = resp.aboutimage;
+        console.log('image uploaded')
+      }, err => {
+        console.log('Error')
+      })
+  }
+  UpdateAboutInfo(body: any) {
+    body.aboutimage = this.aboutImage;
+    this.http.put('https://localhost:7117/api/About/UpdateAbout', body).subscribe(result => {
+      console.log('about page updated')
+    }, err => {
+      console.log(err.message)
+    });
+    window.location.reload();
+  }
+
+
+
+  UpdateContactInfo(body: any) {
+    this.http.put('https://localhost:7117/api/Contact/UpdateContact', body).subscribe(result => {
+      console.log('contact page updated')
+    }, err => {
+      console.log(err.message)
+    });
+    window.location.reload();
+  }
+
+
 
 
 }
