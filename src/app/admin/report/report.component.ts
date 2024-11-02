@@ -24,13 +24,8 @@ export class ReportComponent implements OnInit {
   });
 
   ngOnInit(): void {
-
-
-
     this.admin.FetchAllReservations();
   }
-
-
   onSearch(): void {
     const formData = this.searchForm.value;
 

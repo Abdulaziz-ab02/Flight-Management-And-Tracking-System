@@ -26,4 +26,7 @@ export class FlightService {
     return this.http.get('https://localhost:7117/api/Flight/GetAllFlightsByAirlineID/' + id);
   }
  
+  CreatePartner(body:any): Observable<any> {
+    return this.http.post('https://localhost:7117/api/Partner/CreatePartner',body);
+  }
 }
