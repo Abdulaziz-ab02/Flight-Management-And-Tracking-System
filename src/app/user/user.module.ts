@@ -5,6 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { GuestSharedModule } from '../guest/guest-shared/guest-shared.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 
 @NgModule({
@@ -17,7 +24,12 @@ import { GuestSharedModule } from '../guest/guest-shared/guest-shared.module';
     UserRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    GuestSharedModule
+    GuestSharedModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule
   ]
 })
 export class UserModule { }
