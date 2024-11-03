@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { AdminSharedModule } from './admin/admin-shared/admin-shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestSharedModule } from './guest/guest-shared/guest-shared.module';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { GuestSharedModule } from './guest/guest-shared/guest-shared.module';
     AppRoutingModule,
     GuestSharedModule,
     AdminSharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

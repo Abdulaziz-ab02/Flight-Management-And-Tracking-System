@@ -47,9 +47,6 @@ export class LoginComponent {
         console.log('Username or password is missing');
       }
     }
-    // this.router.navigate(['/guest/home']);
-
-
     this.auth.Login(this.username, this.password)
 
   }

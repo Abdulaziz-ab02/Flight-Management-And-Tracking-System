@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   constructor(public http: HttpClient,
-    private router: Router) { }
+    private router: Router,
+    private toastr: ToastrService) { }
 
 
   CreateUser(body: any) {
@@ -28,7 +30,6 @@ export class AuthService {
 
   CreateAirline(body: any) {
     body.airlineimage = this.airlineImage;
-
 
     this.http.post('https://localhost:7117/api/Airline/CreateAirline', body).subscribe(
       (resp) => {
@@ -103,6 +104,56 @@ export class AuthService {
 
       }, err => {
         console.log('Error cant login ')
+      })
+  }
+
+
+  loginError: string = '';
+  AirlineLogin(uName: any, pass: any) {
+    var body = {
+      username: uName.value.toString(),
+      password: pass.value.toString()
+    }
+
+    //because body is not form group and not a json
+    //نحوله ل json obj
+    const headerDirection = {
+      'Constent-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+    const requestOptions = {
+      //headers takes he data type from headerDirection
+      headers: new HttpHeaders(headerDirection)
+    }
+    //debugger
+
+    this.http.post('https://localhost:7117/api/Login/AirlineLogin', body, requestOptions).subscribe(
+      (resp: any) => {
+        console.log(resp);
+        const response = {
+          token: resp.toString()
+        }
+        //for authorization
+        localStorage.setItem('token', response.token);
+        //فك التشفير
+        let data: any = jwtDecode(response.token);
+        localStorage.setItem('user', JSON.stringify(data));
+
+        if (data.roleid == '1')
+          this.router.navigate(['admin/home']);
+        else if (data.roleid == '2')
+          this.router.navigate(['guest/home']);
+        else if (data.roleid == '3')
+          this.router.navigate(['airline/flights']);
+
+      }, err => {
+        console.log('Error cant login ')
+        if (err.status === 401) {
+          // Handle unauthorized error specifically
+          this.toastr.error('There is no account with this username.', 'Login Failed');
+        } else {
+          this.toastr.error('An error occurred while trying to log in.', 'Error');
+        }
       })
   }
 
