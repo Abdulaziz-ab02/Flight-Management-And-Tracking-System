@@ -37,7 +37,6 @@ export class AdminService {
   airport: any = [];
   AirportCount: number = 0;
   FetchAllAirports() {
-
     this.http.get('https://localhost:7117/api/Airport').subscribe(result => {
       this.airport = result;
       this.AirportCount = this.airport.length;
@@ -66,6 +65,7 @@ export class AdminService {
     this.http.delete("https://localhost:7117/api/Airport/DeleteAirport/" + id).subscribe(result => {
       console.log("deleted")
     }, err => { console.log("error") })
+    window.location.reload();
   }
 
 
@@ -82,6 +82,7 @@ export class AdminService {
     this.http.put("https://localhost:7117/api/Airport/UpdateAirport", bod).subscribe(res => {
       console.log("updated")
     }, err => { console.log("error") })
+    window.location.reload();
   }
 
   // Return Observable for the cities
@@ -134,8 +135,9 @@ export class AdminService {
 
   deleteAirline(id: number) {
     this.http.delete("https://localhost:7117/api/Airline/deleteAirline/" + id).subscribe(result => {
-      console.log("deleted")
+      console.log("deleted");
     }, err => { console.log("error") })
+    window.location.reload();
   }
 
   SearchReservations(body: any): Observable<any> {
