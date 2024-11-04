@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AirlineRegisterComponent } from './airline-register/airline-register.component';
+import { AirlineLoginComponent } from './airline-login/airline-login.component';
 
 
 
@@ -14,7 +15,8 @@ import { AirlineRegisterComponent } from './airline-register/airline-register.co
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AirlineRegisterComponent
+    AirlineRegisterComponent,
+    AirlineLoginComponent
   ],
   imports: [
     CommonModule,
