@@ -2,6 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FlightService } from 'src/app/Services/flight.service';
 
+export interface Flight {
+  id: number;
+  flightNumber: string;
+  capacity: number;
+  pricePerPassenger: number;
+  departureDate: Date;
+  destinationDate: Date;
+  status: string;
+  discountValue: number;
+  airlineName: string;
+  departureAirportName: string;
+  destinationAirportName: string;
+  departureairportid: number;
+  destinationairportid: number;
+  degreeid: number;
+  
+}
+
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -13,7 +31,7 @@ export class FlightsComponent implements OnInit {
   createFlightForm: FormGroup;
   showCreateForm: boolean = false;
   editingFlightId: number | null = null;
-  airports: any;
+airport: any;
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -22,15 +40,11 @@ export class FlightsComponent implements OnInit {
       pricePerPassenger: new FormControl('', [Validators.required, Validators.min(0)]),
       departureDate: new FormControl('', Validators.required),
       destinationDate: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required),
+      status: new FormControl('Scheduled', Validators.required), // Default status set to "Scheduled"
       discountvalue: new FormControl(0),
-      airlineName: new FormControl('', Validators.required),
       departureairportid: new FormControl('', Validators.required),
       destinationairportid: new FormControl('', Validators.required),
-      departureAirportName: new FormControl('', Validators.required),
-      destinationAirportName: new FormControl('', Validators.required),
       degreeid: new FormControl(''),
-      degreeName: new FormControl('')
     });
   }
 
@@ -39,7 +53,6 @@ export class FlightsComponent implements OnInit {
     user = JSON.parse(user);
     this.airlineId = user.airlineid;
     this.fetchFlights();
-
   }
 
   fetchFlights(): void {
@@ -82,13 +95,25 @@ export class FlightsComponent implements OnInit {
   toggleCreateForm(): void {
     this.showCreateForm = !this.showCreateForm;
     this.createFlightForm.reset();
+    this.createFlightForm.controls['status'].setValue('Scheduled'); 
     this.editingFlightId = null;
   }
 
   editFlight(flight: Flight): void {
     this.editingFlightId = flight.id;
     this.showCreateForm = true;
-    this.createFlightForm.patchValue(flight);
+    this.createFlightForm.patchValue({
+      flightNumber: flight.flightNumber,
+      capacity: flight.capacity,
+      pricePerPassenger: flight.pricePerPassenger,
+      departureDate: flight.departureDate,
+      destinationDate: flight.destinationDate,
+      status: flight.status,
+      discountvalue: flight.discountValue,
+      departureairportid: flight.departureairportid,
+      destinationairportid: flight.destinationairportid,
+      degreeid: flight.degreeid,
+    });
   }
 
   updateFlight(updatedFlight: Flight): void {
@@ -117,25 +142,4 @@ export class FlightsComponent implements OnInit {
       }
     );
   }
-}
-
-export interface Flight {
-  id: number;
-  flightNumber: string;
-  capacity: number;
-  pricePerPassenger: number;
-  departureDate: Date;
-  destinationDate: Date;
-  status: string;
-  discountValue: number;
-  airlineName: string;
-  airlineImage: string;
-  departureAirportName: string;
-  departureIATACode: string;
-  destinationAirportName: string;
-  destinationIATACode: string;
-  degreeid: string;
-  degreeName: string;
-  departureairportid: number;
-  destinationairportid: number;
 }
