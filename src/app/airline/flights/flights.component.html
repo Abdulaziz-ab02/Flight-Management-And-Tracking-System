@@ -32,28 +32,19 @@
                             <input formControlName="destinationDate" type="date" class="form-control" placeholder="Destination Date" required>
                         </div>
                         <div class="col">
-                            <input formControlName="status" class="form-control" placeholder="Status" required>
+                            <input formControlName="status" class="form-control" placeholder="Status"   value="Scheduled">
                         </div>
                         <div class="col">
-                            <input formControlName="discountvalue" class="form-control" placeholder="Discount Value" required>
+                            <input formControlName="discountValue" type="number" class="form-control" placeholder="Discount Value" min="0">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input formControlName="airlineName" class="form-control" placeholder="Airline Name" required>
-                        </div>
-                        <!-- <div class="col">
-                            <input formControlName="departureairportid" class="form-control" placeholder="Departure Airport ID" required>
-                        </div>
-                        <div class="col">
-                            <input formControlName="destinationairportid" class="form-control" placeholder="Destination Airport ID" required>
-                        </div> -->
-                        <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Departure Airport</mat-label>
-                                <mat-select formControlName="departureairportid" required>
-                                    <mat-option *ngFor="let flight of flights" [value]="flight.id">
-                                        {{ flight.departureAirportName }}
+                                <mat-select formControlName="departureAirportId" required>
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id">
+                                        {{ airport.airportname }}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
@@ -61,17 +52,23 @@
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Destination Airport</mat-label>
-                                <mat-select formControlName="destinationairportid" required>
-                                    <mat-option *ngFor="let flight of flights" [value]="flight.id">
-                                        {{ flight.destinationAirportName }}
+                                <mat-select formControlName="destinationAirportId" required>
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id">
+                                        {{ airport.airportname }}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
                         </div>
                         <div class="col">
-                            <input formControlName="degreeid" class="form-control" placeholder="Degree id" required>
-                        </div>
-
+                            <mat-form-field appearance="fill">
+                              <mat-label>Degree</mat-label>
+                              <mat-select formControlName="degreeId" required>
+                                <mat-option *ngFor="let degree of degrees" [value]="degree.id">
+                                  {{ degree.name }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
                     </div>
                     <button mat-raised-button color="primary" type="submit" [disabled]="createFlightForm.invalid">
                         {{ editingFlightId ? 'Update Flight' : 'Create Flight' }}
@@ -89,7 +86,6 @@
                             <th scope="col">Departure Date</th>
                             <th scope="col">Destination Date</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Airline</th>
                             <th scope="col" colspan="2">Operations</th>
                         </tr>
                     </thead>
@@ -101,12 +97,15 @@
                             <td>{{ flight.departureDate | date }}</td>
                             <td>{{ flight.destinationDate | date }}</td>
                             <td>{{ flight.status }}</td>
-                            <td>{{ flight.airlineName }}</td>
                             <td>
-                                <button mat-raised-button color="primary" (click)="editFlight(flight)">Update</button>
+                                <button  mat-raised-button color="primary" (click)="editFlight(flight)">
+                                 Update
+                                </button>
                             </td>
                             <td>
-                                <button mat-raised-button color="warn" (click)="deleteFlight(flight.id)">Delete</button>
+                                <button  mat-raised-button color="primary"  (click)="deleteFlight(flight.id!)">
+                                    delete
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -115,4 +114,3 @@
         </div>
     </div>
 </div>
-<app-footer></app-footer>
