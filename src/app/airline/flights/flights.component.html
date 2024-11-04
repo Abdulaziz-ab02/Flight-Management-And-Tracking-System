@@ -42,11 +42,31 @@
                         <div class="col">
                             <input formControlName="airlineName" class="form-control" placeholder="Airline Name" required>
                         </div>
-                        <div class="col">
+                        <!-- <div class="col">
                             <input formControlName="departureairportid" class="form-control" placeholder="Departure Airport ID" required>
                         </div>
                         <div class="col">
                             <input formControlName="destinationairportid" class="form-control" placeholder="Destination Airport ID" required>
+                        </div> -->
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Departure Airport</mat-label>
+                                <mat-select formControlName="departureairportid" required>
+                                    <mat-option *ngFor="let flight of flights" [value]="flight.id">
+                                        {{ flight.departureAirportName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Destination Airport</mat-label>
+                                <mat-select formControlName="destinationairportid" required>
+                                    <mat-option *ngFor="let flight of flights" [value]="flight.id">
+                                        {{ flight.destinationAirportName }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
                         <div class="col">
                             <input formControlName="degreeid" class="form-control" placeholder="Degree id" required>

@@ -44,4 +44,8 @@ UpdateFlight(flight: any): Observable<any> {
   CreateReservation(body:any): Observable<any>{
     return this.http.post('https://localhost:7117/api/Reservation/CreateReservation', body);
   }
+  FetchAllAirports(body:any): Observable<any>{
+    return this.http.get('https://localhost:7117/api/Airport', body);
+  }
+  
 }

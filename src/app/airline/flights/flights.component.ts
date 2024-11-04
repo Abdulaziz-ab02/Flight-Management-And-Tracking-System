@@ -13,6 +13,7 @@ export class FlightsComponent implements OnInit {
   createFlightForm: FormGroup;
   showCreateForm: boolean = false;
   editingFlightId: number | null = null;
+  airports: any;
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -26,7 +27,10 @@ export class FlightsComponent implements OnInit {
       airlineName: new FormControl('', Validators.required),
       departureairportid: new FormControl('', Validators.required),
       destinationairportid: new FormControl('', Validators.required),
-      degreeid: new FormControl('')
+      departureAirportName: new FormControl('', Validators.required),
+      destinationAirportName: new FormControl('', Validators.required),
+      degreeid: new FormControl(''),
+      degreeName: new FormControl('')
     });
   }
 
@@ -35,6 +39,7 @@ export class FlightsComponent implements OnInit {
     user = JSON.parse(user);
     this.airlineId = user.airlineid;
     this.fetchFlights();
+    this.fetchAirports();
   }
 
   fetchFlights(): void {
@@ -47,6 +52,16 @@ export class FlightsComponent implements OnInit {
       }
     );
   }
+  fetchAirports(): void {
+  this.flightService.FetchAllAirports(this.airports).subscribe(
+    (data) => {
+      this.airports = data;
+    },
+    (error) => {
+      console.error('Error fetching airports:', error);
+    }
+  );
+}
 
   createFlight(): void {
     if (this.createFlightForm.invalid) {
@@ -130,4 +145,7 @@ export interface Flight {
   destinationAirportName: string;
   destinationIATACode: string;
   degreeid: string;
+  degreeName: string;
+  departureairportid: number;
+  destinationairportid: number;
 }
