@@ -39,7 +39,7 @@ export class FlightsComponent implements OnInit {
     user = JSON.parse(user);
     this.airlineId = user.airlineid;
     this.fetchFlights();
-    this.fetchAirports();
+
   }
 
   fetchFlights(): void {
@@ -52,16 +52,6 @@ export class FlightsComponent implements OnInit {
       }
     );
   }
-  fetchAirports(): void {
-  this.flightService.FetchAllAirports(this.airports).subscribe(
-    (data) => {
-      this.airports = data;
-    },
-    (error) => {
-      console.error('Error fetching airports:', error);
-    }
-  );
-}
 
   createFlight(): void {
     if (this.createFlightForm.invalid) {
