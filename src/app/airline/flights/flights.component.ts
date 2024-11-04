@@ -2,22 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FlightService } from 'src/app/Services/flight.service';
 
-export interface Flight {
+interface Flight {
   id: number;
   flightNumber: string;
   capacity: number;
   pricePerPassenger: number;
-  departureDate: Date;
-  destinationDate: Date;
+  departureDate: string;
+  destinationDate: string;
   status: string;
-  discountValue: number;
-  airlineName: string;
-  departureAirportName: string;
-  destinationAirportName: string;
+  discountvalue: number;
   departureairportid: number;
   destinationairportid: number;
   degreeid: number;
-  
+  airlineId: number;
 }
 
 @Component({
@@ -27,11 +24,18 @@ export interface Flight {
 })
 export class FlightsComponent implements OnInit {
   flights: Flight[] = [];
-  airlineId!: number;
+  airlineId: number | undefined;
   createFlightForm: FormGroup;
   showCreateForm: boolean = false;
   editingFlightId: number | null = null;
-airport: any;
+  airports: any[] = [];
+
+  // Static array for degrees
+  degrees = [
+    { id: 1, name: 'Economy' },
+    { id: 2, name: 'Business' },
+    { id: 3, name: 'First Class' }
+  ];
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -40,11 +44,11 @@ airport: any;
       pricePerPassenger: new FormControl('', [Validators.required, Validators.min(0)]),
       departureDate: new FormControl('', Validators.required),
       destinationDate: new FormControl('', Validators.required),
-      status: new FormControl('Scheduled', Validators.required), // Default status set to "Scheduled"
+      status: new FormControl('', Validators.required),
       discountvalue: new FormControl(0),
       departureairportid: new FormControl('', Validators.required),
       destinationairportid: new FormControl('', Validators.required),
-      degreeid: new FormControl(''),
+      degreeid: new FormControl('', Validators.required)
     });
   }
 
@@ -52,15 +56,29 @@ airport: any;
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.airlineId = user.airlineid;
     this.fetchFlights();
+    this.fetchAirports();
   }
 
   fetchFlights(): void {
-    this.flightService.GetAllFlightsByAirlineID(this.airlineId).subscribe(
+    if (this.airlineId) {
+      this.flightService.GetAllFlightsByAirlineID(this.airlineId).subscribe(
+        (data) => {
+          this.flights = data;
+        },
+        (error) => {
+          console.error('Error fetching flights:', error);
+        }
+      );
+    }
+  }
+
+  fetchAirports(): void {
+    this.flightService.FetchAllAirports().subscribe(
       (data) => {
-        this.flights = data;
+        this.airports = data;
       },
       (error) => {
-        console.error('Error fetching flights:', error);
+        console.error('Error fetching airports:', error);
       }
     );
   }
@@ -74,8 +92,8 @@ airport: any;
     const flightData: Flight = { ...this.createFlightForm.value, airlineId: this.airlineId };
 
     if (this.editingFlightId) {
-      const updatedFlight: Flight = { id: this.editingFlightId, ...flightData };
-      this.updateFlight(updatedFlight);
+      flightData.id = this.editingFlightId;
+      this.updateFlight(flightData);
     } else {
       this.flightService.CreateFlight(flightData).subscribe(
         (response) => {
@@ -94,25 +112,13 @@ airport: any;
   toggleCreateForm(): void {
     this.showCreateForm = !this.showCreateForm;
     this.createFlightForm.reset();
-    this.createFlightForm.controls['status'].setValue('Scheduled'); 
     this.editingFlightId = null;
   }
 
   editFlight(flight: Flight): void {
     this.editingFlightId = flight.id || null;
     this.showCreateForm = true;
-    this.createFlightForm.patchValue({
-      flightNumber: flight.flightNumber,
-      capacity: flight.capacity,
-      pricePerPassenger: flight.pricePerPassenger,
-      departureDate: flight.departureDate,
-      destinationDate: flight.destinationDate,
-      status: flight.status,
-      discountvalue: flight.discountValue,
-      departureairportid: flight.departureairportid,
-      destinationairportid: flight.destinationairportid,
-      degreeid: flight.degreeid,
-    });
+    this.createFlightForm.patchValue(flight);
   }
 
   updateFlight(updatedFlight: Flight): void {
