@@ -104,6 +104,12 @@ export class AuthService {
 
       }, err => {
         console.log('Error cant login ')
+        if (err.status === 401) {
+          // Handle unauthorized error specifically
+          this.toastr.error('There is no account with this username.', 'Login Failed');
+        } else {
+          this.toastr.error('An error occurred while trying to log in.', 'Error');
+        }
       })
   }
 
