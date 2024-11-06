@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFormComponent } from './search-form/search-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import { FlightTrackerComponent } from './flight-tracker/flight-tracker.component';
 
 
 
@@ -21,7 +22,8 @@ import {MatButtonModule} from '@angular/material/button';
     ContactusComponent,
     FlightsComponent,
     HomeComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    FlightTrackerComponent
   ],
   imports: [
     CommonModule,

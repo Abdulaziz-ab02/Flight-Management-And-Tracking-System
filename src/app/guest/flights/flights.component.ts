@@ -15,11 +15,15 @@ export class FlightsComponent implements OnInit {
   selectedFlight: any = {}; // Store the selected flight
   numOfPassengers: number = 0;
   totalPrice: number = 0;
+  userId?: number;
 
   constructor(private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.flights = history.state.flights;
+    let user: any = localStorage.getItem('user')
+    user = JSON.parse(user)
+    this.userId = user.userid;
   }
 
   private calculateTotalPrice() {
@@ -53,6 +57,7 @@ export class FlightsComponent implements OnInit {
   }
 
   processToPayFunc() {
+   if(this.userId){
     this.router.navigate(['/user/reservations'], {
       state: {
         selectedFlight: this.selectedFlight,
@@ -64,6 +69,15 @@ export class FlightsComponent implements OnInit {
         this.dialogRef.close(); // Close the dialog
       }
     });
+   }
+   else{
+    this.router.navigate(['/security/login']).then(() => {
+      if (this.dialogRef) {
+        this.dialogRef.close(); // Close the dialog
+      }
+    });
+   }
+  
   }
   
 }

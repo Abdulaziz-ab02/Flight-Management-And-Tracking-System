@@ -115,30 +115,7 @@ export class ReservationsComponent implements OnInit {
   })
   }
   AllSaved() {
-    // Prepare the payment data
-    // const paymentData = {
-    //   ...this.PaymentForm.value,
-    //   balance: this.totalPrice // Pass the total price to the payment check
-    // };
-    // // Call the PaymentCheck method
-    // this.bankService.PaymentCheck(paymentData).subscribe((res) => {
-    //   console.log('Payment service returned: ', res);
-    //   this.isPayed = res; // Update isPayed based on the response
-  
-    //   // Proceed only if the payment was successful
-    //   if (this.isPayed) {
-    //     this.sendEmail();
-    //     this.submitReservation(); 
-    //     if(this.numOfPassengers)
-    //     this.submitPartners();     
-    //   } else {
-    //     console.log('Payment was not successful.');
-    //   }
-    // }, (error) => {
-    //   console.log('Payment service returned: error: ', error);
-    // });
-  }
-  temp(){
+    //Prepare the payment data
     const paymentData = {
       ...this.PaymentForm.value,
       balance: this.totalPrice // Pass the total price to the payment check
@@ -147,22 +124,46 @@ export class ReservationsComponent implements OnInit {
     this.bankService.PaymentCheck(paymentData).subscribe((res) => {
       console.log('Payment service returned: ', res);
       this.isPayed = res; // Update isPayed based on the response
-      this.sendEmail();
-
+  
       // Proceed only if the payment was successful
       if (this.isPayed) {
         this.sendEmail();
         this.submitReservation(); 
         if(this.numOfPassengers)
-        this.submitPartners();     
+        this.submitPartners();   
+      this.router.navigate(['/user/thankyou'])  
       } else {
         console.log('Payment was not successful.');
       }
     }, (error) => {
       console.log('Payment service returned: error: ', error);
     });
-
   }
+  // temp(){
+  //   const paymentData = {
+  //     ...this.PaymentForm.value,
+  //     balance: this.totalPrice // Pass the total price to the payment check
+  //   };
+  //   // Call the PaymentCheck method
+  //   this.bankService.PaymentCheck(paymentData).subscribe((res) => {
+  //     console.log('Payment service returned: ', res);
+  //     this.isPayed = res; // Update isPayed based on the response
+  //     this.sendEmail();
+
+  //     // Proceed only if the payment was successful
+  //     if (this.isPayed) {
+  //       this.sendEmail();
+  //       this.submitReservation(); 
+  //       if(this.numOfPassengers)
+  //       this.submitPartners();     
+  //     } else {
+  //       console.log('Payment was not successful.');
+  //     }
+  //   }, (error) => {
+  //     console.log('Payment service returned: error: ', error);
+  //   });
+
+  // }
   
 }
 
