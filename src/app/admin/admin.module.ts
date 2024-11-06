@@ -15,6 +15,9 @@ import { ReportComponent } from './report/report.component';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { CreateAirportComponent } from './create-airport/create-airport.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CountryComponent } from './country/country.component';
+import { CityComponent } from './city/city.component';
+import { CreateCountryComponent } from './create-country/create-country.component';
 
 
 
@@ -31,6 +34,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReportComponent,
     AirlinesComponent,
     CreateAirportComponent,
+    CountryComponent,
+    CityComponent,
+    CreateCountryComponent,
   ],
   imports: [
     CommonModule,

@@ -52,4 +52,8 @@ export class FlightService {
   FetchAllDegrees(): Observable<any> {
     return this.http.get('https://localhost:7117/api/Degree/GetAllDegrees');
   }
+  FetchFlightByFlightID(flightId: any): Observable<any> {
+    return this.http.get(`https://localhost:7117/api/Flight/FetchFlightByFlightNumber?flightNumber=${flightId}`);
+  }
+  
 }

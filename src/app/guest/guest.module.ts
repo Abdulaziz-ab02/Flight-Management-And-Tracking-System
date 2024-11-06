@@ -12,6 +12,8 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { FlightTrackerComponent } from './flight-tracker/flight-tracker.component';
+import {MatInputModule} from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -32,7 +34,9 @@ import { FlightTrackerComponent } from './flight-tracker/flight-tracker.componen
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule
   ]
 })
 export class GuestModule { }

@@ -1,4 +1,14 @@
 #map {
-    height: 300px;
-    width: 80%;
-  }
+  height: 100%;
+  width: 100%;
+}
+.flight-card {
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.flight-search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

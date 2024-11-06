@@ -10,6 +10,8 @@ import { ManageContactusComponent } from './manage-contactus/manage-contactus.co
 import { ManageTestimonialsComponent } from './manage-testimonials/manage-testimonials.component';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { ReportComponent } from './report/report.component';
+import { CountryComponent } from './country/country.component';
+import { CreateCountryComponent } from './create-country/create-country.component';
 
 const routes: Routes = [
 
@@ -56,17 +58,15 @@ const routes: Routes = [
   {
     path: 'report',
     component: ReportComponent
-  }
-
-
-
-
-
-
-
-
-
-
+  },
+{
+  path:'country',
+  component:CountryComponent
+},
+{
+  path:'create-country',
+  component:CreateCountryComponent
+}
 ];
 
 @NgModule({
