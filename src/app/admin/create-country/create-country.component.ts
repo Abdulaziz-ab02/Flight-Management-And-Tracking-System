@@ -1,5 +1,6 @@
+// src/app/components/create-country/create-country.component.ts
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/Services/admin.service';
 
 @Component({
@@ -8,32 +9,16 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./create-country.component.css']
 })
 export class CreateCountryComponent {
-  constructor(public admin:AdminService){}
-  country: { countryname: string, id: number }[] = [];
+  createCountryForm: FormGroup;
 
-  createCountryForm: FormGroup = new FormGroup({
-    id: new FormControl  ("",Validators.required),
-    countryname: new FormControl  ("",Validators.required)
-    })
-    
-  ngOnInit(): void {
-    
+  constructor(private admin: AdminService) {
+    this.createCountryForm = new FormGroup({
+      countryname: new FormControl('', Validators.required)
+    });
   }
-
-    
-   save(){
-    this.admin.createCountry(this.createCountryForm.value);
-   }
-
-
-
-
-
-
-
-
-
-
-
-
+  save(): void {
+    if (this.createCountryForm.valid) {
+      this.admin.createCountry(this.createCountryForm.value);
+    }
+  }
 }
