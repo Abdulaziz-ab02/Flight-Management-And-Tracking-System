@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
 
   }
   handleHomeFlights({ flights }: { flights: any[], passengerCount: number }) {
+    console.log(flights)
     this.router.navigate(['/flights'], { state: { flights } });
   }
 

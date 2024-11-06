@@ -85,29 +85,30 @@ export class SearchFormComponent {
   SearchInput() {
     console.log('Search initiated with form data:', this.searchForm.value);
     this.flight.SearchForFlight(this.searchForm.value).subscribe(
-      (res: any[]) => {
+      async (res: any[]) => {
         this.flights = res;
         console.log('Search results:', this.flights);
   
-        this.flights.forEach((flight) => {
-          this.flight.GetAllFacilitesByDegree(flight.degreeId).subscribe(
-            (facilities: any[]) => {
-              flight.facilities = facilities.map(facility => ({
-                facilityname: facility.facilityname
-              }));
-              this.flightsFound.emit({ flights: this.flights, passengerCount: this.passengerCount });
-            },
-            (err: any) => {
-              console.error('Error fetching facilities:', err);
-            }
-          );
+        // Fetch facilities for each flight and wait for all to complete
+        const facilityPromises = this.flights.map(async (flight) => {
+          const facilities = await this.flight.GetAllFacilitesByDegree(flight.degreeId).toPromise();
+          flight.facilities = facilities.map((facility: any) => ({
+            facilityname: facility.facilityname
+          }));
         });
+  
+        // Wait until all facility fetches are complete
+        await Promise.all(facilityPromises);
+  
+        // Emit the results after facilities are populated
+        this.flightsFound.emit({ flights: this.flights, passengerCount: this.passengerCount });
       },
       (err: any) => {
         console.error('Error occurred during search:', err);
       }
     );
   }
+  
 
   selectDepartureCity(city: { cityname: string, id: number }) {
     this.selectedDepartureCity = city.cityname;
