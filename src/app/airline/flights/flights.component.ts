@@ -126,6 +126,7 @@ export class FlightsComponent implements OnInit {
       (response) => {
         console.log('Flight updated successfully:', response);
         this.fetchFlights();
+        this.fetchAirports();
         this.createFlightForm.reset();
         this.editingFlightId = null;
         this.showCreateForm = false;
@@ -137,14 +138,20 @@ export class FlightsComponent implements OnInit {
   }
 
   deleteFlight(flightId: number): void {
-    this.flightService.DeleteFlight(flightId).subscribe(
-      (response) => {
-        console.log('Flight deleted successfully:', response);
-        this.fetchFlights();
-      },
-      (error) => {
-        console.error('Error deleting flight:', error);
-      }
-    );
+    const isConfirmed = window.confirm('Are you sure you want to delete this flight?');
+
+    if (isConfirmed) {
+      this.flightService.DeleteFlight(flightId).subscribe(
+        (response) => {
+          console.log('Flight deleted successfully:', response);
+          this.fetchFlights(); 
+        },
+        (error) => {
+          console.error('Error deleting flight:', error);
+        }
+      );
+    } else {
+      console.log('Flight deletion canceled');
+    }
   }
 }
