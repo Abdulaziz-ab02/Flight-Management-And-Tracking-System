@@ -21,6 +21,7 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.flights = history.state.flights;
+    this.numOfPassengers = history.state.passengerCount;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
