@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
+  benefits: any;
 
   constructor(public http: HttpClient) { }
 
@@ -203,7 +204,14 @@ export class AdminService {
     window.location.reload();
   }
 
+  getEntityCounts(): Observable<any> {
+    return this.http.get('https://localhost:7117/api/Reservation/entity-counts');
+  }
 
 
+  FetchBenefitsReport(dateFrom: string, dateTo: string): Observable<any> {
+    return this.http.get<any>(`https://localhost:7117/api/Reservation/totalBenefits?startDate=${dateFrom}&endDate=${dateTo}`);
+  }
+  
 
 }
