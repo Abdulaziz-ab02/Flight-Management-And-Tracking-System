@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 
@@ -7,6 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
+  [x: string]: any;
 
   constructor(public http: HttpClient) { }
 
@@ -202,39 +204,47 @@ export class AdminService {
     });
     window.location.reload();
   }
-  countries: any = [];
-  CountriesCount: number = 0;
-  getAllCountries(){
-    this.http.get('https://localhost:7117/api/Country/GetAllCountries').subscribe(result => { 
-      this.countries = result;
-      this.CountriesCount = this.countries.length; 
-    }, err => {
-      console.log(err.message)
-       });
   
-  }
-  createCountry(bod: any){
-    return this.http.post('https://localhost:7117/api/Country/CreateCountry', bod).subscribe(res => {
-      console.log("country created");
-    }, err => { console.log("try again"); })
+  countries: any[] = []; 
+  CountriesCount: number = 0;
+  updateCountryForm!: FormGroup;
 
-  }
-
-
-  updateCountry(bod: any) {
-    return this.http.put('https://localhost:7117/api/Country/UpdateCountry', bod).subscribe(res => {
-      console.log("updated")
-    }, err => { console.log("error") })
-    window.location.reload();
+  getAllCountries() {
+    this.http.get<any[]>('https://localhost:7117/api/Country/GetAllCountries').subscribe(result => {
+      this.countries = result;
+      this.CountriesCount = this.countries.length;
+     
+    }, err => {
+      console.log('Error fetching countries:', err.message);
+    });
   }
 
-  deleteCountry(id: number){
-    return this.http.delete(`https://localhost:7117/api/Country/DeleteCountry/` + id).subscribe(result => {
-      console.log("deleted")
-    }, err => { console.log("error") })
-    window.location.reload();
+  createCountry(country: any) {
+    return this.http.post('https://localhost:7117/api/Country/CreateCountry', country).subscribe(res => {
+      console.log("Country created:", res);
+      this.getAllCountries();
+    }, err => {
+      console.log("Error creating country:", err.message);
+    });
   }
 
+  updateCountry(country: any) {
+    return this.http.put('https://localhost:7117/api/Country/UpdateCountry', country).subscribe(res => {
+      console.log("Country updated:", res);
+      this.getAllCountries();
+    }, err => {
+      console.log("Error updating country:", err.message);
+    });
+  }
+
+  deleteCountry(id: number) {
+    return this.http.delete(`https://localhost:7117/api/Country/DeleteCountry/${id}`).subscribe(result => {
+      console.log("Country deleted:", result);
+      this.getAllCountries();
+    }, err => {
+      console.log("Error deleting country:", err.message);
+    });
+  }
 
  
 
