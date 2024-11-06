@@ -1,0 +1,92 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <app-navbar></app-navbar>
+
+  <div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Country Info</h6>
+
+
+      </div>
+      <td>
+        <button mat-raised-button color="primary" (click)="addCountry()">Create</button>
+      </td>
+
+      <div class="table">
+
+        <table class="table ">
+
+          <thead>
+            <tr class="text-dark">
+
+              <th scope="col">Country Name</th>
+              <th scope="col" colspan="2">Operations</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of admin.countries">
+
+              <td>{{obj.countryname}}</td>
+              <td>
+                <button mat-raised-button color="primary" (click)="openUpdateDialog(obj)">Update</button>
+              </td>
+              <td>
+                <button mat-raised-button color="warn" (click)="openDeleteDialog(obj.id)">Delete</button>
+              </td>
+
+
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+</div>
+<ng-template #deleteCountry>
+  <h1 mat-dialog-title>Delete Country</h1>
+  <div mat-dialog-content>
+    Would you like to delete this Country?
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close="yes">Yes</button>
+    <button mat-button mat-dialog-close cdkFocusInitial="no">No</button>
+  </div>
+</ng-template>
+
+<ng-template #updateAirport>
+  <h2 mat-dialog-title>Update Airport</h2>
+  <mat-dialog-content class="mat-typography">
+
+    <form action="" [formGroup]="UpdateCountry">
+
+      <div class="example-container">
+        <mat-form-field>
+          <mat-label>Country Name</mat-label>
+          <input type="text" matInput formControlName="countryname" [(ngModel)]="pData.countryname">
+        </mat-form-field>
+      </div>
+
+    </form>
+
+  </mat-dialog-content>
+
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button (click)="save()">Save</button>
+  </mat-dialog-actions>
+
+</ng-template>
+
+<app-footer></app-footer>
+
+
+
