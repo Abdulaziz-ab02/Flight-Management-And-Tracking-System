@@ -202,8 +202,40 @@ export class AdminService {
     });
     window.location.reload();
   }
+  countries: any = [];
+  CountriesCount: number = 0;
+  getAllCountries(){
+    this.http.get('https://localhost:7117/api/Country/GetAllCountries').subscribe(result => { 
+      this.countries = result;
+      this.CountriesCount = this.countries.length; 
+    }, err => {
+      console.log(err.message)
+       });
+  
+  }
+  createCountry(bod: any){
+    return this.http.post('https://localhost:7117/api/Country/CreateCountry', bod).subscribe(res => {
+      console.log("country created");
+    }, err => { console.log("try again"); })
+
+  }
 
 
+  updateCountry(bod: any) {
+    return this.http.put('https://localhost:7117/api/Country/UpdateCountry', bod).subscribe(res => {
+      console.log("updated")
+    }, err => { console.log("error") })
+    window.location.reload();
+  }
 
+  deleteCountry(id: number){
+    return this.http.delete(`https://localhost:7117/api/Country/DeleteCountry/` + id).subscribe(result => {
+      console.log("deleted")
+    }, err => { console.log("error") })
+    window.location.reload();
+  }
+
+
+ 
 
 }
