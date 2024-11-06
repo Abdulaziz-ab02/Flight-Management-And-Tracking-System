@@ -237,6 +237,8 @@ export class AdminService {
   }
 
 
- 
+  getEntityCounts(): Observable<any> {
+    return this.http.get('https://localhost:7117/api/Reservation/entity-counts');
+  }
 
 }
