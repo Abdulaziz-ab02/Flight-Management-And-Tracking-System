@@ -99,7 +99,6 @@
           </div>
           <!-- Pay Button -->
           <button (click)="AllSaved()" type="submit" class="btn btn-success mt-4">Pay</button>
-          <button (click)="temp()" type="submit" class="btn btn-success mt-4">temp</button>
 
         </form>
       </section>
@@ -117,8 +116,8 @@
             <span>JOD {{selectedFlight.price}}</span>
           </div>
           <!-- Number of Persons -->
-          <div class="d-flex justify-content-between mb-2">
-            <span><i class="fas fa-users"></i> Number of Persons</span>
+          <div class="d-flex justify-content-between mb-2" *ngIf="numOfPassengers">
+            <span><i class="fas fa-users"></i> Partners</span>
             <span>{{numOfPassengers}}</span>
           </div>
           <!-- Total Price -->
@@ -135,7 +134,7 @@
           <!-- Final Price -->
           <div class="d-flex justify-content-between font-weight-bold">
             <span>Total Due</span>
-            <span>$320</span>
+            <span>{{totalPrice}}</span>
           </div>
         </div>
       </div>

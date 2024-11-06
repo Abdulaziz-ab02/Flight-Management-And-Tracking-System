@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { FlightsComponent } from './flights/flights.component';
 import { SearchFormComponent } from './search-form/search-form.component';
+import { FlightTrackerComponent } from './flight-tracker/flight-tracker.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'searchform',
     component:SearchFormComponent
+  },
+  {
+    path:'flightTracker',
+    component:FlightTrackerComponent
   }
 ];
 

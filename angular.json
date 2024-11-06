@@ -40,8 +40,9 @@
               "src/assets/Admin/css/bootstrap.min.css",
               "src/assets/Admin/css/style.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/ngx-toastr/toastr.css"
-            ],
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/leaflet/dist/leaflet.css"
+                        ],
             "scripts": [
               "src/assets/Home/js/jquery-3.4.1.min.js",
               "src/assets/Home/js/popper.min.js",
