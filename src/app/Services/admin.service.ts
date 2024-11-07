@@ -244,9 +244,40 @@ export class AdminService {
       console.log("Error deleting country:", err.message);
     });
   }
+  
 
+
+CreateCity(city: any) {
+  return this.http.post('https://localhost:7117/api/City/CreateCity', city).subscribe(res => {
+    console.log("city created:", res);
+    this.GetAllCiies();
+  }, err => {
+    console.log("Error creating cities:", err.message);
+  });
+}
+
+UpdateCity(city: any) {
+  return this.http.put('https://localhost:7117/api/City/UpdateCity', city).subscribe(res => {
+    console.log("City updated:", res);
+    this.GetAllCiies();
+  }, err => {
+    console.log("Error updating City:", err.message);
+  });
+}
+
+DeleteCity(id: number) {
+  return this.http.delete(`https://localhost:7117/api/City/DeleteCity/${id}`).subscribe(result => {
+    console.log("City deleted:", result);
+    this.GetAllCiies();
+  }, err => {
+    console.log("Error deleting City:", err.message);
+  });
+}
   getEntityCounts(): Observable<any> {
     return this.http.get('https://localhost:7117/api/Reservation/entity-counts');
+  }
+  GetAllCountries(): Observable<any[]> {
+    return this.http.get<any[]>('https://localhost:7117/api/Country/GetAllCountries');
   }
 
 }

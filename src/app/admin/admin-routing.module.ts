@@ -12,6 +12,8 @@ import { AirlinesComponent } from './airlines/airlines.component';
 import { ReportComponent } from './report/report.component';
 import { CountryComponent } from './country/country.component';
 import { CreateCountryComponent } from './create-country/create-country.component';
+import { CityComponent } from './city/city.component';
+import { CreateCityComponent } from './create-city/create-city.component';
 
 const routes: Routes = [
 
@@ -66,6 +68,14 @@ const routes: Routes = [
 {
   path:'create-country',
   component:CreateCountryComponent
+},
+{
+  path:'city',
+  component:CityComponent
+},
+{
+  path:'create-city',
+  component:CreateCityComponent
 }
 ];
 
