@@ -89,6 +89,15 @@ export class HomeService {
 
 
 
+  userReservations: any = [];
+  getReservationsByUser(id: any) {
+    this.http.get('https://localhost:7117/api/Reservation/FetchReservationByUserID/' + id).subscribe(
+      result => {
+        this.userReservations = result;
+      }, err => {
+        console.log(err.message)
+      });
+  }
 
 
 }

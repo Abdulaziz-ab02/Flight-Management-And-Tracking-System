@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -21,7 +24,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HttpClientModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [
     NavbarComponent,
@@ -29,7 +35,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HttpClientModule,
     MatDialogModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
   ]
 })
 export class GuestSharedModule { }
