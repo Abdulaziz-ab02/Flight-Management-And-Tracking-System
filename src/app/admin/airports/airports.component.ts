@@ -86,7 +86,6 @@ export class AirportsComponent implements OnInit {
       alert("Please select a city before saving.");
       return; // Prevents dialog from closing
     }
-
     // If cityid is chosen, proceed with saving and close the dialog
     this.admin.updateAirport(updatedData);
     this.dialog.closeAll(); // This will close the dialog manually
