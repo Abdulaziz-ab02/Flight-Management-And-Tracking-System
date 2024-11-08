@@ -14,7 +14,7 @@ import * as ApexCharts from 'apexcharts';
 export class ReportComponent implements OnInit {
   chart: any; // Store the chart instance
   totalBenefits: number = 0; // Variable to store total benefits
-
+  afterSearch:any[] = [];
   constructor(public admin: AdminService) {}
 
   searchForm: FormGroup = new FormGroup({
@@ -46,36 +46,26 @@ export class ReportComponent implements OnInit {
   // Fetch data and create chart when search form is submitted
   onSearch(): void {
     const formData = this.searchForm.value;
-
+  
     // Fetch reservations based on the search form data
     this.admin.SearchReservations(formData).subscribe(
       (results) => {
-        this.admin.reservations = results;
+        this.afterSearch = results;
+        
+        // Reset totalBenefits before calculating
+        this.totalBenefits = 0;
+  
+        // Use forEach loop to accumulate totalPrice values
+        this.afterSearch.forEach((obj: any) => {
+          
+            this.totalBenefits += obj.totalprice;
+          
+        });
       },
       (error) => {
         console.error("Error fetching reservations:", error);
       }
     );
-
-    // // Fetch benefit data for the specified period and update the chart
-    // this.admin.FetchBenefitsReport(formData.dateFrom, formData.dateTo).subscribe(
-    //   (benefitData) => {
-    //     this.admin.benefits = benefitData;
-        
-    //     // Calculate total benefits
-    //     this.totalBenefits = this.admin.benefits.reduce((sum: any, benefit: { amount: any; }) => sum + benefit.amount, 0);
-        
-    //     // If benefits data exists, create or update the line chart
-    //     if (benefitData && benefitData.length > 0) {
-    //       this.createLineChart(benefitData);
-    //     } else {
-    //       console.error('No benefit data found for the selected period.');
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error("Error fetching benefit report:", error);
-    //   }
-    // );
   }
 
   createChart(counts: any): void {
@@ -122,24 +112,35 @@ export class ReportComponent implements OnInit {
     this.chart.render();
   }
 
-
   exportToExcel(): void {
-    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.admin.reservations);
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.afterSearch);
+  
+    // Add a row for total benefits at the end of the sheet
+    const totalRow = [
+      { ReservationDate: 'Total Benefits', TotalPrice: this.totalBenefits }
+    ];
+    
+    // Append the totalRow to the existing data in the worksheet
+    XLSX.utils.sheet_add_json(worksheet, totalRow, { origin: -1 }); // -1 appends to the end
+    
     const workbook: XLSX.WorkBook = { Sheets: { 'Reservations': worksheet }, SheetNames: ['Reservations'] };
     XLSX.writeFile(workbook, 'Reservations_Report.xlsx');
   }
+  
+  
+  
 
   exportToPDF(): void {
     this.chart.dataURI().then((uri: { imgURI: string }) => {
       const doc = new jsPDF();
-      
+  
       // Add the chart image to the PDF
       doc.text('Reservations Report', 14, 10);
       doc.addImage(uri.imgURI, 'PNG', 10, 20, 180, 80);
-
+  
       // Add table content
       const columns = ['Reservation Date', 'First Name', 'Last Name', 'Flight Number', 'Departure Date', 'Destination Date', 'Number of Passengers', 'Total Price'];
-      const rows = this.admin.reservations.map((reservation: any) => [
+      const rows = this.afterSearch.map((reservation: any) => [
         reservation.reservationdate,
         reservation.firstname,
         reservation.lastname,
@@ -149,15 +150,20 @@ export class ReportComponent implements OnInit {
         reservation.numofpassengers,
         reservation.totalprice,
       ]);
-
+  
+      // Add a row for total benefits
+      rows.push(['', '', '', '', '', '', 'Total Benefits', this.totalBenefits]);
+  
       (doc as any).autoTable({
         head: [columns],
         body: rows,
         startY: 110 // Position table below the chart
       });
-
+  
       doc.save('Reservations_Report.pdf');
     });
   }
+  
+  
 
 }

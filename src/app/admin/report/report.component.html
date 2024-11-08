@@ -61,7 +61,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let obj of admin.reservations">
+            <tr *ngFor="let obj of afterSearch">
               <td>{{ obj.reservationdate | date: 'short' }}</td>
               <td>{{ obj.firstname }}</td>
               <td>{{ obj.lastname }}</td>
@@ -72,6 +72,12 @@
               <td>{{ obj.totalprice | currency }}</td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="7"><strong>Total Benefits</strong></td>
+              <td><strong>{{ totalBenefits | currency }}</strong></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
