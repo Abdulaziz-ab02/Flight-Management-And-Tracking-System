@@ -83,7 +83,7 @@ export class AdminService {
     this.http.put("https://localhost:7117/api/Airport/UpdateAirport", bod).subscribe(res => {
       console.log("updated")
     }, err => { console.log("error") })
-    window.location.reload();
+
   }
 
   // Return Observable for the cities
