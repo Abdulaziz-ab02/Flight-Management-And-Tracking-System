@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -85,6 +86,10 @@ export class HomeService {
       }, err => {
         console.log(err.message)
       });
+  }
+
+  getUserInfo(id:any):Observable<any>{
+    return this.http.get('https://localhost:7117/api/Airline/GetAirlineById/' + id);
   }
 
 

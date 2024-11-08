@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BankService } from 'src/app/Services/bank.service';
 import { EmailService } from 'src/app/Services/email.service';
 import { FlightService } from 'src/app/Services/flight.service';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-reservations',
@@ -20,9 +21,10 @@ export class ReservationsComponent implements OnInit {
   isPayed?:boolean ;
   currentDate = new Date().toISOString().split('T')[0];
   userEmail:string = '';
+  userData:any = {};
 
   constructor(private router: Router, private flightService: FlightService,
-     private bankService: BankService,private emailService: EmailService) {}
+     private bankService: BankService,private emailService: EmailService,private  homeService: HomeService) {}
 
   ngOnInit(): void {
     //Fetch the UserId form the token 
@@ -92,28 +94,43 @@ export class ReservationsComponent implements OnInit {
   })
   }
   sendEmail() {
-    const invoice = {
-      airlinename:this.selectedFlight.airlinename,
-      departureIatacode: this.selectedFlight.departureIatacode,
-      destinationIatacode: this.selectedFlight.destinationIatacode,
-      degreename:this.selectedFlight.degreename,
-      departuredate: this.selectedFlight.departuredate,
-      destinationdate: this.selectedFlight.destinationdate,
+    const invoice: any = {
+      airlineName: this.selectedFlight.airlinename,
+      departureIataCode: this.selectedFlight.departureIatacode,
+      destinationIataCode: this.selectedFlight.destinationIatacode,
+      degreeName: this.selectedFlight.degreename,
+      departureDate: this.selectedFlight.departuredate,
+      destinationDate: this.selectedFlight.destinationdate,
       departureAirportName: this.selectedFlight.departureAirportName,
       destinationAirportName: this.selectedFlight.destinationAirportName,
       flightNumber: this.selectedFlight.flightNumber,
-      
-      TotalPrice: this.totalPrice,
-      email:this.userEmail,
-      date:this.currentDate
+      totalPrice: this.totalPrice,
+      email: this.userEmail,
+      date: this.currentDate,
+      partners: []
+    };
+  
+    // Include up to three partners in the invoice
+    if (this.partners && this.partners.length > 0) {
+      invoice.partners = this.partners.slice(0, 3).map(partner => ({
+        firstName: partner.firstName,
+        lastName: partner.lastName,
+        nationalNumber: partner.nationalNumber
+      }));
     }
-    this.emailService.sendEmail(invoice).subscribe((res) => {
-      console.log('emailSent_To_API');
-    },
-  (error) => {
-    console.log('There was error while trying to hitting the Email APi :(');
-  })
+  
+    // Send the invoice data to the email service
+    this.emailService.sendEmail(invoice).subscribe(
+      (res) => {
+        console.log('Email sent to API');
+      },
+      (error) => {
+        console.log('There was an error with the Email API :(');
+      }
+    );
   }
+  
+  
   AllSaved() {
     //Prepare the payment data
     const paymentData = {
@@ -139,31 +156,14 @@ export class ReservationsComponent implements OnInit {
       console.log('Payment service returned: error: ', error);
     });
   }
-  // temp(){
-  //   const paymentData = {
-  //     ...this.PaymentForm.value,
-  //     balance: this.totalPrice // Pass the total price to the payment check
-  //   };
-  //   // Call the PaymentCheck method
-  //   this.bankService.PaymentCheck(paymentData).subscribe((res) => {
-  //     console.log('Payment service returned: ', res);
-  //     this.isPayed = res; // Update isPayed based on the response
-  //     this.sendEmail();
-
-  //     // Proceed only if the payment was successful
-  //     if (this.isPayed) {
-  //       this.sendEmail();
-  //       this.submitReservation(); 
-  //       if(this.numOfPassengers)
-  //       this.submitPartners();     
-  //     } else {
-  //       console.log('Payment was not successful.');
-  //     }
-  //   }, (error) => {
-  //     console.log('Payment service returned: error: ', error);
-  //   });
-
-  // }
+  userInfo(){
+    this.homeService.getUserInfo(this.userId).subscribe((res) => {
+      this.userData = res
+    },
+  (error) => {
+    console.log('there was an error while fetching the user data :(')
+  })
+  }
   
 }
 
