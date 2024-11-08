@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
 import { CreateCountryComponent } from '../create-country/create-country.component';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-country',
@@ -12,9 +13,9 @@ import { CreateCountryComponent } from '../create-country/create-country.compone
 export class CountryComponent implements OnInit {
   @ViewChild('deleteCountry') deleteCountry!: TemplateRef<any>;
   @ViewChild('updateCountry') updateCountry!: TemplateRef<any>;
-createCountryForm: any;
+  createCountryForm: any;
 
-  constructor(public admin: AdminService, public dialog: MatDialog) {}
+  constructor(public admin: AdminService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.admin.getAllCountries();
@@ -30,8 +31,16 @@ createCountryForm: any;
     });
   }
 
+  UpdateCountry: FormGroup = new FormGroup({
+    countryname: new FormControl('', Validators.required),
+    id: new FormControl('', Validators.required)
+  });
+
+  pData: any = {};
   openUpdateDialog(obj: any): void {
-    this.admin.updateCountryForm.patchValue({
+    this.pData = obj;
+
+    this.UpdateCountry.patchValue({
       id: obj.id,
       countryname: obj.countryname
     });
@@ -39,13 +48,10 @@ createCountryForm: any;
   }
 
   save(): void {
-    if (this.admin.updateCountryForm.valid) {
-      const updatedData = this.admin.updateCountryForm.value; 
-      this.admin.updateCountry(updatedData); 
-      this.dialog.closeAll();
-    } else {
-      console.log('Form is not valid');
-    }
+    const updatedData = { ...this.UpdateCountry.value };
+    this.admin.updateCountry(updatedData);
+    this.dialog.closeAll();
+
   }
 
   addCountry(): void {

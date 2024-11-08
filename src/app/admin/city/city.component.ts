@@ -15,7 +15,7 @@ export class CityComponent {
   @ViewChild('updateCity') updateCity!: TemplateRef<any>;
 
 
-  constructor(public admin: AdminService, public dialog: MatDialog) {}
+  constructor(public admin: AdminService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadCities();
@@ -50,7 +50,7 @@ export class CityComponent {
   openUpdateDialog(obj: any) {
     this.pData = obj;
 
-  
+
     this.UpdateCity.patchValue({
       cityname: this.pData.cityname,
       cityimage: this.pData.cityimage,
@@ -58,10 +58,7 @@ export class CityComponent {
       id: this.pData.id
     });
 
-
-    this.dialog.open(CreateCityComponent, {
-      data: this.pData 
-    });
+    this.dialog.open(this.updateCity);
   }
 
   loadCountries() {
@@ -102,19 +99,19 @@ export class CityComponent {
   save() {
     const updatedData = { ...this.UpdateCity.value };
 
-   
+
     if (!updatedData.countryid) {
       alert("Please select a country before saving.");
-      return; 
+      return;
     }
 
-   
+
     this.admin.UpdateCity(updatedData);
-    this.dialog.closeAll(); 
+    this.dialog.closeAll();
   }
 
   cancel() {
-    this.dialog.closeAll(); 
+    this.dialog.closeAll();
   }
 
   uploadFile(file: any) {
