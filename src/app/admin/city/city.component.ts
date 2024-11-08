@@ -20,7 +20,6 @@ export class CityComponent {
   ngOnInit(): void {
     this.loadCities();
     this.loadCountries();
-    // this.cities$ = this.admin.GetAllCiies();
   }
 
   openDeleteDialog(ID: number) {

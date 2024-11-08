@@ -13,6 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AirportsComponent implements OnInit {
   @ViewChild('deleteAirport') deleteA !: TemplateRef<any>
   @ViewChild('updateAirport') updateA !: TemplateRef<any>
+
   constructor(public admin: AdminService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -46,9 +47,6 @@ export class AirportsComponent implements OnInit {
     airportimage: new FormControl(),
     cityid: new FormControl()
   })
-
-
-
 
   pData: any = {};
   cities: any[] = [];
