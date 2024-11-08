@@ -73,10 +73,9 @@ export class AdminService {
   createAirport(bod: any) {
     bod.airportimage = this.img;
     this.http.post("https://localhost:7117/api/Airport/CreateAirport", bod).subscribe(res => {
-      window.location.reload();
       console.log("airport created");
     }, err => { console.log("try again"); })
-
+    window.location.reload();
   }
 
   updateAirport(bod: any) {
