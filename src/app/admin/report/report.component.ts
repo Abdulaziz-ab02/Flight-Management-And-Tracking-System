@@ -5,17 +5,20 @@ import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as ApexCharts from 'apexcharts';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.css']
+  styleUrls: ['./report.component.css'],
+  providers: [DatePipe] 
 })
 export class ReportComponent implements OnInit {
   chart: any; // Store the chart instance
   totalBenefits: number = 0; // Variable to store total benefits
   afterSearch:any[] = [];
-  constructor(public admin: AdminService) {}
+  constructor(public admin: AdminService,public datePipe: DatePipe) {}
 
   searchForm: FormGroup = new FormGroup({
     dateFrom: new FormControl(null),
@@ -34,15 +37,46 @@ export class ReportComponent implements OnInit {
 
 
   loadChartData(): void {
-    this.admin.getEntityCounts().subscribe(
-      (counts) => {
-        this.createChart(counts);
+    const { dates, prices } = this.prepareChartData();
+  
+    const options = {
+      chart: {
+        type: 'line',
+        height: 350,
+        toolbar: {
+          show: false
+        }
       },
-      (error) => {
-        console.error('Error fetching entity counts:', error);
-      }
-    );
+      series: [{
+        name: 'Total Benefits',
+        data: prices
+      }],
+      xaxis: {
+        categories: dates,
+        title: {
+          text: 'Month'
+        }
+      },
+      title: {
+        text: 'Monthly Total Benefits',
+        align: 'center'
+      },
+      yaxis: {
+        title: {
+          text: 'Total Benefits'
+        }
+      },
+    };
+  
+    // Render the chart with the updated options
+    if (this.chart) {
+      this.chart.updateOptions(options); // Update if chart already exists
+    } else {
+      this.chart = new ApexCharts(document.querySelector('#chart'), options);
+      this.chart.render();
+    }
   }
+  
   // Fetch data and create chart when search form is submitted
   onSearch(): void {
     const formData = this.searchForm.value;
@@ -59,7 +93,11 @@ export class ReportComponent implements OnInit {
         this.afterSearch.forEach((obj: any) => {
           
             this.totalBenefits += obj.totalprice;
-          
+
+
+          // Prepare and update the chart with new data
+      const chartData = this.prepareChartData();
+      this.createChart(chartData); // Pass prepared data
         });
       },
       (error) => {
@@ -68,49 +106,77 @@ export class ReportComponent implements OnInit {
     );
   }
 
-  createChart(counts: any): void {
-    const options = {
-      chart: {
-        type: 'bar',
-        height: 350,
-        toolbar: {
-          show: false
-        }
-      },
-      series: [{
-        name: 'Count',
-        data: [
-          counts.reservations,
-          counts.airports,
-          counts.users,
-          counts.airlines
-        ]
-      }],
-      xaxis: {
-        categories: ['Reservations', 'Airports', 'Users', 'Airlines'],
-        title: {
-          text: 'Entities'
-        }
-      },
-      title: {
-        text: 'Entity Counts',
-        align: 'center'
-      },
-      yaxis: {
-        title: {
-          text: 'Count'
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      }
-    };
 
-    this.chart = new ApexCharts(document.querySelector('#chart'), options);
-    this.chart.render();
+
+  prepareChartData(): { dates: string[], prices: number[] } {
+    // Object to store total prices for each month
+    const monthlyTotals: { [key: string]: number } = {};
+  
+    this.afterSearch.forEach((reservation) => {
+      // Format the date to "MMM yyyy"
+      const monthYear = reservation.reservationdate 
+        ? this.datePipe.transform(reservation.reservationdate, 'MMM yyyy') 
+        : '';
+  
+      if (monthYear) {
+        // If this monthYear already has a total, add to it; otherwise, initialize it
+        monthlyTotals[monthYear] = (monthlyTotals[monthYear] || 0) + reservation.totalprice;
+      }
+    });
+  
+    // Convert the object into arrays for dates and prices
+    const dates = Object.keys(monthlyTotals);
+    const prices = Object.values(monthlyTotals);
+  
+    return { dates, prices };
   }
+  
+  
+  createChart(data: { dates: string[], prices: number[] }): void {
+  const options = {
+    chart: {
+      type: 'line',
+      height: 350,
+      toolbar: {
+        show: false
+      }
+    },
+    series: [{
+      name: 'Total Price',
+      data: data.prices // Set prices data dynamically
+    }],
+    xaxis: {
+      categories: data.dates, // Set dates data dynamically
+      title: {
+        text: 'Reservation Date'
+      }
+    },
+    title: {
+      text: 'Total Price by Reservation Date',
+      align: 'center'
+    },
+    yaxis: {
+      title: {
+        text: 'Total Price'
+      }
+    },
+    plotOptions: {
+      bar: {
+        horizontal: false
+      }
+    }
+  };
+
+  // If chart already exists, destroy it before creating a new one
+  if (this.chart) {
+    this.chart.destroy();
+  }
+
+  // Create new chart with updated data
+  this.chart = new ApexCharts(document.querySelector('#chart'), options);
+  this.chart.render();
+}
+
 
   exportToExcel(): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.afterSearch);

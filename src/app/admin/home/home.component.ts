@@ -11,6 +11,7 @@ import * as ApexCharts from 'apexcharts';
 })
 export class HomeComponent implements OnInit {
   chart: any;
+  monthlyBenefitsData: any[] = [];
   constructor(public admin: AdminService, private router: Router) { }
 
   ngOnInit(): void {
@@ -18,7 +19,62 @@ export class HomeComponent implements OnInit {
     this.admin.FetchAllAirports();
     this.admin.FetchAllReservations();
     this.loadChartData();
+    this.fetchMonthlyBenefits();
   }
+
+
+  createLineChart(): void {
+    const months = this.monthlyBenefitsData.map((item) => item.Month);
+    const benefits = this.monthlyBenefitsData.map((item) => item.TotalBenefits);
+
+    const options = {
+      chart: {
+        type: 'line',
+        height: 350,
+      },
+      series: [{
+        name: 'Monthly Benefits',
+        data: benefits
+      }],
+      xaxis: {
+        categories: months,
+        title: {
+          text: 'Month'
+        }
+      },
+      title: {
+        text: 'Monthly Benefits Over Time',
+        align: 'center'
+      },
+      yaxis: {
+        title: {
+          text: 'Total Benefits'
+        }
+      }
+    };
+
+    this.chart = new ApexCharts(document.querySelector('#monthly-benefits-chart'), options);
+    this.chart.render();
+  }
+
+
+  fetchMonthlyBenefits(): void {
+    this.admin.getTotalBenefitsByMonth().subscribe(
+      (data) => {
+        this.monthlyBenefitsData = data;
+        this.createLineChart();
+      },
+      (error) => {
+        console.error('Error fetching monthly benefits data:', error);
+      }
+    );
+  }
+
+
+
+
+
+
 
   loadChartData(): void {
     this.admin.getEntityCounts().subscribe(
