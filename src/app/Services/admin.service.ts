@@ -256,6 +256,7 @@ export class AdminService {
   }
 
   UpdateCity(city: any) {
+    city.cityimage = this.cityImage;
     return this.http.put('https://localhost:7117/api/City/UpdateCity', city).subscribe(res => {
       console.log("City updated:", res);
       window.location.reload();
@@ -277,6 +278,17 @@ export class AdminService {
   }
   GetAllCountries(): Observable<any[]> {
     return this.http.get<any[]>('https://localhost:7117/api/Country/GetAllCountries');
+  }
+
+  cityImage: any;
+  uploadAttachmentCity(file: FormData) {
+    this.http.post('https://localhost:7117/api/City/uploadImage', file).subscribe(
+      (resp: any) => {
+        this.cityImage = resp.cityimage;
+        console.log('image uploaded')
+      }, err => {
+        console.log('Error')
+      })
   }
 
 }
