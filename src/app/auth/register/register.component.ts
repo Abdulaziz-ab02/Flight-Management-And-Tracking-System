@@ -52,7 +52,7 @@ export class RegisterComponent {
         } else if (response.result === 'email') {
           // Show an error for email
           this.toastr.error('Email already exists.', 'Error');
-        } else if (response.result === 'none') {
+        } else {
           // Continue with form submission if neither exists
           this.createUserForm.controls['roleid'].setValue(2);
           this.auth.CreateUser(this.createUserForm.value);
