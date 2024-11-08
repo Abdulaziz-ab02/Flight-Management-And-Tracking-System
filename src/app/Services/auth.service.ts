@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -191,6 +192,12 @@ export class AuthService {
       })
     window.location.reload();
   }
+
+  CheckUserExists(username: string, email: string): Observable<any> {
+    const body = { username, email };
+    return this.http.post<{ result: string }>('https://localhost:7117/api/User/CheckUserExists', body)
+  }
+
 
 
 
