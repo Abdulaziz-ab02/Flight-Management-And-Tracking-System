@@ -20,7 +20,6 @@ export class CityComponent {
   ngOnInit(): void {
     this.loadCities();
     this.loadCountries();
-    // this.cities$ = this.admin.GetAllCiies();
   }
 
   openDeleteDialog(ID: number) {
@@ -51,6 +50,8 @@ export class CityComponent {
     this.pData = obj;
 
     this.UpdateCity.controls['id'].setValue(this.pData.id)
+    this.admin.cityImage = this.pData.cityimage;
+
 
     this.dialog.open(this.updateCity);
   }
@@ -113,6 +114,6 @@ export class CityComponent {
     const upload: File = file[0];
     const formData = new FormData();
     formData.append("file", upload, upload.name);
-    this.admin.uploadImage(formData);
+    this.admin.uploadAttachmentCity(formData);
   }
 }

@@ -127,7 +127,7 @@
         <mat-form-field>
           <mat-label>City</mat-label>
           <mat-select formControlName="cityid" [(ngModel)]="pData.cityid" required>
-            <mat-option *ngFor="let city of cities" [value]="city.id">
+            <mat-option *ngFor=" let city of cities" [value]="city.id">
               {{ city.cityname }}
             </mat-option>
           </mat-select>
