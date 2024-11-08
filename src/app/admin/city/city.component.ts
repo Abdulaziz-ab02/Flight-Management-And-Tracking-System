@@ -50,13 +50,7 @@ export class CityComponent {
   openUpdateDialog(obj: any) {
     this.pData = obj;
 
-
-    this.UpdateCity.patchValue({
-      cityname: this.pData.cityname,
-      cityimage: this.pData.cityimage,
-      countryid: this.pData.countryid,
-      id: this.pData.id
-    });
+    this.UpdateCity.controls['id'].setValue(this.pData.id)
 
     this.dialog.open(this.updateCity);
   }

@@ -10,112 +10,104 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './airports.component.html',
   styleUrls: ['./airports.component.css']
 })
-export class AirportsComponent implements OnInit{
+export class AirportsComponent implements OnInit {
   @ViewChild('deleteAirport') deleteA !: TemplateRef<any>
   @ViewChild('updateAirport') updateA !: TemplateRef<any>
-constructor(public admin:AdminService , public dialog:MatDialog){}
+  constructor(public admin: AdminService, public dialog: MatDialog) { }
 
-ngOnInit(): void {
-  this.admin.FetchAllAirports();
-  this.loadCities();
-}
-
-openDeleteDialog(ID:number){
-  this.dialog.open(this.deleteA).afterClosed().subscribe((res)=>{
-    if(res!=undefined){
-      if(res=='yes')
-        this.admin.deleteAirport(ID);
-      else if(res='no')
-      console.log("THX :)")
-    }
-  })
-}
-addAirport(){
-this.dialog.open(CreateAirportComponent);
-
-}
-
-
-
-UpdateAirport : FormGroup = new FormGroup({
-  id: new FormControl (),
-  airportname : new FormControl (),
-  iatacode:new FormControl (),
-  longitude:new FormControl (),
-  latitude : new FormControl (),
-  airportimage:new FormControl (),
-  cityid:new FormControl ()
-})
-  
-
-
-
-pData :any={};
-cities: any[] = [];
- openUpdateDialog(obj:any){
-  this.pData=obj;
-  this.UpdateAirport.patchValue({
-    id: this.pData.id,
-    airportname: this.pData.airportname,
-    iatacode: this.pData.iatacode,
-    longitude: this.pData.longitude,
-    latitude: this.pData.latitude,
-    airportimage: this.pData.airportimage,
-    cityid: this.pData.cityid // Set default cityid for dropdown
-  });
-  this.admin.img=this.pData.airportimage;
-  
-this.UpdateAirport.controls['id'].setValue(this.pData.id);
-
-console.log("Initial cityid:", this.pData.cityid);
-this.dialog.open(this.updateA);
-
- }
-
-
- loadCities() {
-  this.admin.GetAllCiies().subscribe(
-    (res: any[]) => {
-      this.cities = res.map(cityObj => ({
-        cityname: cityObj.cityname,
-        id: cityObj.id
-      }));
-    },
-    (err: any) => {
-      console.error('Error loading cities:', err);
-    }
-  );
-}
-save() {
-
-  const updatedData = { ...this.UpdateAirport.value };
-
-  // Check if cityid is empty and show alert if not chosen
-  if (!updatedData.cityid) {
-    alert("Please select a city before saving.");
-    return; // Prevents dialog from closing
+  ngOnInit(): void {
+    this.admin.FetchAllAirports();
+    this.loadCities();
   }
 
-  // If cityid is chosen, proceed with saving and close the dialog
-  this.admin.updateAirport(updatedData);
-  this.dialog.closeAll(); // This will close the dialog manually
-}
+  openDeleteDialog(ID: number) {
+    this.dialog.open(this.deleteA).afterClosed().subscribe((res) => {
+      if (res != undefined) {
+        if (res == 'yes')
+          this.admin.deleteAirport(ID);
+        else if (res = 'no')
+          console.log("THX :)")
+      }
+    })
+  }
+  addAirport() {
+    this.dialog.open(CreateAirportComponent);
 
-cancel() {
-  this.dialog.closeAll(); // Close the dialog when cancel is clicked
-}
+  }
 
 
 
-uploadFile(file:any){
-  if(file.length==0)
-    return;
-  let upload=<File> file[0];
-  const formData= new FormData();
-  formData.append("file",upload,upload.name);
-  this.admin.uploadImage(formData);
-  
-   }
+  UpdateAirport: FormGroup = new FormGroup({
+    id: new FormControl(),
+    airportname: new FormControl(),
+    iatacode: new FormControl(),
+    longitude: new FormControl(),
+    latitude: new FormControl(),
+    airportimage: new FormControl(),
+    cityid: new FormControl()
+  })
+
+
+
+
+  pData: any = {};
+  cities: any[] = [];
+  openUpdateDialog(obj: any) {
+    this.pData = obj;
+
+    this.admin.img = this.pData.airportimage;
+
+    this.UpdateAirport.controls['id'].setValue(this.pData.id);
+
+    console.log("Initial cityid:", this.pData.cityid);
+    this.dialog.open(this.updateA);
+
+  }
+
+
+  loadCities() {
+    this.admin.GetAllCiies().subscribe(
+      (res: any[]) => {
+        this.cities = res.map(cityObj => ({
+          cityname: cityObj.cityname,
+          id: cityObj.id
+        }));
+      },
+      (err: any) => {
+        console.error('Error loading cities:', err);
+      }
+    );
+  }
+  save() {
+
+    const updatedData = { ...this.UpdateAirport.value };
+
+    // Check if cityid is empty and show alert if not chosen
+    if (!updatedData.cityid) {
+      alert("Please select a city before saving.");
+      return; // Prevents dialog from closing
+    }
+
+    // If cityid is chosen, proceed with saving and close the dialog
+    this.admin.updateAirport(updatedData);
+    this.dialog.closeAll(); // This will close the dialog manually
+  }
+
+  cancel() {
+    this.dialog.closeAll(); // Close the dialog when cancel is clicked
+  }
+
+
+
+  uploadFile(file: any) {
+    if (file.length == 0)
+      return;
+    let upload = <File>file[0];
+    const formData = new FormData();
+    formData.append("file", upload, upload.name);
+    this.admin.uploadImage(formData);
+
+  }
 
 
 

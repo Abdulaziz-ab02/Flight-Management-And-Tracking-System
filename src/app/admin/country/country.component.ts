@@ -40,10 +40,8 @@ export class CountryComponent implements OnInit {
   openUpdateDialog(obj: any): void {
     this.pData = obj;
 
-    this.UpdateCountry.patchValue({
-      id: obj.id,
-      countryname: obj.countryname
-    });
+    this.UpdateCountry.controls['id'].setValue(this.pData.id);
+
     this.dialog.open(this.updateCountry);
   }
 
