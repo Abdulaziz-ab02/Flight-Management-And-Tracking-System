@@ -89,7 +89,7 @@ export class HomeService {
   }
 
   getUserInfo(id:any):Observable<any>{
-    return this.http.get('https://localhost:7117/api/Airline/GetAirlineById/' + id);
+    return this.http.get('https://localhost:7117/api/User/getUserById/' + id);
   }
 
 

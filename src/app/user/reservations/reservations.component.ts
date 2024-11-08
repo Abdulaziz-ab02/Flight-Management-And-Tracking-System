@@ -32,8 +32,7 @@ export class ReservationsComponent implements OnInit {
     user = JSON.parse(user)
     this.userId = user.userid;
     this.userEmail = user.email;
-
-
+  
     this.selectedFlight = history.state.selectedFlight;
     this.numOfPassengers = history.state.numOfPassengers;
     this.totalPrice = history.state.TotalPrice;
@@ -44,7 +43,8 @@ export class ReservationsComponent implements OnInit {
       lastName: '',
       nationalNumber: '',
       userId: this.userId 
-    }));
+  }));
+  this.userInfo(this.userId);  
   }
   PaymentForm:FormGroup = new FormGroup({
     cardnumber: new FormControl(),
@@ -52,19 +52,6 @@ export class ReservationsComponent implements OnInit {
     expirydate: new FormControl()
   });
 
-  // PaymentCheck(){
-  //   const paymentData = {
-  //     ...this.PaymentForm.value,
-  //     balance: this.totalPrice // Add balance (totalPrice) to the form data
-  //   };
-  //   this.bankService.PaymentCheck(paymentData).subscribe((res) =>{
-  //     console.log('Payment service returned: ',res)
-  //     this.isPayed = res;
-  //   },
-  // (error) => {
-  //   console.log('Payment service returned:error: ',error)
-  // });
-  // }
   submitPartners() {
     console.log('The PArtner array: ',this.partners);
     this.partners.forEach((partner) => {
@@ -107,6 +94,8 @@ export class ReservationsComponent implements OnInit {
       totalPrice: this.totalPrice,
       email: this.userEmail,
       date: this.currentDate,
+      firstname: this.userData.firstname,
+      lastName: this.userData.lastname,
       partners: []
     };
   
@@ -118,7 +107,8 @@ export class ReservationsComponent implements OnInit {
         nationalNumber: partner.nationalNumber
       }));
     }
-  
+    console.log(invoice);
+    debugger;
     // Send the invoice data to the email service
     this.emailService.sendEmail(invoice).subscribe(
       (res) => {
@@ -132,6 +122,8 @@ export class ReservationsComponent implements OnInit {
   
   
   AllSaved() {
+    console.log('shesh,',this.userData);
+
     //Prepare the payment data
     const paymentData = {
       ...this.PaymentForm.value,
@@ -156,8 +148,9 @@ export class ReservationsComponent implements OnInit {
       console.log('Payment service returned: error: ', error);
     });
   }
-  userInfo(){
-    this.homeService.getUserInfo(this.userId).subscribe((res) => {
+  userInfo(id: number){
+    console.log(id)
+    this.homeService.getUserInfo(id).subscribe((res) => {
       this.userData = res
     },
   (error) => {

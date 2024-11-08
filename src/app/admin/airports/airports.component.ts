@@ -54,12 +54,13 @@ export class AirportsComponent implements OnInit {
   cities: any[] = [];
   openUpdateDialog(obj: any) {
     this.pData = obj;
+    console.log('brooo',obj);
 
     this.admin.img = this.pData.airportimage;
 
     this.UpdateAirport.controls['id'].setValue(this.pData.id);
 
-    console.log("Initial cityid:", this.pData.cityid);
+    console.log("Initial cityid: :)))))))))", this.pData.cityid);
     this.dialog.open(this.updateA);
 
   }
