@@ -11,7 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select'; // Add this import
-
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -31,7 +32,9 @@ import { MatSelectModule } from '@angular/material/select'; // Add this import
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule
   ],
   exports: [
     SidebarComponent,
@@ -43,7 +46,9 @@ import { MatSelectModule } from '@angular/material/select'; // Add this import
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class AdminSharedModule { }

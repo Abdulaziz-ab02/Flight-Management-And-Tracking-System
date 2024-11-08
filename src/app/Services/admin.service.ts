@@ -203,16 +203,15 @@ export class AdminService {
     });
     window.location.reload();
   }
-  
-  countries: any[] = []; 
+
+  countries: any[] = [];
   CountriesCount: number = 0;
-  updateCountryForm!: FormGroup;
 
   getAllCountries() {
     this.http.get<any[]>('https://localhost:7117/api/Country/GetAllCountries').subscribe(result => {
       this.countries = result;
       this.CountriesCount = this.countries.length;
-     
+
     }, err => {
       console.log('Error fetching countries:', err.message);
     });
@@ -221,7 +220,7 @@ export class AdminService {
   createCountry(country: any) {
     return this.http.post('https://localhost:7117/api/Country/CreateCountry', country).subscribe(res => {
       console.log("Country created:", res);
-      this.getAllCountries();
+      window.location.reload();
     }, err => {
       console.log("Error creating country:", err.message);
     });
@@ -230,7 +229,7 @@ export class AdminService {
   updateCountry(country: any) {
     return this.http.put('https://localhost:7117/api/Country/UpdateCountry', country).subscribe(res => {
       console.log("Country updated:", res);
-      this.getAllCountries();
+      window.location.reload();
     }, err => {
       console.log("Error updating country:", err.message);
     });
@@ -239,40 +238,40 @@ export class AdminService {
   deleteCountry(id: number) {
     return this.http.delete(`https://localhost:7117/api/Country/DeleteCountry/${id}`).subscribe(result => {
       console.log("Country deleted:", result);
-      this.getAllCountries();
+      window.location.reload();
     }, err => {
       console.log("Error deleting country:", err.message);
     });
   }
-  
 
 
-CreateCity(city: any) {
-  return this.http.post('https://localhost:7117/api/City/CreateCity', city).subscribe(res => {
-    console.log("city created:", res);
-    this.GetAllCiies();
-  }, err => {
-    console.log("Error creating cities:", err.message);
-  });
-}
 
-UpdateCity(city: any) {
-  return this.http.put('https://localhost:7117/api/City/UpdateCity', city).subscribe(res => {
-    console.log("City updated:", res);
-    this.GetAllCiies();
-  }, err => {
-    console.log("Error updating City:", err.message);
-  });
-}
+  CreateCity(city: any) {
+    return this.http.post('https://localhost:7117/api/City/CreateCity', city).subscribe(res => {
+      console.log("city created:", res);
+      window.location.reload();
+    }, err => {
+      console.log("Error creating cities:", err.message);
+    });
+  }
 
-DeleteCity(id: number) {
-  return this.http.delete(`https://localhost:7117/api/City/DeleteCity/${id}`).subscribe(result => {
-    console.log("City deleted:", result);
-    this.GetAllCiies();
-  }, err => {
-    console.log("Error deleting City:", err.message);
-  });
-}
+  UpdateCity(city: any) {
+    return this.http.put('https://localhost:7117/api/City/UpdateCity', city).subscribe(res => {
+      console.log("City updated:", res);
+      window.location.reload();
+    }, err => {
+      console.log("Error updating City:", err.message);
+    });
+  }
+
+  DeleteCity(id: number) {
+    return this.http.delete(`https://localhost:7117/api/City/DeleteCity/${id}`).subscribe(result => {
+      console.log("City deleted:", result);
+      window.location.reload();
+    }, err => {
+      console.log("Error deleting City:", err.message);
+    });
+  }
   getEntityCounts(): Observable<any> {
     return this.http.get('https://localhost:7117/api/Reservation/entity-counts');
   }

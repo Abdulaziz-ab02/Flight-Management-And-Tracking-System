@@ -53,11 +53,11 @@
 <ng-template #updateCountry>
   <h2 mat-dialog-title>Update Country</h2>
   <mat-dialog-content class="mat-typography">
-    <form [formGroup]="admin.updateCountryForm">
+    <form [formGroup]="UpdateCountry">
       <div class="example-container">
         <mat-form-field>
           <mat-label>Country Name</mat-label>
-          <input type="text" matInput formControlName="countryname">
+          <input type="text" matInput formControlName="countryname" [(ngModel)]="pData.countryname">
         </mat-form-field>
       </div>
     </form>

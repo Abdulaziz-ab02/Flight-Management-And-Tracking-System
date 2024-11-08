@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ThankYouComponent } from './thank-you/thank-you.component';
+import { ReservationsRecordComponent } from './reservations-record/reservations-record.component';
 
 
 
@@ -19,7 +20,8 @@ import { ThankYouComponent } from './thank-you/thank-you.component';
   declarations: [
     ProfileComponent,
     ReservationsComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    ReservationsRecordComponent
   ],
   imports: [
     CommonModule,

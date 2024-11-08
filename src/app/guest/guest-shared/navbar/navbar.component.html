@@ -7,13 +7,38 @@
                 <li class="active"><a routerLink="/guest/home">Home</a></li>
                 <li><a routerLink="/guest/about">About</a></li>
                 <li><a routerLink="/guest/contactus">Contact Us</a></li>
+
                 <li *ngIf="!isLoggedIn">
                     <a class="btn btn-primary" routerLink="/security/login">Login</a>
                 </li>
+
+
                 <li *ngIf="isLoggedIn">
-                    <a class="btn btn-primary mr-3" routerLink="/user/profile">View Profile</a>
-                    <a class="btn btn-primary" (click)="Logout()">Logout</a>
+                    <img class="rounded-circle" src="../../../../assets/Images/{{home.userProfileInfo.image}}" alt="img"
+                        style="width: 40px; height: 40px; margin-bottom: 15px;">
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item routerLink="/user/reservationsRecord">
+                            <mat-icon svgIcon="record_icon" aria-hidden="false"
+                                aria-label="Example thumbs up SVG icon"></mat-icon>
+                            <span>My Reservations</span>
+                        </button>
+                        <button mat-menu-item routerLink="/user/profile">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                            <span>My Profile</span>
+                        </button>
+                        <button mat-menu-item (click)="Logout()">
+                            <mat-icon svgIcon="logout_icon" aria-hidden="false"
+                                aria-label="Example thumbs up SVG icon"></mat-icon>
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
                 </li>
+
 
             </ul>
 
