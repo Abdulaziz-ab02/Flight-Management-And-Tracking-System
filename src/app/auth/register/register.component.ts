@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { AuthService } from 'src/app/Services/auth.service';
 })
 export class RegisterComponent {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService,
+    private toastr: ToastrService
+  ) { }
 
 
   createUserForm: FormGroup = new FormGroup({
@@ -18,8 +21,8 @@ export class RegisterComponent {
     lastname: new FormControl('Your Last Name', Validators.required),
     username: new FormControl('Your Username', Validators.required),
     email: new FormControl('ex@example.com', [Validators.required, Validators.email]),
-    phone: new FormControl('Your Phone'),
-    dateofbirth: new FormControl(''),
+    phone: new FormControl(),
+    dateofbirth: new FormControl(),
     nationalnumber: new FormControl('Your National Number', Validators.required),
     password: new FormControl('********', Validators.required),
     repeatPassword: new FormControl('********', Validators.required),
@@ -37,8 +40,32 @@ export class RegisterComponent {
   }
 
   submit() {
-    this.createUserForm.controls['roleid'].setValue(2);
-    this.auth.CreateUser(this.createUserForm.value)
+    const username = this.createUserForm.controls['username'].value;
+    const email = this.createUserForm.controls['email'].value;
+
+    this.auth.CheckUserExists(username, email).subscribe(
+      (response) => {
+        // Check the response, e.g., 'username' or 'email' or 'none'
+        if (response.result === 'username') {
+          // Show an error for username
+          this.toastr.error('Username already exists.', 'Error');
+        } else if (response.result === 'email') {
+          // Show an error for email
+          this.toastr.error('Email already exists.', 'Error');
+        } else {
+          // Continue with form submission if neither exists
+          this.createUserForm.controls['roleid'].setValue(2);
+          this.auth.CreateUser(this.createUserForm.value);
+        }
+      },
+      (error) => {
+        // Handle error if the request fails
+        console.error('Error checking user existence', error);
+      }
+    );
+
+    // this.createUserForm.controls['roleid'].setValue(2);
+    // this.auth.CreateUser(this.createUserForm.value)
   }
 
 
