@@ -17,6 +17,8 @@ export class FlightTrackerComponent implements OnInit {
   departure: [number, number] = [0, 0];
   destination: [number, number] = [0, 0];
   flightPath: any;
+  departureDate: Date = new Date();
+  flightStatusMessage: string = '';
 
   constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) {}
 
@@ -31,10 +33,11 @@ export class FlightTrackerComponent implements OnInit {
         if (this.flightData.length > 0) {
           this.departure = [this.flightData[0].departureLatitude, this.flightData[0].departureLongitude];
           this.destination = [this.flightData[0].destinationLatitude, this.flightData[0].destinationLongitude];
-          
+          this.departureDate = new Date(this.flightData[0].departureDate);
+
           this.cdr.detectChanges();
           this.initializeMap();
-          this.startFlightAnimation();
+          this.scheduleFlightAnimation();
         }
       },
       (error) => {
@@ -69,6 +72,25 @@ export class FlightTrackerComponent implements OnInit {
     }).addTo(this.map);
   }
 
+  scheduleFlightAnimation(): void {
+    const currentTime = new Date().getTime();
+    const departureTime = this.departureDate.getTime();
+    const timeUntilDeparture = departureTime - currentTime;
+    console.log('departure tume:', departureTime);
+    console.log('current time: ', currentTime);
+
+    if (timeUntilDeparture > 0) {
+      // Schedule the animation to start at the departure time
+      setTimeout(() => this.startFlightAnimation(), timeUntilDeparture);
+      this.flightStatusMessage = `Flight will start moving in ${timeUntilDeparture / 1000} seconds.`;
+    } else {
+      // Check if the flight has already arrived
+      this.flightStatusMessage = 'This flight has already departed or arrived!';
+      // Optionally, display an "arrived" indicator or animation
+      this.startFlightAnimation(); // Start animation immediately if flight time has passed
+    }
+  }
+
   startFlightAnimation(): void {
     let step = 0;
     const totalSteps = 1000;
@@ -89,6 +111,8 @@ export class FlightTrackerComponent implements OnInit {
         step++;
       } else {
         clearInterval(this.animationInterval);
+        // Optionally, update the message when the flight has arrived
+        this.flightStatusMessage = 'Flight has arrived!';
       }
     }, intervalTime);
   }
