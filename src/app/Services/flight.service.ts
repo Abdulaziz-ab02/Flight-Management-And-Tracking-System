@@ -56,4 +56,9 @@ export class FlightService {
     return this.http.get(`https://localhost:7117/api/Flight/FetchFlightByFlightNumber?flightNumber=${flightId}`);
   }
   
+  getAllAirlines():Observable<any>{
+    return this.http.get("https://localhost:7117/api/Airline");
+  }
+
+
 }

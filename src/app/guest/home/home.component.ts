@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/Services/home.service';
 import { state } from '@angular/animations';
+import { Token } from '@angular/compiler';
 /* handleHomeFlights(flights: any[]) {
   this.router.navigate(['/flights'], { state: { flights } });
 }*/
@@ -34,7 +35,9 @@ export class HomeComponent implements OnInit {
   }
   handleHomeFlights({ flights, passengerCount }: { flights: any[], passengerCount: number }) {
     console.log(flights);
+    
     this.router.navigate(['/flights'], { state: { flights, passengerCount } });
+   
   }
   
 

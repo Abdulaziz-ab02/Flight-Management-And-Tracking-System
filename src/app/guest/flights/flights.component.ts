@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { FlightService } from 'src/app/Services/flight.service';
 
 @Component({
   selector: 'app-flights',
@@ -17,14 +18,18 @@ export class FlightsComponent implements OnInit {
   totalPrice: number = 0;
   userId?: number;
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(private router: Router, public dialog: MatDialog , public flightservice: FlightService) {}
 
   ngOnInit(): void {
     this.flights = history.state.flights;
+    this.filteredFlights = [...this.flights]; // Start with all flights
     this.numOfPassengers = history.state.passengerCount;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
+    this.loadAirlines();
+
+  
   }
 
   private calculateTotalPrice() {
@@ -80,5 +85,55 @@ export class FlightsComponent implements OnInit {
    }
   
   }
+
+
+
+
+
+  //filtering 
+airlines: any[] = [];
+selectedPriceRange: number =100; // Default price range selection
+selectedAirlines: string[] = [];  // To store selected airlines
+filteredFlights: any[] = []; 
+
+
+
+public loadAirlines(): void {
+  this.flightservice.getAllAirlines().subscribe(
+    (data: any[]) => {
+      this.airlines = data;
+    },
+    error => {
+      console.error('Error fetching airlines:', error);
+    }
+  );
+}
+
+
+
+
+
+applyFilters(): void {
+  this.filteredFlights = this.flights.filter(flight => {
+    const meetsPriceCondition = flight.price <= this.selectedPriceRange;
+    const meetsAirlineCondition = this.selectedAirlines.length === 0 || this.selectedAirlines.includes(flight.airlinename);
+
+    return meetsPriceCondition && meetsAirlineCondition;
+  });
+}
   
+
+
+
+toggleAirlineFilter(airline: string, event: any): void {
+  if (event.target.checked) {
+    this.selectedAirlines.push(airline);
+  } else {
+    this.selectedAirlines = this.selectedAirlines.filter(a => a !== airline);
+  }
+  this.applyFilters(); // Apply filters after selection change
+}
+
+
+
 }
