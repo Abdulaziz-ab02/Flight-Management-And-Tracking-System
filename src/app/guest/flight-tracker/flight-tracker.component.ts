@@ -29,6 +29,9 @@ export class FlightTrackerComponent implements OnInit {
       (res) => {
         this.flightData = res;
         console.log('Flight found :)', this.flightData);
+        console.log('Date :)', this.flightData[0].departureDate);
+
+        
 
         if (this.flightData.length > 0) {
           this.departure = [this.flightData[0].departureLatitude, this.flightData[0].departureLongitude];

@@ -95,6 +95,7 @@ export class FlightsComponent implements OnInit {
       flightData.id = this.editingFlightId;
       this.updateFlight(flightData);
     } else {
+      console.log(flightData);
       this.flightService.CreateFlight(flightData).subscribe(
         (response) => {
           console.log('Flight created successfully:', response);

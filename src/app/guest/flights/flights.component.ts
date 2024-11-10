@@ -23,13 +23,11 @@ export class FlightsComponent implements OnInit {
   ngOnInit(): void {
     this.loadAirlines();
     this.flights = history.state.flights;
-    this.filteredFlights = [...this.flights]; 
     this.numOfPassengers = history.state.passengerCount;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
 
-  
   }
 
   private calculateTotalPrice() {
@@ -117,8 +115,7 @@ public loadAirlines(): void {
 applyFilters(): void {
   this.filteredFlights = this.flights.filter(flight => {
     const meetsPriceCondition = flight.price <= this.selectedPriceRange;
-    const meetsAirlineCondition = this.selectedAirlines.length === 0 || this.selectedAirlines.includes(flight.airlinename);
-
+    const meetsAirlineCondition = this.selectedAirlines.includes(flight.airlinename);
     return meetsPriceCondition || meetsAirlineCondition;
   });
 }
@@ -133,6 +130,7 @@ toggleAirlineFilter(airline: string, event: any): void {
     this.selectedAirlines = this.selectedAirlines.filter(a => a !== airline);
   }
   this.applyFilters(); // Apply filters after selection change
+
 }
 
 
