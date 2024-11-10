@@ -21,13 +21,13 @@ export class FlightsComponent implements OnInit {
   constructor(private router: Router, public dialog: MatDialog , public flightservice: FlightService) {}
 
   ngOnInit(): void {
+    this.loadAirlines();
     this.flights = history.state.flights;
-    this.filteredFlights = [...this.flights]; // Start with all flights
+    this.filteredFlights = [...this.flights]; 
     this.numOfPassengers = history.state.passengerCount;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
-    this.loadAirlines();
 
   
   }
@@ -102,6 +102,7 @@ public loadAirlines(): void {
   this.flightservice.getAllAirlines().subscribe(
     (data: any[]) => {
       this.airlines = data;
+      console.log('Airlines:', this.airlines);
     },
     error => {
       console.error('Error fetching airlines:', error);
