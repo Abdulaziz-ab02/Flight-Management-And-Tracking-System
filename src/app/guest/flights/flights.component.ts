@@ -118,7 +118,7 @@ applyFilters(): void {
     const meetsPriceCondition = flight.price <= this.selectedPriceRange;
     const meetsAirlineCondition = this.selectedAirlines.length === 0 || this.selectedAirlines.includes(flight.airlinename);
 
-    return meetsPriceCondition && meetsAirlineCondition;
+    return meetsPriceCondition || meetsAirlineCondition;
   });
 }
   
