@@ -92,8 +92,8 @@
                             <td>{{ flight.flightNumber }}</td>
                             <td>{{ flight.capacity }}</td>
                             <td>{{ flight.pricePerPassenger | currency }}</td>
-                            <td>{{ flight.departureDate | date }}</td>
-                            <td>{{ flight.destinationDate | date }}</td>
+                            <td>{{ flight.departureDate | date: 'short' }}</td>
+                            <td>{{ flight.destinationDate | date: 'short' }}</td>
                             <td>{{ flight.status }}</td>
                             <td>
                                 <button mat-raised-button color="primary" (click)="editFlight(flight)">
