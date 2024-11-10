@@ -44,7 +44,6 @@ export class FlightsComponent implements OnInit {
       pricePerPassenger: new FormControl('', [Validators.required, Validators.min(0)]),
       departureDate: new FormControl('', Validators.required),
       destinationDate: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required),
       discountvalue: new FormControl(0),
       departureairportid: new FormControl('', Validators.required),
       destinationairportid: new FormControl('', Validators.required),
