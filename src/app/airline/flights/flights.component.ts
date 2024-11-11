@@ -17,6 +17,11 @@ interface Flight {
   airlineId: number;
 }
 
+interface Degree {
+  id: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -29,13 +34,7 @@ export class FlightsComponent implements OnInit {
   showCreateForm: boolean = false;
   editingFlightId: number | null = null;
   airports: any[] = [];
-
-  // Static array for degrees
-  degrees = [
-    { id: 1, name: 'Economy' },
-    { id: 2, name: 'Business' },
-    { id: 3, name: 'First Class' }
-  ];
+  degrees: Degree[] = [];  
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -56,6 +55,21 @@ export class FlightsComponent implements OnInit {
     this.airlineId = user.airlineid;
     this.fetchFlights();
     this.fetchAirports();
+    this.loadDegrees(); 
+  }
+
+  loadDegrees(): void {
+    this.flightService.GetAllDegrees().subscribe(
+      (res: any[]) => {
+        this.degrees = res.map(degreeObj => ({
+          id: degreeObj.id,
+          name: degreeObj.degreename
+        }));
+      },
+      (error) => {
+        console.log('There was an error while trying to hit the Degree API :(');
+      }
+    );
   }
 
   fetchFlights(): void {
