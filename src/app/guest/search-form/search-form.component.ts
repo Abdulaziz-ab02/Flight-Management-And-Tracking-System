@@ -9,7 +9,10 @@ import { FlightService } from 'src/app/Services/flight.service';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent {
-  @Output() flightsFound = new EventEmitter<{ flights: any[], passengerCount: number }>();
+  @Output() flightsFound = new EventEmitter<any[]>();
+  @Output() partnerCount = new EventEmitter<number>();
+
+
   cities: { cityname: string, id: number }[] = [];  
   filteredDepartureCities: { cityname: string, id: number }[] = []; 
   filteredDestinationCities: { cityname: string, id: number }[] = []; 
@@ -28,7 +31,7 @@ export class SearchFormComponent {
   onPassengerChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.passengerCount = +selectElement.value;
-    console.log('Selected passenger count:', this.passengerCount);
+    this.partnerCount.emit(this.passengerCount);
   }
 
   loadCities() {
@@ -101,7 +104,7 @@ export class SearchFormComponent {
         await Promise.all(facilityPromises);
   
         // Emit the results after facilities are populated
-        this.flightsFound.emit({ flights: this.flights, passengerCount: this.passengerCount });
+        this.flightsFound.emit(this.flights);
       },
       (err: any) => {
         console.error('Error occurred during search:', err);

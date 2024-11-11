@@ -12,6 +12,7 @@
                   <div class="col-12">
                       <!--Here where the form should be so we used a shared component aiming to reduce the redundancy :)-->
                     <app-search-form (flightsFound)="handleFlightsFound($event)"
+                      (partnerCount)="handlePartnerCount($event)"
                     ></app-search-form>
                    
                   </div>
@@ -148,7 +149,7 @@
     </mat-dialog-content>
   
     <mat-dialog-actions align="end">
-      <button mat-button color="warn">Cancel</button>
+      <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
       <button mat-button color="primary" (click)="processToPayFunc()">Process To pay </button>
     </mat-dialog-actions>
   </ng-template>

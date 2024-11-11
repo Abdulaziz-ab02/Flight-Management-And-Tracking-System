@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
 
   isLoggedIn: boolean = false;
+  partners:number = 0;
 
   ngOnInit(): void {
     this.home.getAllTestimonials()
@@ -33,12 +34,14 @@ export class HomeComponent implements OnInit {
     }
 
   }
-  handleHomeFlights({ flights, passengerCount }: { flights: any[], passengerCount: number }) {
-    console.log(flights);
-    
-    this.router.navigate(['/flights'], { state: { flights, passengerCount } });
-   
+  handlePartnersChanges(partners:number){
+    this.partners = partners
   }
+  handleHomeFlights( flights: any[]) {
+    console.log(flights);
+    this.router.navigate(['/flights'], { state: { flights: flights,partners:this.partners} });  
+  }
+  
   
 
   createTestimonial: FormGroup = new FormGroup({

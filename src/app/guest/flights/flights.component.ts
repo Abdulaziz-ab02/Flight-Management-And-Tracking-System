@@ -23,7 +23,7 @@ export class FlightsComponent implements OnInit {
   ngOnInit(): void {
     this.loadAirlines();
     this.flights = history.state.flights;
-    this.numOfPassengers = history.state.passengerCount;
+    this.numOfPassengers = history.state.partners;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
@@ -41,6 +41,7 @@ export class FlightsComponent implements OnInit {
   }
 
   OpenFlightSelectionDialog(flight: any) {
+    console.log(this.numOfPassengers);
     this.selectedFlight = flight;
     this.calculateTotalPrice();
 
@@ -54,10 +55,11 @@ export class FlightsComponent implements OnInit {
     });
   }
 
-  handleFlightsFound(eventData: { flights: any[], passengerCount: number }) { 
-    const { flights, passengerCount } = eventData;
+  handleFlightsFound(flights: any[]) { 
     this.flights = flights;
-    this.numOfPassengers = passengerCount;
+  }
+  handlePartnerCount(partners:number){
+    this.numOfPassengers = partners;
   }
 
   processToPayFunc() {
@@ -82,6 +84,9 @@ export class FlightsComponent implements OnInit {
     });
    }
   
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
 
