@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { GuestModule } from './guest/guest.module';
 import { AirlineModule } from './airline/airline.module';
+import { guardNameGuard } from './guard-name.guard';
 
 const routes: Routes = [
   {
@@ -26,7 +27,9 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => AdminModule
+    loadChildren: () => AdminModule,
+    canActivate:[guardNameGuard]
+
   },
   {
     path: 'airline',
