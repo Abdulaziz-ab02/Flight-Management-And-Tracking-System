@@ -14,6 +14,7 @@ export class SearchFormComponent {
 
 
   cities: { cityname: string, id: number }[] = [];  
+  degree: { degreename: string, id: number }[] = [];  
   filteredDepartureCities: { cityname: string, id: number }[] = []; 
   filteredDestinationCities: { cityname: string, id: number }[] = []; 
   selectedDepartureCity: string = ''; 
@@ -26,6 +27,7 @@ export class SearchFormComponent {
   
   ngOnInit() {
     this.loadCities(); 
+    this.loadDegrees();
   }
 
   onPassengerChange(event: Event) {
@@ -46,6 +48,17 @@ export class SearchFormComponent {
         console.error('Error loading cities:', err);
       }
     );
+  }
+  loadDegrees(){
+    this.flight.GetAllDegrees().subscribe((res:any[]) => {
+      this.degree = res.map(degreeObj => ({
+        degreename: degreeObj.degreename,
+        id:degreeObj.id
+      }));
+    },
+  (error) => {
+    console.log('There was an error while tring to hit Degree API :(');
+  })
   }
 
   GetAllFacilitesByDegreeId(id: number) {
@@ -86,6 +99,7 @@ export class SearchFormComponent {
   });
 
   SearchInput() {
+    console.log(this.degree);
     console.log('Search initiated with form data:', this.searchForm.value);
     this.flight.SearchForFlight(this.searchForm.value).subscribe(
       async (res: any[]) => {

@@ -62,11 +62,12 @@
           <i class="fas fa-chair"></i> Class Type
         </label>
         <select id="classType" class="form-control custom-select" formControlName="degreenameId">
-          <option value="3">Economy</option>
-          <option value="4">Business</option>
-          <option value="5">First Class</option>
+          <option *ngFor="let item of degree" [value]="item.id">
+            {{ item.degreename }}
+          </option>
         </select>
       </div>
+      
     </div>
     <!-- Passenger Selection -->
 
