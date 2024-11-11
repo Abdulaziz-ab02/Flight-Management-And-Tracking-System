@@ -24,8 +24,7 @@ export class FlightsComponent implements OnInit {
     this.loadAirlines();
     this.loadFacilities(); 
     this.flights = history.state.flights;
-    this.filteredFlights=this.flights;
-    this.numOfPassengers = history.state.passengerCount;
+    this.numOfPassengers = history.state.partners;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
@@ -43,6 +42,7 @@ export class FlightsComponent implements OnInit {
   }
 
   OpenFlightSelectionDialog(flight: any) {
+    console.log(this.numOfPassengers);
     this.selectedFlight = flight;
     this.calculateTotalPrice();
 
@@ -56,13 +56,11 @@ export class FlightsComponent implements OnInit {
     });
   }
 
-  handleFlightsFound(eventData: { flights: any[], passengerCount: number }) { 
-    const { flights, passengerCount } = eventData;
+  handleFlightsFound(flights: any[]) { 
     this.flights = flights;
-    this.filteredFlights=this.flights;
-    this.numOfPassengers = passengerCount;
-
-    this.applyFilters();
+  }
+  handlePartnerCount(partners:number){
+    this.numOfPassengers = partners;
   }
 
   processToPayFunc() {
@@ -87,6 +85,9 @@ export class FlightsComponent implements OnInit {
     });
    }
   
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
 

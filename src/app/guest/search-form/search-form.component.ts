@@ -9,8 +9,12 @@ import { FlightService } from 'src/app/Services/flight.service';
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent {
-  @Output() flightsFound = new EventEmitter<{ flights: any[], passengerCount: number }>();
+  @Output() flightsFound = new EventEmitter<any[]>();
+  @Output() partnerCount = new EventEmitter<number>();
+
+
   cities: { cityname: string, id: number }[] = [];  
+  degree: { degreename: string, id: number }[] = [];  
   filteredDepartureCities: { cityname: string, id: number }[] = []; 
   filteredDestinationCities: { cityname: string, id: number }[] = []; 
   selectedDepartureCity: string = ''; 
@@ -23,12 +27,13 @@ export class SearchFormComponent {
   
   ngOnInit() {
     this.loadCities(); 
+    this.loadDegrees();
   }
 
   onPassengerChange(event: Event) {
     const selectElement = event.target as HTMLSelectElement;
     this.passengerCount = +selectElement.value;
-    console.log('Selected passenger count:', this.passengerCount);
+    this.partnerCount.emit(this.passengerCount);
   }
 
   loadCities() {
@@ -43,6 +48,17 @@ export class SearchFormComponent {
         console.error('Error loading cities:', err);
       }
     );
+  }
+  loadDegrees(){
+    this.flight.GetAllDegrees().subscribe((res:any[]) => {
+      this.degree = res.map(degreeObj => ({
+        degreename: degreeObj.degreename,
+        id:degreeObj.id
+      }));
+    },
+  (error) => {
+    console.log('There was an error while tring to hit Degree API :(');
+  })
   }
 
   GetAllFacilitesByDegreeId(id: number) {
@@ -83,6 +99,7 @@ export class SearchFormComponent {
   });
 
   SearchInput() {
+    console.log(this.degree);
     console.log('Search initiated with form data:', this.searchForm.value);
     this.flight.SearchForFlight(this.searchForm.value).subscribe(
       async (res: any[]) => {
@@ -101,7 +118,7 @@ export class SearchFormComponent {
         await Promise.all(facilityPromises);
   
         // Emit the results after facilities are populated
-        this.flightsFound.emit({ flights: this.flights, passengerCount: this.passengerCount });
+        this.flightsFound.emit(this.flights);
       },
       (err: any) => {
         console.error('Error occurred during search:', err);
