@@ -79,3 +79,107 @@
   }
   
   
+
+
+
+  /*Filtering CSS*/
+
+  .filter-container {
+    background-color: #ffffff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow on hover */
+}
+
+.filter-container h4 {
+    font-size: 1.4rem;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.filter-container .form-group {
+    margin-bottom: 20px;
+}
+
+.filter-container label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    color: #333;
+}
+
+.filter-container label::before {
+    content: "•"; /* A dot for visual emphasis */
+    color: #007bff; /* Icon color */
+    font-weight: bold;
+    display: inline-block;
+    width: 20px;
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+
+.filter-container .form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Slight glow effect */
+}
+
+/* Range Slider */
+#priceRange {
+    width: 100%;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    background-color: #ddd;
+    height: 5px;
+    border-radius: 5px;
+    outline: none;
+}
+
+#priceRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#priceOutput {
+    font-weight: bold;
+    color: #28a745;
+    margin-left: 5px;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.form-check-input {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.form-check-input:checked + .form-check-label {
+    color: #007bff; /* Blue color for selected text */
+    font-weight: bold;
+}
+#priceOutput {
+    font-size: 1.1rem;
+    color: #007bff;
+    font-weight: bold;
+}

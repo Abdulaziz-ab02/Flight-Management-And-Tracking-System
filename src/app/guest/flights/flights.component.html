@@ -23,7 +23,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 filter-container">
       <h4>Filter Flights</h4>
       <div class="form-group">
         <label for="priceRange">Price Range (JOD)</label>
@@ -42,11 +42,26 @@
           <label class="form-check-label">{{ airline.airlinename }}</label>
         </div>
       </div>
+   
+
+    <!-- Facility Filter -->
+  <div class="form-group">
+    <h5>Facilities</h5>
+    <div class="form-check" *ngFor="let facility of facilities">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [value]="facility.facilityname"
+        (change)="toggleFacilityFilter(facility.facilityname, $event)"
+      />
+      <label class="form-check-label">{{ facility.facilityname }}</label>
     </div>
+  </div>
+</div>
 
     <div class="col-md-9">
       <div class="row">
-        <div class="col-md-12 mb-4" *ngFor="let flight of flights">
+        <div class="col-md-12 mb-4" *ngFor="let flight of filteredFlights">
           <div class="card flight-card">
             <div class="card-body">
               <!-- Flight details -->

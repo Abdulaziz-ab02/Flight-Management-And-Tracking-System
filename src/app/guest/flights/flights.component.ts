@@ -22,7 +22,9 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAirlines();
+    this.loadFacilities(); 
     this.flights = history.state.flights;
+    this.filteredFlights=this.flights;
     this.numOfPassengers = history.state.passengerCount;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
@@ -57,7 +59,10 @@ export class FlightsComponent implements OnInit {
   handleFlightsFound(eventData: { flights: any[], passengerCount: number }) { 
     const { flights, passengerCount } = eventData;
     this.flights = flights;
+    this.filteredFlights=this.flights;
     this.numOfPassengers = passengerCount;
+
+    this.applyFilters();
   }
 
   processToPayFunc() {
@@ -108,18 +113,47 @@ public loadAirlines(): void {
   );
 }
 
+facilities: any[] = []; // Array to store facilities
+selectedFacilities: string[] = []; // Array to store selected facilities
+
+public loadFacilities():void{
+  this.flightservice.getAllFacilities().subscribe(
+    (data: any[]) => {
+    this.facilities = data;
+  },
+  error => console.error('Error fetching facilities:', error)
+);
+}
+
+
+
+
+
+
+
+
 
 
 
 
 applyFilters(): void {
   this.filteredFlights = this.flights.filter(flight => {
-    const meetsPriceCondition = flight.price <= this.selectedPriceRange;
-    const meetsAirlineCondition = this.selectedAirlines.includes(flight.airlinename);
-    return meetsPriceCondition || meetsAirlineCondition;
+    // Check if the price filter is applied and if the flight meets the price condition
+    const meetsPriceCondition = !this.selectedPriceRange || flight.price <= this.selectedPriceRange;
+
+    // Check if the airline filter is applied and if the flight meets the airline condition
+    const meetsAirlineCondition = this.selectedAirlines.length === 0 || this.selectedAirlines.includes(flight.airlinename);
+
+    // Check if the facilities filter is applied and if the flight meets the facilities condition
+    const meetsFacilitiesCondition = this.selectedFacilities.length === 0 || 
+      this.selectedFacilities.every(facility => flight.facilities.some((f: any) => f.facilityname === facility));
+
+    // Include the flight if it meets any active filter (price, airline, and/or facilities)
+    return meetsPriceCondition && meetsAirlineCondition && meetsFacilitiesCondition;
   });
 }
-  
+
+
 
 
 
@@ -131,6 +165,16 @@ toggleAirlineFilter(airline: string, event: any): void {
   }
   this.applyFilters(); // Apply filters after selection change
 
+}
+
+
+toggleFacilityFilter(facility: string, event: any): void {
+  if (event.target.checked) {
+    this.selectedFacilities.push(facility);
+  } else {
+    this.selectedFacilities = this.selectedFacilities.filter(f => f !== facility);
+  }
+  this.applyFilters();
 }
 
 

@@ -61,4 +61,9 @@ export class FlightService {
   }
 
 
+
+  getAllFacilities():Observable<any>{
+return this.http.get("https://localhost:7117/api/Facility");
+  }
+
 }
