@@ -19,6 +19,7 @@ export class FlightTrackerComponent implements OnInit {
   flightPath: any;
   departureDate: Date = new Date();
   flightStatusMessage: string = '';
+   currentDate = new Date();
 
   constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) {}
 
@@ -30,8 +31,10 @@ export class FlightTrackerComponent implements OnInit {
         this.flightData = res;
         console.log('Flight found :)', this.flightData);
         console.log('Date :)', this.flightData[0].departureDate);
-
-        
+        if(this.flightData[0].departureDate > this.currentDate)
+          console.log('dep greatert than current which is true')      
+        else
+        console.log('no its not greater :( ');  
 
         if (this.flightData.length > 0) {
           this.departure = [this.flightData[0].departureLatitude, this.flightData[0].departureLongitude];
@@ -69,8 +72,8 @@ export class FlightTrackerComponent implements OnInit {
 
     this.flightPath = L.polyline([this.departure, this.destination], {
       color: 'blue',
-      weight: 4,
-      opacity: 0.7,
+      weight: 6,
+      opacity: 0.4,
       dashArray: '5, 10',
     }).addTo(this.map);
   }
@@ -78,45 +81,64 @@ export class FlightTrackerComponent implements OnInit {
   scheduleFlightAnimation(): void {
     const currentTime = new Date().getTime();
     const departureTime = this.departureDate.getTime();
-    const timeUntilDeparture = departureTime - currentTime;
-    console.log('departure tume:', departureTime);
-    console.log('current time: ', currentTime);
-
+    let timeUntilDeparture = departureTime - currentTime;
+    console.log(currentTime,departureTime);
     if (timeUntilDeparture > 0) {
-      // Schedule the animation to start at the departure time
-      setTimeout(() => this.startFlightAnimation(), timeUntilDeparture);
-      this.flightStatusMessage = `Flight will start moving in ${timeUntilDeparture / 1000} seconds.`;
+        // Convert timeUntilDeparture to days, hours, minutes, and seconds
+        const days = Math.floor(timeUntilDeparture / (1000 * 60 * 60 * 24));
+        timeUntilDeparture %= 1000 * 60 * 60 * 24;
+
+        const hours = Math.floor(timeUntilDeparture / (1000 * 60 * 60));
+        timeUntilDeparture %= 1000 * 60 * 60;
+
+        const minutes = Math.floor(timeUntilDeparture / (1000 * 60));
+        timeUntilDeparture %= 1000 * 60;
+
+        const seconds = Math.floor(timeUntilDeparture / 1000);
+
+        // Display the formatted time remaining in a readable way
+        this.flightStatusMessage = `Flight will start moving in ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+
+        // Schedule the animation to start at the departure time
+        setTimeout(() => this.startFlightAnimation(), departureTime - currentTime);
     } else {
-      // Check if the flight has already arrived
-      this.flightStatusMessage = 'This flight has already departed or arrived!';
-      // Optionally, display an "arrived" indicator or animation
-      this.startFlightAnimation(); // Start animation immediately if flight time has passed
+        // Check if the flight has already arrived
+        this.flightStatusMessage = 'This flight has already departed';
+        this.startFlightAnimation(); // Start animation immediately if flight time has passed
     }
-  }
+
+    console.log(this.flightStatusMessage);
+}
+
 
   startFlightAnimation(): void {
     let step = 0;
-    const totalSteps = 1000;
-    const intervalTime = 1000;
-
+    const departureTime = this.departureDate.getTime();
+    const destinationTime = new Date(this.flightData[0].destinationDate).getTime();
+    const duration = destinationTime - departureTime;
+    console.log(`duration: ${duration}`);
+    
+    // Use total steps based on flight duration; adjust for smoothness
+    const totalSteps = 1000; // Adjust this value if necessary for smoother animation
+    const intervalTime = duration / totalSteps;
+    
     const latStep = (this.destination[0] - this.departure[0]) / totalSteps;
     const lngStep = (this.destination[1] - this.departure[1]) / totalSteps;
-
+  
     this.animationInterval = setInterval(() => {
       if (step < totalSteps) {
         const newLat = this.departure[0] + latStep * step;
         const newLng = this.departure[1] + lngStep * step;
         this.currentPosition = [newLat, newLng];
-
+  
         this.airplaneMarker.setLatLng(this.currentPosition);
         this.map.panTo(this.currentPosition);
-
+  
         step++;
       } else {
         clearInterval(this.animationInterval);
-        // Optionally, update the message when the flight has arrived
-        this.flightStatusMessage = 'Flight has arrived!';
       }
     }, intervalTime);
   }
+  
 }
