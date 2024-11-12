@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => UserModule
+    loadChildren: () => UserModule,
+    canActivate:[guardNameGuard]
   },
   {
     path: 'security',
@@ -33,7 +34,8 @@ const routes: Routes = [
   },
   {
     path: 'airline',
-    loadChildren: () => AirlineModule
+    loadChildren: () => AirlineModule,
+    canActivate:[guardNameGuard]
   }
 ];
 
