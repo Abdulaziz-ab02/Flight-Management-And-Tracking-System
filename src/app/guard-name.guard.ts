@@ -1,20 +1,27 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { inject, Inject } from '@angular/core';
+import { inject } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 export const guardNameGuard: CanActivateFn = (route, state) => {
-  const router = new Router();
-  let toastr:ToastrService= inject(ToastrService);
+  const router = inject(Router);
+  let toastr: ToastrService = inject(ToastrService);
   const token = localStorage.getItem('token');
-  console.log(state);
+  
+
+  const messageShown = sessionStorage.getItem('messageShown');
+  
   if (token) {
     let user: any = localStorage.getItem('user');
     if (user) {
-      user = JSON.parse(user);  
+      user = JSON.parse(user);
 
+     
       if (state.url.indexOf('admin') > 0) {
         if (user.roleid === '1') {
-          toastr.success('Welcome to Admin dashboard');
+          if (!messageShown) {
+            toastr.success('Welcome to Admin dashboard');
+            sessionStorage.setItem('messageShown', 'true');
+          }
           return true;
         } else {
           toastr.warning('This page is for Admin module');
@@ -25,7 +32,10 @@ export const guardNameGuard: CanActivateFn = (route, state) => {
 
       if (state.url.indexOf('user') > 0) {
         if (user.roleid === '2') {
-          toastr.success('Welcome to User dashboard');
+          if (!messageShown) {
+            toastr.success('Welcome to User dashboard');
+            sessionStorage.setItem('messageShown', 'true');
+          }
           return true;
         } else {
           toastr.warning('This page is for User module only');
@@ -36,7 +46,10 @@ export const guardNameGuard: CanActivateFn = (route, state) => {
 
       if (state.url.indexOf('airline') > 0) {
         if (user.roleid === '3') {
-          toastr.success('Welcome to Airline dashboard');
+          if (!messageShown) {
+            toastr.success('Welcome to Airline dashboard');
+            sessionStorage.setItem('messageShown', 'true');
+          }
           return true;
         } else {
           toastr.warning('This page is for Airline module only');
