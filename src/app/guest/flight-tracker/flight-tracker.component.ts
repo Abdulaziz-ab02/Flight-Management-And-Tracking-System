@@ -19,7 +19,7 @@ export class FlightTrackerComponent implements OnInit {
   flightPath: any;
   departureDate: Date = new Date();
   flightStatusMessage: string = '';
-   currentDate = new Date();
+  currentDate = new Date();
 
   constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) {}
 
@@ -30,11 +30,7 @@ export class FlightTrackerComponent implements OnInit {
       (res) => {
         this.flightData = res;
         console.log('Flight found :)', this.flightData);
-        console.log('Date :)', this.flightData[0].departureDate);
-        if(this.flightData[0].departureDate > this.currentDate)
-          console.log('dep greatert than current which is true')      
-        else
-        console.log('no its not greater :( ');  
+        console.log('Date :)', this.flightData[0].departureDate); 
 
         if (this.flightData.length > 0) {
           this.departure = [this.flightData[0].departureLatitude, this.flightData[0].departureLongitude];
