@@ -31,6 +31,7 @@ export class ReportComponent implements OnInit {
   ngOnInit(): void {
     // Initialize data fetching when the component is loaded
     this.admin.FetchAllReservations();
+    this.afterSearch = this.admin.reservations;
 
     this.loadChartData();
   }
