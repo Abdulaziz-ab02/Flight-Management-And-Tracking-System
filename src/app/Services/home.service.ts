@@ -10,14 +10,8 @@ export class HomeService {
   constructor(public http: HttpClient) { }
 
 
-  testimonials: any = [];
-  getAllTestimonials() {
-    this.http.get('https://localhost:7117/api/Testimonial').subscribe(result => {
-      this.testimonials = result;
-      console.log(this.testimonials)
-    }, err => {
-      console.log(err.message)
-    });
+  getAllTestimonials():Observable<any> {
+    return this.http.get('https://localhost:7117/api/Testimonial');
   }
 
 

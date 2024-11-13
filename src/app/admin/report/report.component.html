@@ -62,7 +62,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let obj of afterSearch">
-              <td>{{ obj.reservationdate | date: 'MMM yyyy' }}</td>
+              <td>{{ obj.reservationdate | date: 'dd MMM yyyy' }}</td>
               <td>{{ obj.firstname }}</td>
               <td>{{ obj.lastname }}</td>
               <td>{{ obj.flightnumber }}</td>

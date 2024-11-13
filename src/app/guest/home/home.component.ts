@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Token } from '@angular/compiler';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit  {
   constructor(public home: HomeService, private router: Router, public dialog: MatDialog) { }
 
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
@@ -21,19 +21,32 @@ export class HomeComponent implements OnInit {
   isLoggedIn: boolean = false;
   partners:number = 0;
   flight:any[] = [];
+  testimonials: any = [];
+
 
   ngOnInit(): void {
-    this.home.getAllTestimonials()
-
-    this.home.getHomePage()
-    this.home.getContactInfo()
-
+    this.FetchTestemonials();
+    this.home.getHomePage();
+    this.home.getContactInfo();
     const token = localStorage.getItem('token');
     //if the user is loggen in 
     if (token) {
       this.isLoggedIn = true;
     }
 
+  }
+  ngAfterViewInit() {
+    this.FetchTestemonials();
+
+  }
+  FetchTestemonials(){
+    this.home.getAllTestimonials().subscribe((res) => {
+      this.testimonials = res;
+    },
+  (error) => {
+    console.log(`There was an error while trying to fetch the testemonials data error
+      message: ${error} :(`);
+  })
   }
   handlePartnersChanges(partners:number){
     this.partners = partners

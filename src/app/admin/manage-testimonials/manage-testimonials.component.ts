@@ -9,6 +9,8 @@ import { HomeService } from 'src/app/Services/home.service';
   styleUrls: ['./manage-testimonials.component.css']
 })
 export class ManageTestimonialsComponent implements OnInit {
+  testimonials: any = [];
+
   constructor(public home: HomeService, public dialog: MatDialog, public admin: AdminService) { }
 
   @ViewChild('callDeleteDailog') deleteDialog !: TemplateRef<any>;
@@ -16,7 +18,7 @@ export class ManageTestimonialsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.home.getAllTestimonials();
+    this.FetchTestemonials();
   }
 
   openDeleteDialog(id: number) {
@@ -29,6 +31,15 @@ export class ManageTestimonialsComponent implements OnInit {
             console.log('thank you')
         }
       });
+  }
+  FetchTestemonials(){
+    this.home.getAllTestimonials().subscribe((res) => {
+      this.testimonials = res;
+    },
+  (error) => {
+    console.log(`There was an error while trying to fetch the testemonials data error
+      message: ${error} :(`);
+  })
   }
 
   approveTestimonial(id: number, status: string) {
