@@ -292,6 +292,18 @@ export class AdminService {
   }
 
 
+//degree page 
+
+GetAllDegrees(): Observable<string[]>{
+  return this.http.get<string[]>('https://localhost:7117/api/Degree/GetAllDegrees');
+}
+
+GetAllFacilitesByDegree(id: number): Observable<any> {
+  return this.http.get('https://localhost:7117/api/Flight/GetAllFacilitesByDegreeId/' + id);
+}
+
+
+  //ما الها داعي 
   getTotalBenefitsByMonth(): Observable<any[]> {
     // Call your API endpoint here, which returns total benefits by month
     return this.http.get<any[]>(`https://localhost:7117/api/Reservation/monthlyBenefits`);

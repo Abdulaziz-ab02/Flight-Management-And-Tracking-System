@@ -14,6 +14,7 @@ import { CountryComponent } from './country/country.component';
 import { CreateCountryComponent } from './create-country/create-country.component';
 import { CityComponent } from './city/city.component';
 import { CreateCityComponent } from './create-city/create-city.component';
+import { DegreeComponent } from './degree/degree.component';
 
 const routes: Routes = [
 
@@ -76,6 +77,11 @@ const routes: Routes = [
 {
   path:'create-city',
   component:CreateCityComponent
+}
+,
+{
+  path:'Degree',
+  component:DegreeComponent
 }
 ];
 
