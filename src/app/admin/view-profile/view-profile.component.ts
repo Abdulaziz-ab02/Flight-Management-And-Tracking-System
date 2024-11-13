@@ -13,6 +13,7 @@ export class ViewProfileComponent implements OnInit {
   constructor(public home: HomeService, public auth: AuthService, public dialog: MatDialog) { }
 
   @ViewChild('callAirlineUpdateDailog') airlineUpdateDialog !: TemplateRef<any>;
+  @ViewChild('callUpdateAdminDailog') updateDialog !: TemplateRef<any>;
 
 
   role_id: any;
@@ -31,7 +32,47 @@ export class ViewProfileComponent implements OnInit {
   }
 
   //admin
+  updateUserForm: FormGroup = new FormGroup({
+    firstname: new FormControl(),
+    lastname: new FormControl(),
+    username: new FormControl(),
+    email: new FormControl(),
+    phone: new FormControl(),
+    dateofbirth: new FormControl(),
+    nationalnumber: new FormControl(),
+    password: new FormControl(),
+    image: new FormControl(),
+    id: new FormControl()
+  })
 
+  pDataAdmin: any = {}
+  openUpdateDialog(obj: any) {
+    this.pDataAdmin = obj;
+
+    this.updateUserForm.controls['id'].setValue(this.pDataAdmin.id);
+
+    this.auth.userImage = this.pDataAdmin.image
+
+    this.dialog.open(this.updateDialog)
+  }
+
+  update() {
+    this.auth.UpdateUser(this.updateUserForm.value)
+  }
+
+  uploadProfileImage(file: any) {
+    //no image uploaded
+    if (file.length == 0)
+      return;
+
+    //take first image (if user uploaded multiple images)
+    let fileToUpload = <File>file[0];
+
+    //trun to formdata so the func in service accept it
+    const formData = new FormData();
+    formData.append('file', fileToUpload, file.name)
+    this.auth.uploadAttachmentUser(formData);
+  }
 
 
 
