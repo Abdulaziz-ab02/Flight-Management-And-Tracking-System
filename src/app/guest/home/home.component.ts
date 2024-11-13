@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn: boolean = false;
   partners:number = 0;
+  flight:any[] = [];
 
   ngOnInit(): void {
     this.home.getAllTestimonials()
@@ -38,8 +39,8 @@ export class HomeComponent implements OnInit {
     this.partners = partners
   }
   handleHomeFlights( flights: any[]) {
-    console.log(flights);
-    this.router.navigate(['/flights'], { state: { flights: flights,partners:this.partners} });  
+    this.flight = flights
+    this.router.navigate(['/flights'], { state: { flights:this.flight,partners:this.partners} });  
   }
   
   

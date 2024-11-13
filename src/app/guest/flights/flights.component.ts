@@ -23,17 +23,13 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAirlines();
-   
+    this.filteredFlights = history.state.flights;
+    this.flights = this.filteredFlights;
     
     this.numOfPassengers = history.state.partners;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
     this.userId = user.userid;
-  
-  // Load flights from search form if available
-  if (history.state.flights) {
-    this.handleFlightsFound(history.state.flights);
-  }
 
   }
 
@@ -65,6 +61,8 @@ export class FlightsComponent implements OnInit {
   handleFlightsFound(flights: any[]) { 
     this.flights = flights;
     this.filteredFlights=this.flights;
+    console.log(`Flights from searchForm: ${this.flights} :)`);
+
   }
   handlePartnerCount(partners:number){
     this.numOfPassengers = partners;

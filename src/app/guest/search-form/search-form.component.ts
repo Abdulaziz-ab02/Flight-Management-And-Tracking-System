@@ -105,7 +105,8 @@ export class SearchFormComponent {
       async (res: any[]) => {
         this.flights = res;
         console.log('Search results:', this.flights);
-  
+        this.flightsFound.emit(this.flights);
+
         // Fetch facilities for each flight and wait for all to complete
         const facilityPromises = this.flights.map(async (flight) => {
           const facilities = await this.flight.GetAllFacilitesByDegree(flight.degreeId).toPromise();
@@ -116,9 +117,7 @@ export class SearchFormComponent {
   
         // Wait until all facility fetches are complete
         await Promise.all(facilityPromises);
-  
         // Emit the results after facilities are populated
-        this.flightsFound.emit(this.flights);
       },
       (err: any) => {
         console.error('Error occurred during search:', err);
@@ -127,15 +126,26 @@ export class SearchFormComponent {
   }
   
 
-  selectDepartureCity(city: { cityname: string, id: number }) {
-    this.selectedDepartureCity = city.cityname;
-    this.searchForm.controls['departurePlaceId'].setValue(city.id);
-    this.filteredDepartureCities = [];
+  selectDepartureCity(city: { cityname: string, id: number } | null) {
+    if (city === null) {
+      this.selectedDepartureCity = 'None';
+      this.searchForm.controls['departurePlaceId'].setValue(null);
+    } else {
+      this.selectedDepartureCity = city.cityname;
+      this.searchForm.controls['departurePlaceId'].setValue(city.id);
+    }
+    this.filteredDepartureCities = []; // Hide dropdown after selection
   }
 
-  selectDestinationCity(city: { cityname: string, id: number }) {
-    this.selectedDestinationCity = city.cityname;
-    this.searchForm.controls['destenationPlaceId'].setValue(city.id);
-    this.filteredDestinationCities = [];
+  // Method to handle selecting a destination city, including the "None" option
+  selectDestinationCity(city: { cityname: string, id: number } | null) {
+    if (city === null) {
+      this.selectedDestinationCity = 'None';
+      this.searchForm.controls['destenationPlaceId'].setValue(null);
+    } else {
+      this.selectedDestinationCity = city.cityname;
+      this.searchForm.controls['destenationPlaceId'].setValue(city.id);
+    }
+    this.filteredDestinationCities = []; // Hide dropdown after selection
   }
 }
