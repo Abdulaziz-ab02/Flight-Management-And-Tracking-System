@@ -105,7 +105,6 @@ export class SearchFormComponent {
       async (res: any[]) => {
         this.flights = res;
         console.log('Search results:', this.flights);
-        this.flightsFound.emit(this.flights);
 
         // Fetch facilities for each flight and wait for all to complete
         const facilityPromises = this.flights.map(async (flight) => {
@@ -114,7 +113,8 @@ export class SearchFormComponent {
             facilityname: facility.facilityname
           }));
         });
-  
+        this.flightsFound.emit(this.flights);
+
         // Wait until all facility fetches are complete
         await Promise.all(facilityPromises);
         // Emit the results after facilities are populated

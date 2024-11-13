@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Token } from '@angular/compiler';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, AfterViewInit  {
+export class HomeComponent implements OnInit  {
   constructor(public home: HomeService, private router: Router, public dialog: MatDialog) { }
 
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
@@ -35,10 +35,8 @@ export class HomeComponent implements OnInit, AfterViewInit  {
     }
 
   }
-  ngAfterViewInit() {
-    this.FetchTestemonials();
+     // Re-initialize carousel or any required script here
 
-  }
   FetchTestemonials(){
     this.home.getAllTestimonials().subscribe((res) => {
       this.testimonials = res;
@@ -53,6 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit  {
   }
   handleHomeFlights( flights: any[]) {
     this.flight = flights
+    console.log(`Flights In Home page: ${flights} :)`);
     this.router.navigate(['/flights'], { state: { flights:this.flight,partners:this.partners} });  
   }
   
