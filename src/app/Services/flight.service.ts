@@ -16,7 +16,7 @@ export class FlightService {
   GetAllCiies(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:7117/api/City/GetAllCities');
   }
-  GetAllDegrees(): Observable<string[]>{
+  GetAllDegrees(): Observable<string[]> {
     return this.http.get<string[]>('https://localhost:7117/api/Degree/GetAllDegrees');
   }
 
@@ -58,15 +58,34 @@ export class FlightService {
   FetchFlightByFlightID(flightId: any): Observable<any> {
     return this.http.get(`https://localhost:7117/api/Flight/FetchFlightByFlightNumber?flightNumber=${flightId}`);
   }
-  
-  getAllAirlines():Observable<any>{
+
+  getAllAirlines(): Observable<any> {
     return this.http.get("https://localhost:7117/api/Airline");
   }
 
 
 
-  getAllFacilities():Observable<any>{
-return this.http.get("https://localhost:7117/api/Facility");
+  getAllFacilities(): Observable<any> {
+    return this.http.get("https://localhost:7117/api/Facility");
   }
+
+  CreateFacility(body: any): Observable<any> {
+    return this.http.post("https://localhost:7117/api/Facility/CreateFacility", body);
+  }
+
+  UpdateFacility(body: any): Observable<any> {
+    return this.http.put("https://localhost:7117/api/Facility/UpdateFacility", body);
+  }
+
+  DeleteFacility(id: any): Observable<any> {
+    return this.http.delete("https://localhost:7117/api/Facility/DeleteFacility/" + id);
+  }
+
+
+
+  FetchReservationsByFlightId(flightId: any): Observable<any> {
+    return this.http.get("https://localhost:7117/api/Reservation/FetchReservationsByFlightId/" + flightId);
+  }
+
 
 }
