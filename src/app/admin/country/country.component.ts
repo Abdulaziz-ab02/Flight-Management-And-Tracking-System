@@ -49,7 +49,12 @@ export class CountryComponent implements OnInit {
     const updatedData = { ...this.UpdateCountry.value };
     this.admin.updateCountry(updatedData);
     this.dialog.closeAll();
+    window.location.reload();
 
+  }
+  cancel() {
+    this.dialog.closeAll();
+    window.location.reload();
   }
 
   addCountry(): void {

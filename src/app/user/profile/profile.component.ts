@@ -51,9 +51,14 @@ export class ProfileComponent implements OnInit {
 
   save() {
     //api 
-    this.auth.UpdateUser(this.updateUserForm.value)
+    this.auth.UpdateUser(this.updateUserForm.value);
+    window.location.reload();
   }
-
+  cancel() {
+    this.dialog.closeAll();
+    window.location.reload();
+  }
+  
   uploadImage(file: any) {
     //no image uploaded
     if (file.length == 0)

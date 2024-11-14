@@ -103,10 +103,12 @@ export class CityComponent {
 
     this.admin.UpdateCity(updatedData);
     this.dialog.closeAll();
+    window.location.reload();
   }
 
   cancel() {
     this.dialog.closeAll();
+    window.location.reload();
   }
 
   uploadFile(file: any) {

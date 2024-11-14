@@ -54,7 +54,7 @@ export class DegreeComponent implements OnInit {
 
   saveNewDegree() {
     this.admin.createDegree(this.CreateDegree.value).subscribe(() => {
-      this.loadDegrees();  // Refresh data after creating
+      window.location.reload(); // Refresh data after creating
       this.dialog.closeAll();
     });
   }
@@ -85,8 +85,8 @@ export class DegreeComponent implements OnInit {
     this.admin.updateDegree(this.UpdateDegree.value).subscribe(
       (response) => {
         console.log('Degree updated successfully:', response);
-        this.loadDegrees();  // Reload the list of degrees after the update
-        this.dialog.closeAll();  // Close the update dialog
+        this.dialog.closeAll(); 
+        window.location.reload();
       },
       (error) => {
         console.error('Error updating degree:', error);
@@ -98,7 +98,7 @@ export class DegreeComponent implements OnInit {
    
     this.dialog.closeAll();
     window.location.reload();
- // Close the dialog when cancel is clicked
+
   }
 
   
@@ -109,7 +109,7 @@ export class DegreeComponent implements OnInit {
           this.admin.deleteDegree(ID).subscribe(
             () => {
               console.log('Degree deleted successfully');
-              this.loadDegrees(); // Refresh data after deletion
+              window.location.reload();
             },
             (error) => {
               console.error('Error deleting degree:', error);

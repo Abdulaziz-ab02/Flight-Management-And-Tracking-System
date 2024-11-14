@@ -84,7 +84,13 @@ export class HomeComponent implements OnInit  {
   }
 
   save() {
-    this.home.CreateTestimonial(this.createTestimonial.value)
+    this.home.CreateTestimonial(this.createTestimonial.value);
+    window.location.reload();
+  }
+
+  cancel() {
+    this.dialog.closeAll();
+    window.location.reload();
   }
   
   }

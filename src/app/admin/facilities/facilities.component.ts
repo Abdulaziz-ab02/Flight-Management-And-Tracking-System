@@ -10,7 +10,7 @@ import { FlightService } from 'src/app/Services/flight.service';
 })
 export class FacilitiesComponent implements OnInit {
 
-  constructor(private flightService: FlightService,
+  constructor(public flightService: FlightService,
     public dialog: MatDialog
   ) { }
 
@@ -41,6 +41,7 @@ export class FacilitiesComponent implements OnInit {
   })
 
   openCreateDialog() {
+    this.createFacility.reset();  
     this.dialog.open(this.createDialog)
   }
 
@@ -48,7 +49,8 @@ export class FacilitiesComponent implements OnInit {
     this.flightService.CreateFacility(this.createFacility.value).subscribe(
       res => {
         console.log("facility created")
-        window.location.reload();
+        window.location.reload(); // Refresh data after creating
+        this.dialog.closeAll();
       },
       err => {
         console.log("error creating facility")
@@ -75,7 +77,8 @@ export class FacilitiesComponent implements OnInit {
     this.flightService.UpdateFacility(this.updateFacility.value).subscribe(
       res => {
         console.log("facility updated")
-        window.location.reload();
+        window.location.reload(); // Refresh data after creating
+        this.dialog.closeAll();
       },
       err => {
         console.log("error updating facility")
@@ -84,27 +87,33 @@ export class FacilitiesComponent implements OnInit {
   }
 
 
-
+  cancel() {
+    this.dialog.closeAll();
+    window.location.reload();
+  }
 
   openDeleteDialog(id: number) {
-    const dialogRef = this.dialog.open(this.deleteDialog).afterClosed().subscribe(
-      result => {
-        if (result != undefined) {
-          if (result == 'yes')
-            this.flightService.DeleteFacility(id).subscribe(
-              res => {
-                console.log("faciliy deleted")
-                window.location.reload();
-              },
-              err => {
-                console.log("error deleting facility")
-              }
-            );
-          else if (result == 'no')
-            console.log('Facility deletion canceled')
-        }
-      });
+    const dialogRef = this.dialog.open(this.deleteDialog); // Open the delete dialog
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res === 'yes') {
+        this.flightService.DeleteFacility(id).subscribe(
+          () => {
+            console.log('Facility deleted successfully');
+            window.location.reload(); // Reload facilities after deletion
+          },
+          (error) => {
+            console.error('Error deleting facility:', error);
+          }
+        );
+      } else {
+        console.log("Deletion canceled");
+      }
+    });
   }
+
+
+ 
 
 
 
