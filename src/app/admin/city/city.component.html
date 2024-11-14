@@ -6,7 +6,7 @@
   <div class="container-fluid pt-4 px-4">
     <div class="bg-light text-center rounded p-4">
       <div class="d-flex align-items-center justify-content-between mb-4">
-        <h6 class="mb-0">City Info</h6>
+        <h1 class="mb-0">City Info</h1>
       </div>
 
       <!-- Create City Button -->
@@ -26,19 +26,19 @@
           </thead>
           <tbody>
             <tr *ngFor="let obj of cities$ | async">
-                <td>{{ obj.cityname }}</td>
-                <td>{{ obj.countryname }}</td>
-                <td>
-                  <img src="../../../assets/Images/{{ obj.cityimage }}" style="width: 80px; height: 80px;">
-                </td>
-                <td>
-                  <button mat-raised-button color="primary" (click)="openUpdateDialog(obj)">Update</button>
-                </td>
-                <td>
-                  <button mat-raised-button color="warn" (click)="openDeleteDialog(obj.id)">Delete</button>
-                </td>
-              </tr>
-              
+              <td>{{ obj.cityname }}</td>
+              <td>{{ obj.countryname }}</td>
+              <td>
+                <img src="../../../assets/Images/{{ obj.cityimage }}" style="width: 80px; height: 80px;">
+              </td>
+              <td>
+                <button mat-raised-button color="primary" (click)="openUpdateDialog(obj)">Update</button>
+              </td>
+              <td>
+                <button mat-raised-button color="warn" (click)="openDeleteDialog(obj.id)">Delete</button>
+              </td>
+            </tr>
+
           </tbody>
         </table>
       </div>
