@@ -83,9 +83,5 @@ export class FlightService {
 
 
 
-  FetchReservationsByFlightId(flightId: any): Observable<any> {
-    return this.http.get("https://localhost:7117/api/Reservation/FetchReservationsByFlightId/" + flightId);
-  }
-
 
 }
