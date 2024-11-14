@@ -64,7 +64,21 @@
                   <p><strong><i class="fas fa-plane-arrival"></i> Arrival:</strong> {{ flight.destinationdate | date: 'short' }} ({{ flight.destinationIatacode }})</p>
                 </div>
                 <div class="col-md-4 text-right">
-                  <h5 class="flight-price"><i class="fas fa-dollar-sign"></i> JOD {{ flight.price }}</h5>
+                  <h5 class="flight-price">
+                  <i class="fas fa-dollar-sign"></i>
+                  <span *ngIf="flight.discountvalue > 0" class="original-price" style="text-decoration: line-through; color: black;">
+                    JOD {{ flight.price}}
+                  </span>
+                  
+                  <span *ngIf="flight.discountvalue > 0">
+                    JOD {{ calculateDiscountedPrice(flight)}}
+                  </span>
+              
+                  <!-- Display only the original price if there's no discount -->
+                  <span *ngIf="!flight.discountvalue || flight.discountvalue === 0">
+                    JOD {{ flight.price}}
+                  </span>
+                  </h5>
                   <button class="btn btn-primary select-flight-btn" (click)="OpenFlightSelectionDialog(flight)">
                     <i class="fas fa-check"></i> Select Flight
                   </button>

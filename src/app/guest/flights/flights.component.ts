@@ -32,6 +32,19 @@ export class FlightsComponent implements OnInit {
     this.userId = user.userid;
 
   }
+  calculateDiscountedPrice(flight: any): number {
+    if (flight.discountvalue && flight.discountvalue > 0 && flight.discountvalue <= 100) {
+      return flight.price - (flight.price * (flight.discountvalue / 100));
+    }
+    return flight.price;
+  }
+  applyDiscountToFlight(flight: any): void {
+    if (flight.discountvalue && flight.discountvalue > 0 && flight.discountvalue <= 100) {
+      flight.price = flight.price - (flight.price * (flight.discountvalue / 100));
+    }
+  }
+  
+  
 
   private calculateTotalPrice() {
     console.log('numOfPassengers: ', this.numOfPassengers);
