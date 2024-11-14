@@ -1,0 +1,10 @@
+--------------------------------------------------------
+--  Ref Constraints for Table LOGIN
+--------------------------------------------------------
+
+  ALTER TABLE "C##FLIGHT"."LOGIN" ADD FOREIGN KEY ("ROLEID")
+	  REFERENCES "C##FLIGHT"."ROLE" ("ID") ON DELETE SET NULL ENABLE;
+  ALTER TABLE "C##FLIGHT"."LOGIN" ADD FOREIGN KEY ("USERID")
+	  REFERENCES "C##FLIGHT"."USERS" ("ID") ON DELETE SET NULL ENABLE;
+  ALTER TABLE "C##FLIGHT"."LOGIN" ADD CONSTRAINT "SYS_C008756" FOREIGN KEY ("AIRLINEID")
+	  REFERENCES "C##FLIGHT"."AIRLINES" ("ID") ON DELETE CASCADE ENABLE;
