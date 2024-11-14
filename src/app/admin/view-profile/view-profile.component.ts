@@ -51,13 +51,14 @@ export class ViewProfileComponent implements OnInit {
 
     this.updateUserForm.controls['id'].setValue(this.pDataAdmin.id);
 
-    this.auth.userImage = this.pDataAdmin.image
+    this.auth.userImage = this.pDataAdmin.image;
 
-    this.dialog.open(this.updateDialog)
+    this.dialog.open(this.updateDialog);
   }
 
   update() {
-    this.auth.UpdateUser(this.updateUserForm.value)
+    this.auth.UpdateUser(this.updateUserForm.value);
+    window.location.reload();
   }
 
   uploadProfileImage(file: any) {
@@ -101,7 +102,13 @@ export class ViewProfileComponent implements OnInit {
   }
 
   save() {
-    this.auth.UpdateAirline(this.updateAirlineForm.value)
+    this.auth.UpdateAirline(this.updateAirlineForm.value);
+    window.location.reload();
+  }
+
+  cancel() {
+    this.dialog.closeAll();
+    window.location.reload();
   }
 
   uploadImage(file: any) {

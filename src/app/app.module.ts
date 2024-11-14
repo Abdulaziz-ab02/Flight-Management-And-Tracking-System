@@ -9,6 +9,7 @@ import { GuestSharedModule } from './guest/guest-shared/guest-shared.module';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Interceptor/token.interceptor';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -23,7 +24,8 @@ import { TokenInterceptor } from 'src/Interceptor/token.interceptor';
     AdminSharedModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ToastNoAnimationModule.forRoot()
+    ToastNoAnimationModule.forRoot(),
+    MatTableModule
   ],
   providers: [{
     provide:HTTP_INTERCEPTORS,

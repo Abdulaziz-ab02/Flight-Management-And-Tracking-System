@@ -40,6 +40,7 @@ import { AdminService } from 'src/app/Services/admin.service';
   
   save(){
     this.admin.CreateCity(this.createCity.value);
+    window.location.reload();
    }
   
    uploadFile(file:any){

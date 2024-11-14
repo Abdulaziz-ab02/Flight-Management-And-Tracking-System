@@ -88,11 +88,13 @@ export class AirportsComponent implements OnInit {
     }
     // If cityid is chosen, proceed with saving and close the dialog
     this.admin.updateAirport(updatedData);
-    this.dialog.closeAll(); // This will close the dialog manually
+    this.dialog.closeAll(); 
+    window.location.reload();// This will close the dialog manually
   }
 
   cancel() {
-    this.dialog.closeAll(); // Close the dialog when cancel is clicked
+    this.dialog.closeAll(); 
+    window.location.reload();
   }
 
 

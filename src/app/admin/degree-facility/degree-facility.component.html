@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+<div class="container">
+  <!-- Degree Name Centered -->
+  <h2>{{ degreeName }}</h2>
+
+  <!-- Stylish Table Design -->
+  <td> <button mat-raised-button color="primary"  >Add</button></td>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th class="bold-header">#</th> <!-- For the number column -->
+        <th class="bold-header">Facility Name</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let facility of facilities; let i = index">
+        <td>{{ i + 1 }}</td> <!-- Show the row number (index + 1) -->
+        <td>{{ facility.facilityname }}</td>
+     
+        <td> <button mat-raised-button color="warn"  >Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+ 
+</div>
+ <div class="text-center">
+    <button  mat-raised-button color="primary" (click)="goBack()">← Back to Degree</button>
+  </div>
+<app-footer></app-footer>

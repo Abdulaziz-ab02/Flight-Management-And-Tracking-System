@@ -176,7 +176,7 @@ export class AuthService {
       }, err => {
         console.log('Error')
       })
-    window.location.reload();
+      window.location.reload();
   }
 
 

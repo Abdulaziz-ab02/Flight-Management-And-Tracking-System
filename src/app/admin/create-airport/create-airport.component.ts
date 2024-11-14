@@ -44,6 +44,7 @@ export class CreateAirportComponent {
   
    save(){
     this.admin.createAirport(this.createAirport.value);
+    window.location.reload();
    }
   
    uploadFile(file:any){

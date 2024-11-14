@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.admin.FetchAllAirports();
     this.admin.FetchAllReservations();
     this.loadChartData();
-    this.fetchMonthlyBenefits();
+
   }
 
 
@@ -58,17 +58,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  fetchMonthlyBenefits(): void {
-    this.admin.getTotalBenefitsByMonth().subscribe(
-      (data) => {
-        this.monthlyBenefitsData = data;
-        this.createLineChart();
-      },
-      (error) => {
-        console.error('Error fetching monthly benefits data:', error);
-      }
-    );
-  }
+
 
 
 
