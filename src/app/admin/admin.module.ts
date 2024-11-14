@@ -21,6 +21,7 @@ import { CreateCountryComponent } from './create-country/create-country.componen
 import { CreateCityComponent } from './create-city/create-city.component';
 import { DegreeComponent } from './degree/degree.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
+import { DegreeFacilityComponent } from './degree-facility/degree-facility.component';
 
 
 
@@ -43,6 +44,7 @@ import { FacilitiesComponent } from './facilities/facilities.component';
     CreateCityComponent,
     DegreeComponent,
     FacilitiesComponent,
+    DegreeFacilityComponent,
   ],
   imports: [
     CommonModule,
