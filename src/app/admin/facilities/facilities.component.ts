@@ -19,7 +19,6 @@ export class FacilitiesComponent implements OnInit {
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
   @ViewChild('callUpdateDailog') updateDialog !: TemplateRef<any>;
 
-
   ngOnInit(): void {
     this.loadFacilities();
   }
@@ -41,7 +40,7 @@ export class FacilitiesComponent implements OnInit {
   })
 
   openCreateDialog() {
-    this.createFacility.reset();  
+    //this.createFacility.reset();
     this.dialog.open(this.createDialog)
   }
 
@@ -50,7 +49,6 @@ export class FacilitiesComponent implements OnInit {
       res => {
         console.log("facility created")
         window.location.reload(); // Refresh data after creating
-        this.dialog.closeAll();
       },
       err => {
         console.log("error creating facility")
@@ -78,7 +76,6 @@ export class FacilitiesComponent implements OnInit {
       res => {
         console.log("facility updated")
         window.location.reload(); // Refresh data after creating
-        this.dialog.closeAll();
       },
       err => {
         console.log("error updating facility")
@@ -88,9 +85,9 @@ export class FacilitiesComponent implements OnInit {
 
 
   cancel() {
-    this.dialog.closeAll();
     window.location.reload();
   }
+
 
   openDeleteDialog(id: number) {
     const dialogRef = this.dialog.open(this.deleteDialog); // Open the delete dialog
@@ -111,10 +108,5 @@ export class FacilitiesComponent implements OnInit {
       }
     });
   }
-
-
- 
-
-
 
 }

@@ -78,10 +78,13 @@ export class FlightService {
   }
 
   DeleteFacility(id: any): Observable<any> {
-    return this.http.delete(`https://localhost:7117/api/Facility/DeleteFacility/${id}`);
+    return this.http.delete("https://localhost:7117/api/Facility/DeleteFacility/" + id);
   }
 
 
 
+  FetchReservationsByAirline(id: any): Observable<any> {
+    return this.http.get("https://localhost:7117/api/Reservation/FetchReservationsByAirline/" + id);
+  }
 
 }
