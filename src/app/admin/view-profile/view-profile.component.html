@@ -111,7 +111,7 @@
                 </mat-form-field>
             </div>
 
-            <input type="file" #file formControlName="image" (change)="uploadProfileImage(file.files)">
+            <input type="file" #file formControlName="image" (change)="uploadProfileImage(file.files)" accept="image/*">
 
         </form>
 

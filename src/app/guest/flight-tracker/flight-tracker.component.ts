@@ -115,7 +115,7 @@ export class FlightTrackerComponent implements OnInit {
     console.log(`duration: ${duration}`);
     
     // Use total steps based on flight duration; adjust for smoothness
-    const totalSteps = 1000; // Adjust this value if necessary for smoother animation
+    const totalSteps = 2000; // Adjust this value if necessary for smoother animation
     const intervalTime = duration / totalSteps;
     
     const latStep = (this.destination[0] - this.departure[0]) / totalSteps;
