@@ -332,4 +332,18 @@ export class AdminService {
     return this.http.post("https://localhost:7117/api/ContactMessage/CreateContactMessage", body);
   }
 
+
+
+  //report
+
+
+  GetMonthlyTotalBenefits(month: string, year: string): Observable<any[]> {
+    return this.http.get<any[]>(`https://localhost:7117/api/Reservation/MonthlyBenefits/${month}/${year}`);
+  }
+
+  GetAnnualTotalBenefits(year: string): Observable<any[]> {
+    return this.http.get<any[]>(`https://localhost:7117/api/Reservation/AnnualBenefits/${year}`);
+  }
+  
+  
 }
