@@ -10,35 +10,42 @@
         </div>
     </div>
 </div>
+
 <div class="untree_co-section">
     <div class="container">
-        <div class="row justify-content-between align-items-center">
-            <div class="col-md-5">
-                <img src=".. /../../assets/Images/{{home.userProfileInfo.image}}" class="img-fluid"
-                style="width: 80%; height: 80%; border-radius: 50px; border: 5px dashed #184263; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">
-            </div>
-
-            <div class="col-md-6">
-                <div>
-                    <h4>Full Name : {{home.userProfileInfo.firstname}} {{home.userProfileInfo.lastname}}</h4>
-                    <h4>Username : {{home.userProfileInfo.username}}</h4>
-                    <h4>Email : {{home.userProfileInfo.email}}</h4>
-                    <h4>Phone : {{home.userProfileInfo.phone}}</h4>
-                    <h4>Date of Birth : {{home.userProfileInfo.dateofbirth | date}}</h4>
-                    <h4>National Number : {{home.userProfileInfo.nationalnumber}}</h4>
-                </div>
-
-                <div style="margin-top: 50px;">
-                    <button class="btn btn-primary" (click)="openUpdateDialog(home.userProfileInfo)">Update
-                        Profile</button>ّ
+        <div class="row justify-content-center align-items-center">
+            <!-- Profile Image Section -->
+            <div class="col-md-4 text-center">
+                <div class="profile-image-container">
+                    <img src="../../../assets/Images/{{home.userProfileInfo.image}}" alt="Profile Picture"
+                        class="img-fluid rounded-circle shadow-lg" style="width: 90%; max-width: 200px; " />
                 </div>
             </div>
 
+            <!-- Profile Information Section -->
+            <div class="col-md-7">
+                <div class="card shadow-sm p-4">
 
-
-
-
-
+                    <div class="profile-info p-4 mb-3"
+                        style="background-color: #1A374D; color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+                        <p style="letter-spacing: 1.2px;"><strong>Full Name:</strong> {{home.userProfileInfo.firstname}}
+                            {{home.userProfileInfo.lastname}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Username:</strong> {{home.userProfileInfo.username}}
+                        </p>
+                        <p style="letter-spacing: 1.2px;"><strong>Email:</strong> {{home.userProfileInfo.email}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Phone:</strong> {{home.userProfileInfo.phone}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>Date of Birth:</strong>
+                            {{home.userProfileInfo.dateofbirth | date}}</p>
+                        <p style="letter-spacing: 1.2px;"><strong>National Number:</strong>
+                            {{home.userProfileInfo.nationalnumber}}</p>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <button class="btn btn-primary btn-lg" (click)="openUpdateDialog(home.userProfileInfo)">
+                            Update Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

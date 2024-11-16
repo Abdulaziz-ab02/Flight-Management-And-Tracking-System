@@ -24,14 +24,14 @@
                     </button>
 
                     <mat-menu #menu="matMenu">
+                        <button mat-menu-item routerLink="/user/profile">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+                            <span>My Profile</span>
+                        </button>
                         <button mat-menu-item routerLink="/user/reservationsRecord">
                             <mat-icon svgIcon="record_icon" aria-hidden="false"
                                 aria-label="Example thumbs up SVG icon"></mat-icon>
                             <span>My Reservations</span>
-                        </button>
-                        <button mat-menu-item routerLink="/user/profile">
-                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
-                            <span>My Profile</span>
                         </button>
                         <button mat-menu-item (click)="Logout()">
                             <mat-icon svgIcon="logout_icon" aria-hidden="false"
