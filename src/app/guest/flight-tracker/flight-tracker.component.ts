@@ -12,7 +12,7 @@ export class FlightTrackerComponent implements OnInit {
   airplaneMarker: any;
   currentPosition?: [number, number];
   animationInterval: any;
-  flightData: any[] = [];
+  flightData: any = {};
   flightId: any;
   departure: [number, number] = [0, 0];
   destination: [number, number] = [0, 0];
@@ -20,6 +20,7 @@ export class FlightTrackerComponent implements OnInit {
   departureDate: Date = new Date();
   flightStatusMessage: string = '';
   currentDate = new Date();
+Object: any;
 
   constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) {}
 
@@ -30,15 +31,19 @@ export class FlightTrackerComponent implements OnInit {
       (res) => {
         this.flightData = res;
         console.log('Flight found :)', this.flightData);
-        console.log('Date :)', this.flightData[0].departureDate); 
+        console.log('Date :)', this.flightData.departureDate);
 
-        if (this.flightData.length > 0) {
-          this.departure = [this.flightData[0].departureLatitude, this.flightData[0].departureLongitude];
-          this.destination = [this.flightData[0].destinationLatitude, this.flightData[0].destinationLongitude];
-          this.departureDate = new Date(this.flightData[0].departureDate);
+        this.departure = [this.flightData.departureLatitude, this.flightData.departureLongitude];
+        this.destination = [this.flightData.destinationLatitude, this.flightData.destinationLongitude];
+        this.departureDate = new Date(this.flightData.departureDate);
 
-          this.cdr.detectChanges();
-          this.initializeMap();
+        this.cdr.detectChanges();
+        this.initializeMap();
+
+        // Check flight status and handle accordingly
+        if (this.flightData.status.toLowerCase() === 'landed') {
+          this.handleLandedFlight();
+        } else {
           this.scheduleFlightAnimation();
         }
       },
@@ -47,6 +52,23 @@ export class FlightTrackerComponent implements OnInit {
       }
     );
   }
+
+  handleLandedFlight(): void {
+    // Position the airplane at the destination
+    if (this.airplaneMarker) {
+      this.airplaneMarker.setLatLng(this.destination);
+      this.map.panTo(this.destination);
+    }
+    this.flightStatusMessage = 'Flight has landed at its destination';
+    
+    // Draw the completed flight path
+    if (this.flightPath) {
+      this.flightPath.setStyle({
+        color: 'green',  // Change color to indicate completed flight
+        dashArray: []    // Changed here
+      });
+    }
+}
 
   initializeMap(): void {
     if (this.map) {
@@ -64,58 +86,61 @@ export class FlightTrackerComponent implements OnInit {
       iconAnchor: [25, 25],
     });
 
-    this.airplaneMarker = L.marker(this.departure, { icon: airplaneIcon }).addTo(this.map);
+    // Initialize the airplane at departure or destination based on status
+    const initialPosition = this.flightData.status?.toLowerCase() === 'landed' 
+      ? this.destination 
+      : this.departure;
+    
+    this.airplaneMarker = L.marker(initialPosition, { icon: airplaneIcon }).addTo(this.map);
 
     this.flightPath = L.polyline([this.departure, this.destination], {
-      color: 'blue',
+      color: this.flightData.status?.toLowerCase() === 'landed' ? 'green' : 'blue',
       weight: 6,
       opacity: 0.4,
-      dashArray: '5, 10',
+      dashArray: this.flightData.status?.toLowerCase() === 'landed' ? [] : '5, 10',  // Changed here
     }).addTo(this.map);
-  }
+
+    // Fit the map bounds to show both departure and destination
+    const bounds = L.latLngBounds([this.departure, this.destination]);
+    this.map.fitBounds(bounds, { padding: [50, 50] });
+}
 
   scheduleFlightAnimation(): void {
     const currentTime = new Date().getTime();
     const departureTime = this.departureDate.getTime();
     let timeUntilDeparture = departureTime - currentTime;
-    console.log(currentTime,departureTime);
+    console.log(currentTime, departureTime);
+
     if (timeUntilDeparture > 0) {
-        // Convert timeUntilDeparture to days, hours, minutes, and seconds
-        const days = Math.floor(timeUntilDeparture / (1000 * 60 * 60 * 24));
-        timeUntilDeparture %= 1000 * 60 * 60 * 24;
+      // Convert timeUntilDeparture to days, hours, minutes, and seconds
+      const days = Math.floor(timeUntilDeparture / (1000 * 60 * 60 * 24));
+      timeUntilDeparture %= 1000 * 60 * 60 * 24;
 
-        const hours = Math.floor(timeUntilDeparture / (1000 * 60 * 60));
-        timeUntilDeparture %= 1000 * 60 * 60;
+      const hours = Math.floor(timeUntilDeparture / (1000 * 60 * 60));
+      timeUntilDeparture %= 1000 * 60 * 60;
 
-        const minutes = Math.floor(timeUntilDeparture / (1000 * 60));
-        timeUntilDeparture %= 1000 * 60;
+      const minutes = Math.floor(timeUntilDeparture / (1000 * 60));
+      timeUntilDeparture %= 1000 * 60;
 
-        const seconds = Math.floor(timeUntilDeparture / 1000);
+      const seconds = Math.floor(timeUntilDeparture / 1000);
 
-        // Display the formatted time remaining in a readable way
-        this.flightStatusMessage = `Flight will start moving in ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+      this.flightStatusMessage = `Flight will start moving in ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
 
-        // Schedule the animation to start at the departure time
-        setTimeout(() => this.startFlightAnimation(), departureTime - currentTime);
+      setTimeout(() => this.startFlightAnimation(), departureTime - currentTime);
     } else {
-        // Check if the flight has already arrived
-        this.flightStatusMessage = 'This flight has already departed';
-        this.startFlightAnimation(); // Start animation immediately if flight time has passed
+      this.flightStatusMessage = 'This flight has already departed';
+      this.startFlightAnimation();
     }
-
-    console.log(this.flightStatusMessage);
-}
-
+  }
 
   startFlightAnimation(): void {
     let step = 0;
     const departureTime = this.departureDate.getTime();
-    const destinationTime = new Date(this.flightData[0].destinationDate).getTime();
+    const destinationTime = new Date(this.flightData.destinationDate).getTime();
     const duration = destinationTime - departureTime;
     console.log(`duration: ${duration}`);
     
-    // Use total steps based on flight duration; adjust for smoothness
-    const totalSteps = 2000; // Adjust this value if necessary for smoother animation
+    const totalSteps = 2000;
     const intervalTime = duration / totalSteps;
     
     const latStep = (this.destination[0] - this.departure[0]) / totalSteps;
@@ -136,5 +161,4 @@ export class FlightTrackerComponent implements OnInit {
       }
     }, intervalTime);
   }
-  
 }

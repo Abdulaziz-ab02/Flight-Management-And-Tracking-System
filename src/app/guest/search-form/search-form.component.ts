@@ -101,11 +101,12 @@ export class SearchFormComponent {
   SearchInput() {
     console.log(this.degree);
     console.log('Search initiated with form data:', this.searchForm.value);
+  
     this.flight.SearchForFlight(this.searchForm.value).subscribe(
       async (res: any[]) => {
         this.flights = res;
         console.log('Search results:', this.flights);
-
+  
         // Fetch facilities for each flight and wait for all to complete
         const facilityPromises = this.flights.map(async (flight) => {
           const facilities = await this.flight.GetAllFacilitesByDegree(flight.degreeId).toPromise();
@@ -113,17 +114,19 @@ export class SearchFormComponent {
             facilityname: facility.facilityname
           }));
         });
-        this.flightsFound.emit(this.flights);
-
+  
         // Wait until all facility fetches are complete
         await Promise.all(facilityPromises);
+  
         // Emit the results after facilities are populated
+        this.flightsFound.emit(this.flights);
       },
       (err: any) => {
         console.error('Error occurred during search:', err);
       }
     );
   }
+  
   
 
   selectDepartureCity(city: { cityname: string, id: number } | null) {

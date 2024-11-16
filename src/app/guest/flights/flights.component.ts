@@ -25,7 +25,7 @@ export class FlightsComponent implements OnInit {
     this.loadAirlines();
     this.filteredFlights = history.state.flights;
     this.flights = this.filteredFlights;
-    
+    console.log(this.filteredFlights);
     this.numOfPassengers = history.state.partners;
     let user: any = localStorage.getItem('user')
     user = JSON.parse(user)
@@ -74,7 +74,7 @@ export class FlightsComponent implements OnInit {
   handleFlightsFound(flights: any[]) { 
     this.flights = flights;
     this.filteredFlights=this.flights;
-    console.log(`Flights from searchForm: ${this.flights} :)`);
+    console.log(`Flights IN FLIGHT PAGE: ${this.flights} :)`);
 
   }
   handlePartnerCount(partners:number){
