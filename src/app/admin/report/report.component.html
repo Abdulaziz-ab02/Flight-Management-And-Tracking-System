@@ -46,24 +46,7 @@
           <h1 class="mb-4">Report</h1>
           <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
             <div class="mb-3">
-              <div class="mb-3">
-                <label for="yearOnly" class="form-label">Search by Year</label>
-                <input 
-                  type="number" 
-                  class="form-control" 
-                  formControlName="yearOnly"
-                  min="2000" 
-                  max="2099"
-                  placeholder="Enter year (e.g. 2024)">
-              </div>
-              
-              <div class="mb-3">
-                <label for="yearMonth" class="form-label">Search by Year and Month</label>
-                <input 
-                  type="month" 
-                  class="form-control" 
-                  formControlName="yearMonth">
-              </div>
+
               <label for="dateFrom" class="form-label">Search by Start Date</label>
               <input type="date" class="form-control" formControlName="dateFrom">
             </div>

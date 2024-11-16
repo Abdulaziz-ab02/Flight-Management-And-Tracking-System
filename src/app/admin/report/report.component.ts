@@ -40,6 +40,19 @@ export class ReportComponent implements OnInit {
         this.admin.GetAnnualTotalBenefits(yearValue).subscribe({
           next: (res) => {
             this.afterSearch = res;
+                    // Reset totalBenefits before calculating
+        this.totalBenefits = 0;
+  
+        // Use forEach loop to accumulate totalPrice values
+        this.afterSearch.forEach((obj: any) => {
+          
+            this.totalBenefits += obj.totalprice;
+
+
+          // Prepare and update the chart with new data
+      const chartData = this.prepareChartData();
+      this.createChart(chartData); // Pass prepared data
+        });
           },
           error: (error) => {
             console.log(`There was an error while hitting the year API error: ${error}`);
@@ -62,6 +75,20 @@ export class ReportComponent implements OnInit {
           this.admin.GetMonthlyTotalBenefits(month, year).subscribe(
            (res) => {
               this.afterSearch = res;
+                      // Reset totalBenefits before calculating
+        this.totalBenefits = 0;
+  
+        // Use forEach loop to accumulate totalPrice values
+        this.afterSearch.forEach((obj: any) => {
+          
+            this.totalBenefits += obj.totalprice;
+
+
+          // Prepare and update the chart with new data
+         const chartData = this.prepareChartData();
+         this.createChart(chartData); // Pass prepared data
+        });
+              
             },
            (error) => {
               console.log(`There was an error while hitting the yearAndMonth API error: ${error}`);
