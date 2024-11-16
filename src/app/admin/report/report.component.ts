@@ -27,6 +27,50 @@ export class ReportComponent implements OnInit {
     lastname: new FormControl(''),
     flightnumber: new FormControl('') 
   });
+  yearForm: FormGroup = new FormGroup({
+    year: new FormControl()
+  })
+  monthYearForm: FormGroup = new FormGroup({
+  month: new FormControl(),
+  })
+  onYearSearch() {
+    if (this.yearForm.valid) {
+      // Get the year value and convert it to integer
+      const yearValue: number = parseInt(this.yearForm.get('year')?.value);
+        this.admin.GetAnnualTotalBenefits(yearValue).subscribe({
+          next: (res) => {
+            this.afterSearch = res;
+          },
+          error: (error) => {
+            console.log(`There was an error while hitting the year API error: ${error}`);
+          }
+        });
+      
+    }
+  }
+  onMonthYearSearch() {
+      // Get the month-year value (format: "YYYY-MM")
+      const monthYearValue = this.monthYearForm.get('month')?.value;
+      
+      console.log(`MONTH_YEAR_VALUE: ${monthYearValue}`);
+        // Split the value into year and month
+        const [yearStr, monthStr] = monthYearValue.split('-');
+        const year: number = parseInt(yearStr);
+        const month: number = parseInt(monthStr);
+      
+      
+          this.admin.GetMonthlyTotalBenefits(month, year).subscribe(
+           (res) => {
+              this.afterSearch = res;
+            },
+           (error) => {
+              console.log(`There was an error while hitting the yearAndMonth API error: ${error}`);
+            }
+          );
+        } 
+    
+  
+
 
   ngOnInit(): void {
     // Initialize data fetching when the component is loaded

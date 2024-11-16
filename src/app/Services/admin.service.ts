@@ -337,11 +337,11 @@ export class AdminService {
   //report
 
 
-  GetMonthlyTotalBenefits(month: string, year: string): Observable<any[]> {
+  GetMonthlyTotalBenefits(month: number, year: number): Observable<any[]> {
     return this.http.get<any[]>(`https://localhost:7117/api/Reservation/MonthlyBenefits/${month}/${year}`);
   }
 
-  GetAnnualTotalBenefits(year: string): Observable<any[]> {
+  GetAnnualTotalBenefits(year: number): Observable<any[]> {
     return this.http.get<any[]>(`https://localhost:7117/api/Reservation/AnnualBenefits/${year}`);
   }
   

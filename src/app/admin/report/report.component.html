@@ -6,9 +6,64 @@
     <div class="row g-4">
       <div class="col-sm-12 col-xl-6">
         <div class="bg-light rounded h-100 p-4">
+          <h1 class="mb-4">Benefits Reports</h1>
+          <div class="row">
+            <!-- Year Only Search -->
+            <div class="col-md-6">
+              <form [formGroup]="yearForm" (ngSubmit)="onYearSearch()">
+                <div class="mb-3">
+                  <label for="year" class="form-label">Annual Benefits Report</label>
+                  <input 
+                    type="number" 
+                    class="form-control" 
+                    formControlName="year"
+                    min="2000" 
+                    max="2099"
+                    placeholder="Enter year (e.g. 2024)">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Get Annual Report</button>
+              </form>
+            </div>
+            
+            <!-- Year and Month Search -->
+            <div class="col-md-6">
+              <form [formGroup]="monthYearForm" (ngSubmit)="onMonthYearSearch()">
+                <div class="mb-3">
+                  <label for="month" class="form-label">Monthly Benefits Report</label>
+                  <input 
+                    type="month" 
+                    class="form-control" 
+                    formControlName="month">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Get Monthly Report</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="bg-light rounded h-100 p-4">
           <h1 class="mb-4">Report</h1>
           <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
             <div class="mb-3">
+              <div class="mb-3">
+                <label for="yearOnly" class="form-label">Search by Year</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  formControlName="yearOnly"
+                  min="2000" 
+                  max="2099"
+                  placeholder="Enter year (e.g. 2024)">
+              </div>
+              
+              <div class="mb-3">
+                <label for="yearMonth" class="form-label">Search by Year and Month</label>
+                <input 
+                  type="month" 
+                  class="form-control" 
+                  formControlName="yearMonth">
+              </div>
               <label for="dateFrom" class="form-label">Search by Start Date</label>
               <input type="date" class="form-control" formControlName="dateFrom">
             </div>
@@ -32,6 +87,8 @@
           </form>
         </div>
       </div>
+
+
     </div>
   </div>
 
