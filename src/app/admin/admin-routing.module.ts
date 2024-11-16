@@ -17,6 +17,7 @@ import { CreateCityComponent } from './create-city/create-city.component';
 import { DegreeComponent } from './degree/degree.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { DegreeFacilityComponent } from './degree-facility/degree-facility.component';
+import { ContactMessagesComponent } from './contact-messages/contact-messages.component';
 
 const routes: Routes = [
 
@@ -64,35 +65,39 @@ const routes: Routes = [
     path: 'report',
     component: ReportComponent
   },
-{
-  path:'country',
-  component:CountryComponent
-},
-{
-  path:'create-country',
-  component:CreateCountryComponent
-},
-{
-  path:'city',
-  component:CityComponent
-},
-{
-  path:'create-city',
-  component:CreateCityComponent
-}
-,
-{
-  path:'Degree',
-  component:DegreeComponent
-},
-{
-  path:'facilities',
-  component:FacilitiesComponent
-},
-{
-  path:'DegreeFacility',
-  component:DegreeFacilityComponent
-}
+  {
+    path: 'country',
+    component: CountryComponent
+  },
+  {
+    path: 'create-country',
+    component: CreateCountryComponent
+  },
+  {
+    path: 'city',
+    component: CityComponent
+  },
+  {
+    path: 'create-city',
+    component: CreateCityComponent
+  }
+  ,
+  {
+    path: 'Degree',
+    component: DegreeComponent
+  },
+  {
+    path: 'facilities',
+    component: FacilitiesComponent
+  },
+  {
+    path: 'DegreeFacility',
+    component: DegreeFacilityComponent
+  },
+  {
+    path: 'contactMessages',
+    component: ContactMessagesComponent
+  }
 ];
 
 @NgModule({

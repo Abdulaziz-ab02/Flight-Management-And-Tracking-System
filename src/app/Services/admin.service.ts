@@ -292,34 +292,44 @@ export class AdminService {
   }
 
 
-//degree page 
+  //degree page 
 
-GetAllDegrees(): Observable<any[]>{
-  return this.http.get<any[]>('https://localhost:7117/api/Degree/GetAllDegrees');
-}
-
-
-
-
-updateDegree(body:any):Observable<any>{
-  return this.http.put<any>("https://localhost:7117/api/Degree/UpdateDegree", body);
-}
-
-createDegree(body: any): Observable<any> {
-  return this.http.post("https://localhost:7117/api/Degree/CreateDegree", body);
-}
-
-
-deleteDegree(id: number): Observable<any> {
-  return this.http.delete(`https://localhost:7117/api/Degree/DeleteDegree/${id}`);
-}
+  GetAllDegrees(): Observable<any[]> {
+    return this.http.get<any[]>('https://localhost:7117/api/Degree/GetAllDegrees');
+  }
 
 
 
 
-//degree facility
+  updateDegree(body: any): Observable<any> {
+    return this.http.put<any>("https://localhost:7117/api/Degree/UpdateDegree", body);
+  }
 
-GetAllFacilitesByDegree(id: number): Observable<any> {
-  return this.http.get('https://localhost:7117/api/Flight/GetAllFacilitesByDegreeId/' + id);
-}
+  createDegree(body: any): Observable<any> {
+    return this.http.post("https://localhost:7117/api/Degree/CreateDegree", body);
+  }
+
+
+  deleteDegree(id: number): Observable<any> {
+    return this.http.delete(`https://localhost:7117/api/Degree/DeleteDegree/${id}`);
+  }
+
+
+
+
+  //degree facility
+
+  GetAllFacilitesByDegree(id: number): Observable<any> {
+    return this.http.get('https://localhost:7117/api/Flight/GetAllFacilitesByDegreeId/' + id);
+  }
+
+
+
+  getAllContactMessages(): Observable<any> {
+    return this.http.get("https://localhost:7117/api/ContactMessage");
+  }
+  CreateContactMessage(body: any): Observable<any> {
+    return this.http.post("https://localhost:7117/api/ContactMessage/CreateContactMessage", body);
+  }
+
 }
