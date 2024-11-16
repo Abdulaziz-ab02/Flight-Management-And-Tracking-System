@@ -13,14 +13,14 @@ import { Token } from '@angular/compiler';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit  {
+export class HomeComponent implements OnInit {
   constructor(public home: HomeService, private router: Router, public dialog: MatDialog) { }
 
   @ViewChild('callCreateDailog') createDialog !: TemplateRef<any>;
 
   isLoggedIn: boolean = false;
-  partners:number = 0;
-  flight:any[] = [];
+  partners: number = 0;
+  flight: any[] = [];
   testimonials: any = [];
 
 
@@ -35,27 +35,54 @@ export class HomeComponent implements OnInit  {
     }
 
   }
-     // Re-initialize carousel or any required script here
+  // Re-initialize carousel or any required script here
 
-  FetchTestemonials(){
+  FetchTestemonials() {
     this.home.getAllTestimonials().subscribe((res) => {
-      this.testimonials = res;
+      //this.testimonials = res;
+
+      // Shuffle the testimonials array
+      const approvedTestimonials = res.filter((testimonial: any) => testimonial.testimonialstatus === 'Approved');
+      this.testimonials = this.shuffle(approvedTestimonials);
+
+
+      // Limit the array to 3 testimonials
+      this.testimonials = this.testimonials.slice(0, 3);
     },
-  (error) => {
-    console.log(`There was an error while trying to fetch the testemonials data error
+      (error) => {
+        console.log(`There was an error while trying to fetch the testemonials data error
       message: ${error} :(`);
-  })
+      })
   }
-  handlePartnersChanges(partners:number){
+  shuffle(array: any[]) {
+    let currentIndex = array.length, randomIndex, temporaryValue;
+
+    // While there remain elements to shuffle
+    while (currentIndex !== 0) {
+      // Pick a remaining element
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+
+  handlePartnersChanges(partners: number) {
     this.partners = partners
   }
-  handleHomeFlights( flights: any[]) {
+  handleHomeFlights(flights: any[]) {
     this.flight = flights
     console.log(`Flights In Home page: ${flights} :)`);
-    this.router.navigate(['/flights'], { state: { flights:this.flight,partners:this.partners} });  
+    this.router.navigate(['/flights'], { state: { flights: this.flight, partners: this.partners } });
   }
-  
-  
+
+
 
   createTestimonial: FormGroup = new FormGroup({
     testimonialcontent: new FormControl('', Validators.required),
@@ -92,10 +119,10 @@ export class HomeComponent implements OnInit  {
     this.dialog.closeAll();
     window.location.reload();
   }
-  
-  }
 
-  
+}
+
+
 
 
 
