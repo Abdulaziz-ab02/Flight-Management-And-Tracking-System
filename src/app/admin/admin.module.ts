@@ -23,6 +23,7 @@ import { DegreeComponent } from './degree/degree.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { DegreeFacilityComponent } from './degree-facility/degree-facility.component';
 import { ContactMessagesComponent } from './contact-messages/contact-messages.component';
+import { UsersPartnersComponent } from './users-partners/users-partners.component';
 
 
 
@@ -47,6 +48,7 @@ import { ContactMessagesComponent } from './contact-messages/contact-messages.co
     FacilitiesComponent,
     DegreeFacilityComponent,
     ContactMessagesComponent,
+    UsersPartnersComponent,
   ],
   imports: [
     CommonModule,
