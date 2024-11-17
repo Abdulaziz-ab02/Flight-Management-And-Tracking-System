@@ -43,7 +43,8 @@ export class DegreeFacilityComponent implements OnInit{
    GetAllFacilitesByDegreeId(id: number): void {
     console.log('Fetching facilities for degree ID:', id);
     this.adminService.GetAllFacilitesByDegree(id).subscribe(
-      (res: any[]) => {console.log('Facilities fetched:', res);
+      (res: any[]) => {
+        console.log('Facilities fetched:', res);
         this.facilities = res;
          // Directly assign response to facilities array
       },
@@ -78,8 +79,8 @@ export class DegreeFacilityComponent implements OnInit{
     this.dialog.open(this.deleteF).afterClosed().subscribe((res) => {
       if (res === 'yes') {
         this.adminService.DeleteDegreeFacility(id).subscribe(
-          () => {
-            console.log('Facility disassociated successfully');
+          (result) => {
+            console.log('Facility disassociated successfully',result);
             this.GetAllFacilitesByDegreeId(this.degreeId); // Refresh the facilities
           },
           (error) => {
