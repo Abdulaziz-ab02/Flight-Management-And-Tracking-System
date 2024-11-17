@@ -25,6 +25,8 @@ import { DegreeFacilityComponent } from './degree-facility/degree-facility.compo
 import { ContactMessagesComponent } from './contact-messages/contact-messages.component';
 import { UsersPartnersComponent } from './users-partners/users-partners.component';
 
+import { CreateFacilityDegreeComponent } from './create-facility-degree/create-facility-degree.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -49,13 +51,14 @@ import { UsersPartnersComponent } from './users-partners/users-partners.componen
     DegreeFacilityComponent,
     ContactMessagesComponent,
     UsersPartnersComponent,
+    CreateFacilityDegreeComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     AdminSharedModule,
-    MatButtonModule
-
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

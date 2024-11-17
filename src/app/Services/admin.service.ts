@@ -342,8 +342,20 @@ export class AdminService {
     return this.http.post("https://localhost:7117/api/ContactMessage/CreateContactMessage", body);
   }
 
+  GetAvailableFacilitiesForDegree(degreeId: number) {
+    return this.http.get<any[]>(`https://localhost:7117/api/DegreeFacility/GetAvailableFacilitiesForDegree/${degreeId}`);
+  }
+  
+  AddFacilityToDegree(degreeFacility: { degreeId: number; facilityId: number }): Observable<any> {
+    return this.http.post('https://localhost:7117/api/DegreeFacility/CreateDegreeFacility', degreeFacility);
+  }
+  
 
+  DeleteDegreeFacility(id: number): Observable<void> {
+    return this.http.delete<void>(`https://localhost:7117/api/DegreeFacility/DeleteDegreeFacility/${id}`);
+  }
 
+ 
   //report
 
 
