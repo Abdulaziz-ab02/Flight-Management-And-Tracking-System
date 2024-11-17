@@ -41,6 +41,9 @@
                             <input formControlName="discountvalue" type="number" class="form-control"
                                 placeholder="Discount Value" min="0">
                         </div>
+                        <div class="col">
+                            <p>Total Price After Discount: {{ priceAfterDiscount | currency }}</p>
+                          </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
