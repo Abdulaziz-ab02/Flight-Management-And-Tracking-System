@@ -112,8 +112,17 @@
           <hr>
           <!-- Price per Person -->
           <div class="d-flex justify-content-between mb-2">
-            <span><i class="fas fa-user"></i> Price per Person</span>
-            <span>JOD {{selectedFlight.price}}</span>
+            <span ><i class="fas fa-user"></i> Price<span  *ngIf="selectedFlight.discountvalue > 0"> Before Discount</span> </span>
+            <span 
+            *ngIf="selectedFlight.discountvalue > 0" 
+            [ngStyle]="{ 'text-decoration': 'line-through', 'color': 'black' }">
+            JOD {{selectedFlight.price}}
+          </span>
+          <span *ngIf="selectedFlight.discountvalue == 0" >JOD {{selectedFlight.price}}</span>
+        </div>
+          <div *ngIf="selectedFlight.discountvalue > 0" class="d-flex justify-content-between mb-2">
+            <span><i class="fas fa-user"></i> Price </span>
+            <span>JOD {{selectedFlight.priceAfterDiscount}}</span>
           </div>
           <!-- Number of Persons -->
           <div class="d-flex justify-content-between mb-2" *ngIf="numOfPassengers">
@@ -126,9 +135,9 @@
             <span>JOD {{totalPrice}}</span>
           </div>
           <!-- Additional Information -->
-          <div class="d-flex justify-content-between mb-2">
-            <span><i class="fas fa-info-circle"></i> Taxes and Fees</span>
-            <span>$20</span>
+          <div *ngIf="selectedFlight.discountvalue > 0" class="d-flex justify-content-between mb-2">
+            <span><i class="fas fa-info-circle"></i> Discount value</span>
+            <span> %{{ selectedFlight.discountvalue }}</span>
           </div>
           <hr>
           <!-- Final Price -->

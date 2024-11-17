@@ -35,6 +35,7 @@ export class FlightsComponent implements OnInit {
   editingFlightId: number | null = null;
   airports: any[] = [];
   degrees: Degree[] = [];  
+  priceAfterDiscount:number = 0;
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -47,6 +48,11 @@ export class FlightsComponent implements OnInit {
       departureairportid: new FormControl('', Validators.required),
       destinationairportid: new FormControl('', Validators.required),
       degreeid: new FormControl('', Validators.required)
+    });
+    this.createFlightForm.valueChanges.subscribe((values) => {
+      const price = values.pricePerPassenger || 0;
+      const discount = values.discountvalue || 0;
+      this.priceAfterDiscount = price - (price * discount) / 100;
     });
   }
 
@@ -102,8 +108,11 @@ export class FlightsComponent implements OnInit {
       return;
     }
 
-    const flightData: Flight = { ...this.createFlightForm.value, airlineId: this.airlineId };
-
+    const flightData: Flight = { 
+      ...this.createFlightForm.value, 
+      airlineId: this.airlineId,
+      priceAfterDiscount: this.priceAfterDiscount 
+    };
     if (this.editingFlightId) {
       flightData.id = this.editingFlightId;
       this.updateFlight(flightData);
@@ -115,6 +124,7 @@ export class FlightsComponent implements OnInit {
           this.fetchFlights();
           this.createFlightForm.reset();
           this.showCreateForm = false;
+          this.priceAfterDiscount = 0;
         },
         (error) => {
           console.error('Error creating flight:', error);

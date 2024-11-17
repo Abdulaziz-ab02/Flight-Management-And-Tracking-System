@@ -67,11 +67,11 @@
                   <h5 class="flight-price">
                   <i class="fas fa-dollar-sign"></i>
                   <span *ngIf="flight.discountvalue > 0" class="original-price" style="text-decoration: line-through; color: black;">
-                    JOD {{ flight.price}}
+                    JOD {{ flight.price }}
                   </span>
                   
                   <span *ngIf="flight.discountvalue > 0">
-                    JOD {{ calculateDiscountedPrice(flight)}}
+                    JOD {{flight.priceAfterDiscount}}
                   </span>
               
                   <!-- Display only the original price if there's no discount -->
@@ -120,7 +120,7 @@
         </div>
         <!-- Price -->
         <div class="col-md-6 text-center">
-          <p><strong>Price:</strong> JOD {{data.flight.price }}</p>
+          <p><strong>Price:</strong> JOD {{data.flight.priceAfterDiscount }}</p>
           <p><strong>Degree:</strong> {{data.flight.degreename}}</p>
           <p><strong>Total Price:</strong> {{data.TotalPrice}}</p>
 
