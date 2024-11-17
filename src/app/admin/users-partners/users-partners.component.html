@@ -43,13 +43,27 @@
     </div>
 </div>
 
-<ng-template>
+<ng-template #callPartnersDailog>
     <h2 mat-dialog-title>Partners</h2>
     <mat-dialog-content class="mat-typography">
-        <div class="container mt-5">
+        <div class="container">
+            <mat-list>
+                <ng-container *ngFor="let item of Partners">
+                    <mat-list-item>
+                        <mat-icon matListItemIcon>person</mat-icon>
+                        <div matListItemTitle>{{ item.partnerFirstName }} {{ item.partnerLastName }}</div>
+                        <div matListItemLine>nationalNumber: {{ item.nationalnumber }}</div>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
 
+                </ng-container>
+
+            </mat-list>
         </div>
     </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
 </ng-template>
 
 <app-footer></app-footer>
