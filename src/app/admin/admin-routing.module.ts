@@ -18,6 +18,7 @@ import { DegreeComponent } from './degree/degree.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
 import { DegreeFacilityComponent } from './degree-facility/degree-facility.component';
 import { ContactMessagesComponent } from './contact-messages/contact-messages.component';
+import { UsersPartnersComponent } from './users-partners/users-partners.component';
 
 const routes: Routes = [
 
@@ -97,6 +98,10 @@ const routes: Routes = [
   {
     path: 'contactMessages',
     component: ContactMessagesComponent
+  },
+  {
+    path: 'UsersWithPartners',
+    component: UsersPartnersComponent
   }
 ];
 

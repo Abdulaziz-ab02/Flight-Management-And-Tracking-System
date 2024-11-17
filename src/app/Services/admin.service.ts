@@ -24,6 +24,11 @@ export class AdminService {
     });
   }
 
+  GetUsersWithPartners(): Observable<any> {
+    return this.http.get("https://localhost:7117/api/User/GetUsersWithPartners");
+  }
+
+
   airline: any = [];
   GetAllAirline() {
     this.http.get('https://localhost:7117/api/Airline').subscribe(result => {
@@ -344,6 +349,6 @@ export class AdminService {
   GetAnnualTotalBenefits(year: number): Observable<any[]> {
     return this.http.get<any[]>(`https://localhost:7117/api/Reservation/AnnualBenefits/${year}`);
   }
-  
-  
+
+
 }
