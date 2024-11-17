@@ -32,7 +32,7 @@
                             <td>{{obj.dateofbirth |date}}</td>
                             <td>{{obj.nationalnumber}}</td>
                             <td>
-                                <a class="btn btn-sm btn-primary">Partners</a>
+                                <a class="btn btn-sm btn-primary" (click)="OpenPartnersDialog(obj.id)">Partners</a>
                             </td>
                         </tr>
 
@@ -42,5 +42,14 @@
         </div>
     </div>
 </div>
+
+<ng-template>
+    <h2 mat-dialog-title>Partners</h2>
+    <mat-dialog-content class="mat-typography">
+        <div class="container mt-5">
+
+        </div>
+    </mat-dialog-content>
+</ng-template>
 
 <app-footer></app-footer>
