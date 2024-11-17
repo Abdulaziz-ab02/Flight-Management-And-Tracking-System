@@ -25,7 +25,7 @@ export class AdminService {
   }
 
   GetUsersWithPartners(): Observable<any> {
-    return this.http.get("https://localhost:7117/User/GetUsersWithPartners");
+    return this.http.get("https://localhost:7117/api/User/GetUsersWithPartners");
   }
 
 
