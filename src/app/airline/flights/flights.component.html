@@ -15,41 +15,34 @@
                 <form [formGroup]="createFlightForm" (ngSubmit)="createFlight()">
                     <div class="row mb-3">
                         <div class="col">
-                            <input formControlName="flightNumber" class="form-control" placeholder="Flight Number"
-                                required>
+                            <input formControlName="flightNumber" class="form-control" placeholder="Flight Number" required>
                         </div>
                         <div class="col">
-                            <input formControlName="capacity" type="number" class="form-control" placeholder="Capacity"
-                                required>
+                            <input formControlName="capacity" type="number" class="form-control" placeholder="Capacity" required>
                         </div>
                         <div class="col">
-                            <input formControlName="pricePerPassenger" type="number" class="form-control"
-                                placeholder="Price per Passenger" required>
+                            <input formControlName="pricePerPassenger" type="number" class="form-control" placeholder="Price per Passenger" required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input formControlName="departureDate" type="datetime-local" class="form-control"
-                                placeholder="Departure Date" required>
+                            <input formControlName="departureDate" type="datetime-local" class="form-control" placeholder="Departure Date" required>
                         </div>
                         <div class="col">
-                            <input formControlName="destinationDate" type="datetime-local" class="form-control"
-                                placeholder="Destination Date" required>
+                            <input formControlName="destinationDate" type="datetime-local" class="form-control" placeholder="Destination Date" required>
                         </div>
-
                         <div class="col">
-                            <input formControlName="discountvalue" type="number" class="form-control"
-                                placeholder="Discount Value" min="0">
+                            <input formControlName="discountvalue" type="number" class="form-control" placeholder="Discount Value" min="0">
                         </div>
                         <div class="col">
                             <p>Total Price After Discount: {{ priceAfterDiscount | currency }}</p>
-                          </div>
+                        </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Departure Airport</mat-label>
-                                <mat-select formControlName="departureairportid" required>
+                                <mat-select formControlName="departureairportid">
                                     <mat-option *ngFor="let airport of airports" [value]="airport.id">
                                         {{ airport.airportname }}
                                     </mat-option>
@@ -59,7 +52,7 @@
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Destination Airport</mat-label>
-                                <mat-select formControlName="destinationairportid" required>
+                                <mat-select formControlName="destinationairportid">
                                     <mat-option *ngFor="let airport of airports" [value]="airport.id">
                                         {{ airport.airportname }}
                                     </mat-option>
@@ -69,7 +62,7 @@
                         <div class="col">
                             <mat-form-field appearance="fill">
                                 <mat-label>Degree</mat-label>
-                                <mat-select formControlName="degreeid" required>
+                                <mat-select formControlName="degreeid">
                                     <mat-option *ngFor="let degree of degrees" [value]="degree.id">
                                         {{ degree.name }}
                                     </mat-option>
