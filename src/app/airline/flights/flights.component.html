@@ -32,7 +32,7 @@
                             <input formControlName="destinationDate" type="datetime-local" class="form-control" placeholder="Destination Date" required>
                         </div>
                         <div class="col">
-                            <input formControlName="discountvalue" type="number" class="form-control" placeholder="Discount Value" min="0">
+                            <input formControlName="discountvalue" type="number" class="form-control" placeholder="Discount Value" min="0" required>
                         </div>
                         <div class="col">
                             <p>Total Price After Discount: {{ priceAfterDiscount | currency }}</p>
@@ -43,7 +43,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Departure Airport</mat-label>
                                 <mat-select formControlName="departureairportid">
-                                    <mat-option *ngFor="let airport of airports" [value]="airport.id">
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id" required>
                                         {{ airport.airportname }}
                                     </mat-option>
                                 </mat-select>
@@ -53,7 +53,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Destination Airport</mat-label>
                                 <mat-select formControlName="destinationairportid">
-                                    <mat-option *ngFor="let airport of airports" [value]="airport.id">
+                                    <mat-option *ngFor="let airport of airports" [value]="airport.id" required>
                                         {{ airport.airportname }}
                                     </mat-option>
                                 </mat-select>
@@ -63,7 +63,7 @@
                             <mat-form-field appearance="fill">
                                 <mat-label>Degree</mat-label>
                                 <mat-select formControlName="degreeid">
-                                    <mat-option *ngFor="let degree of degrees" [value]="degree.id">
+                                    <mat-option *ngFor="let degree of degrees" [value]="degree.id" required>
                                         {{ degree.name }}
                                     </mat-option>
                                 </mat-select>
