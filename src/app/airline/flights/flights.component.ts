@@ -35,7 +35,7 @@ export class FlightsComponent implements OnInit {
   editingFlightId: number | null = null;
   airports: any[] = [];
   degrees: Degree[] = [];  
-  priceAfterDiscount: number = 0;
+  priceAfterDiscount:number = 0;
 
   constructor(private flightService: FlightService) {
     this.createFlightForm = new FormGroup({
@@ -45,11 +45,10 @@ export class FlightsComponent implements OnInit {
       departureDate: new FormControl('', Validators.required),
       destinationDate: new FormControl('', Validators.required),
       discountvalue: new FormControl(0),
-      departureairportid: new FormControl(''), 
-      destinationairportid: new FormControl(''), 
-      degreeid: new FormControl('') 
+      departureairportid: new FormControl('', Validators.required),
+      destinationairportid: new FormControl('', Validators.required),
+      degreeid: new FormControl('', Validators.required)
     });
-    
     this.createFlightForm.valueChanges.subscribe((values) => {
       const price = values.pricePerPassenger || 0;
       const discount = values.discountvalue || 0;
@@ -138,30 +137,12 @@ export class FlightsComponent implements OnInit {
     this.showCreateForm = !this.showCreateForm;
     this.createFlightForm.reset();
     this.editingFlightId = null;
-    this.setOptionalFields(false); 
   }
 
   editFlight(flight: Flight): void {
     this.editingFlightId = flight.id || null;
     this.showCreateForm = true;
     this.createFlightForm.patchValue(flight);
-    this.setOptionalFields(true); 
-  }
-
-  setOptionalFields(isEditing: boolean): void {
-    if (isEditing) {
-      this.createFlightForm.get('departureairportid')?.clearValidators();
-      this.createFlightForm.get('destinationairportid')?.clearValidators();
-      this.createFlightForm.get('degreeid')?.clearValidators();
-    } else {
-      this.createFlightForm.get('departureairportid')?.setValidators(Validators.required);
-      this.createFlightForm.get('destinationairportid')?.setValidators(Validators.required);
-      this.createFlightForm.get('degreeid')?.setValidators(Validators.required);
-    }
-    
-    this.createFlightForm.get('departureairportid')?.updateValueAndValidity();
-    this.createFlightForm.get('destinationairportid')?.updateValueAndValidity();
-    this.createFlightForm.get('degreeid')?.updateValueAndValidity();
   }
 
   updateFlight(updatedFlight: Flight): void {
@@ -173,7 +154,6 @@ export class FlightsComponent implements OnInit {
         this.createFlightForm.reset();
         this.editingFlightId = null;
         this.showCreateForm = false;
-        this.setOptionalFields(false); 
       },
       (error) => {
         console.error('Error updating flight:', error);

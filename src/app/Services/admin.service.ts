@@ -28,6 +28,11 @@ export class AdminService {
     return this.http.get("https://localhost:7117/api/User/GetUsersWithPartners");
   }
 
+  GetPartnersByUser(id: number): Observable<any> {
+    return this.http.get("https://localhost:7117/api/Partner/getPartnerByUserId/" + id);
+  }
+
+
 
   airline: any = [];
   GetAllAirline() {
