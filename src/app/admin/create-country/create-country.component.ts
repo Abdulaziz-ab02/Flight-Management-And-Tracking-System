@@ -20,6 +20,5 @@ export class CreateCountryComponent {
     if (this.createCountryForm.valid) {
       this.admin.createCountry(this.createCountryForm.value);
     }
-    window.location.reload();
   }
 }
