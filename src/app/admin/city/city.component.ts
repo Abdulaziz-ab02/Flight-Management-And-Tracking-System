@@ -103,7 +103,6 @@ export class CityComponent {
 
     this.admin.UpdateCity(updatedData);
     this.dialog.closeAll();
-    window.location.reload();
   }
 
   cancel() {
