@@ -99,7 +99,9 @@
           </div>
           <!-- Pay Button -->
           <button (click)="AllSaved()" type="submit" class="btn btn-success mt-4">Pay</button>
-
+          <div *ngIf="falseInfo" class="alert alert-danger mt-3">
+            something wrong with the provided credentials
+          </div>
         </form>
       </section>
     </div>

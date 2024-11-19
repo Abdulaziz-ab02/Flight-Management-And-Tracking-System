@@ -11,8 +11,6 @@ import { FlightService } from 'src/app/Services/flight.service';
 export class SearchFormComponent {
   @Output() flightsFound = new EventEmitter<any[]>();
   @Output() partnerCount = new EventEmitter<number>();
-
-
   cities: { cityname: string, id: number }[] = [];  
   degree: { degreename: string, id: number }[] = [];  
   filteredDepartureCities: { cityname: string, id: number }[] = []; 

@@ -22,6 +22,7 @@ export class ReservationsComponent implements OnInit {
   currentDate = new Date().toISOString().split('T')[0];
   userEmail:string = '';
   userData:any = {};
+  falseInfo?:boolean;
 
   constructor(private router: Router, private flightService: FlightService,
      private bankService: BankService,private emailService: EmailService,private  homeService: HomeService) {}
@@ -143,6 +144,7 @@ export class ReservationsComponent implements OnInit {
       this.router.navigate(['/user/thankyou'])  
       } else {
         console.log('Payment was not successful.');
+        this.falseInfo = true;
       }
     }, (error) => {
       console.log('Payment service returned: error: ', error);

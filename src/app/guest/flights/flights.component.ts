@@ -130,7 +130,7 @@ public loadAirlines(): void {
 applyFilters(): void {
   this.filteredFlights = this.flights.filter(flight => {
     // Check if the price filter is applied and if the flight meets the price condition
-    const meetsPriceCondition = !this.selectedPriceRange || flight.price <= this.selectedPriceRange;
+    const meetsPriceCondition = !this.selectedPriceRange || flight.priceAfterDiscount <= this.selectedPriceRange;
 
     // Check if the airline filter is applied and if the flight meets the airline condition
     const meetsAirlineCondition = this.selectedAirlines.length === 0 || this.selectedAirlines.includes(flight.airlinename);
