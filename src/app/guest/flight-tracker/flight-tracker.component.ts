@@ -20,7 +20,7 @@ export class FlightTrackerComponent implements OnInit {
   departureDate: Date = new Date();
   flightStatusMessage: string = '';
   currentDate = new Date();
-Object: any;
+  Object: any;
 
   constructor(private flightService: FlightService, private cdr: ChangeDetectorRef) {}
 
