@@ -52,7 +52,7 @@ export class AirportsComponent implements OnInit {
   cities: any[] = [];
   openUpdateDialog(obj: any) {
     this.pData = obj;
-    console.log('brooo',obj);
+    console.log('brooo', obj);
 
     this.admin.img = this.pData.airportimage;
 
@@ -88,12 +88,11 @@ export class AirportsComponent implements OnInit {
     }
     // If cityid is chosen, proceed with saving and close the dialog
     this.admin.updateAirport(updatedData);
-    this.dialog.closeAll(); 
-    window.location.reload();// This will close the dialog manually
+    this.dialog.closeAll();
   }
 
   cancel() {
-    this.dialog.closeAll(); 
+    this.dialog.closeAll();
     window.location.reload();
   }
 

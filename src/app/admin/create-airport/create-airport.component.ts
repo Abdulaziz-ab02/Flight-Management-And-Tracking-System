@@ -37,12 +37,12 @@ export class CreateAirportComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.loadCities();
-    
+
     // Subscribe to form changes to update marker
     this.createAirport.get('latitude')?.valueChanges.subscribe(lat => {
       this.createAirport.get('longitude')?.value && this.updateMarkerFromForm();
     });
-    
+
     this.createAirport.get('longitude')?.valueChanges.subscribe(lng => {
       this.createAirport.get('latitude')?.value && this.updateMarkerFromForm();
     });
@@ -66,7 +66,7 @@ export class CreateAirportComponent implements OnInit, AfterViewInit {
     this.map.on('click', (e: L.LeafletMouseEvent) => {
       const lat = e.latlng.lat.toFixed(6);
       const lng = e.latlng.lng.toFixed(6);
-      
+
       this.createAirport.patchValue({
         latitude: lat,
         longitude: lng
@@ -80,7 +80,7 @@ export class CreateAirportComponent implements OnInit, AfterViewInit {
     if (this.marker) {
       this.map.removeLayer(this.marker);
     }
-    
+
     // Create new marker with custom icon
     this.marker = L.marker(latlng, { icon: this.customIcon })
       .addTo(this.map)
@@ -101,7 +101,7 @@ export class CreateAirportComponent implements OnInit, AfterViewInit {
   private updateMarkerFromForm(): void {
     const lat = parseFloat(this.createAirport.get('latitude')?.value);
     const lng = parseFloat(this.createAirport.get('longitude')?.value);
-    
+
     if (!isNaN(lat) && !isNaN(lng)) {
       const latlng = L.latLng(lat, lng);
       this.updateMarker(latlng);
@@ -125,7 +125,6 @@ export class CreateAirportComponent implements OnInit, AfterViewInit {
 
   save() {
     this.admin.createAirport(this.createAirport.value);
-    window.location.reload();
   }
 
   uploadFile(file: any) {
